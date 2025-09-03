@@ -83,7 +83,7 @@ export default function Home() {
                     className="w-full h-auto rounded-lg shadow-lg border-2 border-purple-300 mb-3"
                   />
                   <p className="text-sm font-semibold text-purple-700">Dolly Zoom Effect</p>
-                  <p className="text-xs text-purple-600 italic">Camera moves back while zooming in, creating the "Vertigo" effect</p>
+                  <p className="text-xs text-purple-600 italic">Camera moves back while zooming in, creating the &quot;Vertigo&quot; effect</p>
                 </div>
               </div>
             </div>
