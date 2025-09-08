@@ -1,3 +1,5 @@
+import Accordion from './components/Accordion';
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-100 to-purple-200 flex flex-col items-center justify-center p-8 font-mono">
@@ -13,10 +15,8 @@ export default function Home() {
              Welcome to my portfolio! 💜
           </p>
         </div>
-        <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border-2 border-purple-300">
-          <h3 className="text-3xl font-black text-purple-800 mb-6 tracking-wide">
-            📸 Project 0: Becoming Friends with Your Camera
-          </h3>
+        
+        <Accordion title="📸 Project 0: Becoming Friends with Your Camera" defaultOpen={true}>
           <div className="space-y-6 text-left">
             <div className="border-l-4 border-purple-400 pl-6 bg-purple-50/50 rounded-r-lg py-4">
               <h4 className="text-xl font-bold text-purple-700 mb-4 flex items-center">
@@ -25,7 +25,7 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="text-center">
                   <img 
-                    src="/cs180-portfolio/closeup.png" 
+                    src="/project-0/closeup.png" 
                     alt="Close-up selfie showing distortion" 
                     className="w-full h-auto rounded-lg shadow-md border-2 border-purple-200 mb-2"
                   />
@@ -34,7 +34,7 @@ export default function Home() {
                 </div>
                 <div className="text-center">
                   <img 
-                    src="/cs180-portfolio/zoomedin.png" 
+                    src="/project-0/zoomedin.png" 
                     alt="Zoomed-in photo from distance showing better proportions" 
                     className="w-full h-auto rounded-lg shadow-md border-2 border-purple-200 mb-2"
                   />
@@ -50,7 +50,7 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="text-center">
                   <img 
-                    src="/cs180-portfolio/zoomtree.png" 
+                    src="/project-0/zoomtree.png" 
                     alt="Zoomed-in view of street scene showing compression" 
                     className="w-full h-auto rounded-lg shadow-md border-2 border-purple-200 mb-2"
                   />
@@ -59,7 +59,7 @@ export default function Home() {
                 </div>
                 <div className="text-center">
                   <img 
-                    src="/cs180-portfolio/fartree.png" 
+                    src="/project-0/fartree.png" 
                     alt="Close-up wide angle view showing natural depth" 
                     className="w-full h-auto rounded-lg shadow-md border-2 border-purple-200 mb-2"
                   />
@@ -78,7 +78,7 @@ export default function Home() {
               <div className="flex justify-center">
                 <div className="text-center max-w-md">
                   <img 
-                    src="/cs180-portfolio/Image from Imgflip.gif" 
+                    src="/project-0/Image from Imgflip.gif" 
                     alt="Dolly zoom effect animation showing perspective distortion" 
                     className="w-full h-auto rounded-lg shadow-lg border-2 border-purple-300 mb-3"
                   />
@@ -88,7 +88,15 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </Accordion>
+
+        <Accordion title="🎨 Project 1: Images of the Russian Empire -- Colorizing the Prokudin-Gorskii Photo Collection" defaultOpen={false}>
+          <div className="text-center py-8">
+            <p className="text-lg text-purple-600 font-medium">
+              im cooking bro
+            </p>
+          </div>
+        </Accordion>
       </div>
     </div>
   );
