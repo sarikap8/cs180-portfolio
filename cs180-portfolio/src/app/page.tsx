@@ -25,7 +25,7 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="text-center">
                   <img 
-                    src="/project-0/closeup.png" 
+                    src="/cs180-portfolio/project-0/closeup.png" 
                     alt="Close-up selfie showing distortion" 
                     className="w-full h-auto rounded-lg shadow-md border-2 border-purple-200 mb-2"
                   />
@@ -34,7 +34,7 @@ export default function Home() {
                 </div>
                 <div className="text-center">
                   <img 
-                    src="/project-0/zoomedin.png" 
+                    src="/cs180-portfolio/project-0/zoomedin.png" 
                     alt="Zoomed-in photo from distance showing better proportions" 
                     className="w-full h-auto rounded-lg shadow-md border-2 border-purple-200 mb-2"
                   />
@@ -50,7 +50,7 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="text-center">
                   <img 
-                    src="/project-0/zoomtree.png" 
+                    src="/cs180-portfolio/project-0/zoomtree.png" 
                     alt="Zoomed-in view of street scene showing compression" 
                     className="w-full h-auto rounded-lg shadow-md border-2 border-purple-200 mb-2"
                   />
@@ -59,7 +59,7 @@ export default function Home() {
                 </div>
                 <div className="text-center">
                   <img 
-                    src="/project-0/fartree.png" 
+                    src="/cs180-portfolio/project-0/fartree.png" 
                     alt="Close-up wide angle view showing natural depth" 
                     className="w-full h-auto rounded-lg shadow-md border-2 border-purple-200 mb-2"
                   />
@@ -78,7 +78,7 @@ export default function Home() {
               <div className="flex justify-center">
                 <div className="text-center max-w-md">
                   <img 
-                    src="/project-0/Image from Imgflip.gif" 
+                    src="/cs180-portfolio/project-0/Image from Imgflip.gif" 
                     alt="Dolly zoom effect animation showing perspective distortion" 
                     className="w-full h-auto rounded-lg shadow-lg border-2 border-purple-300 mb-3"
                   />
