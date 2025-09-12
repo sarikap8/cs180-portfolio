@@ -149,7 +149,7 @@ export default function Home() {
                   from landscapes to portraits, including the only known color image of Leo Tolstoy.
                 </p>
                 <p className="text-black leading-relaxed mb-4">
-                  Prokudin-Gorskii's method involved taking three separate exposures of each scene through red, green, and blue filters 
+                  Prokudin-Gorskii&apos;s method involved taking three separate exposures of each scene through red, green, and blue filters 
                   onto glass plates. These RGB negatives survived and were eventually digitized by the Library of Congress, 
                   preserving a unique glimpse into the final years of Imperial Russia.
                 </p>
@@ -168,7 +168,7 @@ export default function Home() {
                   For both approaches, I started by creating a list of images to iterate through and a place to store all my final displacements from each of those images. Then, I started a preprocessing in the naive and optimized approaches. I separated the image into the 3 color channels after representing it as a float.
                 </p>
                 <p className="text-black leading-relaxed mb-4">
-                  For the smaller images, I chose to stick with the naive approach of alignment. To do this, I created a [-15, 15] window of possible (x,y) displacements and used a double nested for loop to do so. Then, for each possible displacement, I found the overlap window between the two images after applying the displacement to the first image, and I find the largest possible overlap that doesn't go out of bounds using two windows, one for the reference image and one for the moving image that I am going to apply the displacement to. I then calculated a Normalized Cross-Correlation metric for these two windows. I started off using an SSD metric (Euclidean Distance), however this was yielding poor alignment after visually examining the output. After switching to NCC, I found the resulting .jpg files had better alignment. I then kept the alignment that yielded the best NCC score. To apply this best shift, I used np.roll.
+                  For the smaller images, I chose to stick with the naive approach of alignment. To do this, I created a [-15, 15] window of possible (x,y) displacements and used a double nested for loop to do so. Then, for each possible displacement, I found the overlap window between the two images after applying the displacement to the first image, and I find the largest possible overlap that doesn&apos;t go out of bounds using two windows, one for the reference image and one for the moving image that I am going to apply the displacement to. I then calculated a Normalized Cross-Correlation metric for these two windows. I started off using an SSD metric (Euclidean Distance), however this was yielding poor alignment after visually examining the output. After switching to NCC, I found the resulting .jpg files had better alignment. I then kept the alignment that yielded the best NCC score. To apply this best shift, I used np.roll.
                 </p>
                 <div className="bg-gray-50 p-4 rounded-lg border-l-4 border-gray-400 mb-4">
                   <p className="text-black text-sm font-medium mb-2">Normalized Cross-Correlation Formula:</p>
@@ -186,13 +186,13 @@ export default function Home() {
                   However, this naive method was not efficient or quick for the much larger .tif images. So, I chose to use an image pyramid structure. The align_optimized function recursively aligning downscaled versions of the images (coarser to finer). This approach drastically reduces computation time by performing the initial, large-scale search on smaller images where each pixel represents a larger area of the original.
                 </p>
                 <p className="text-black leading-relaxed mb-4">
-                  The function's recursion stops when it reaches a max_depth of zero, at which point the align_naive function is called to perform the final, fine-grained alignment. If the max_depth is greater than zero, the images are first downscaled by a factor of two using sk.transform.rescale. The function then calls itself recursively on these smaller images to find a coarse shift. Once this is found, it is scaled back up by a factor of two and applied to the original, full-resolution image using np.roll, which brings the two full-resolution images into rough alignment. A final call to align_naive is then performed on these roughly aligned images to find a small, fine-tuning shift.
+                  The function&apos;s recursion stops when it reaches a max_depth of zero, at which point the align_naive function is called to perform the final, fine-grained alignment. If the max_depth is greater than zero, the images are first downscaled by a factor of two using sk.transform.rescale. The function then calls itself recursively on these smaller images to find a coarse shift. Once this is found, it is scaled back up by a factor of two and applied to the original, full-resolution image using np.roll, which brings the two full-resolution images into rough alignment. A final call to align_naive is then performed on these roughly aligned images to find a small, fine-tuning shift.
                 </p>
                 <p className="text-black leading-relaxed mb-4">
                   I added this portion because after the coarse adjustment, I was noticing small differences that I hypothesized could be fixed quickly, and thus with the naive approach. I also added a crop to this version of the algorithm to address the same issues as the naive version. The total displacement is the sum of the upscaled coarse shift and the fine-tuning shift. This hierarchical approach significantly reduces the search space for alignment because instead of exhaustively checking hundreds of thousands of pixels.
                 </p>
                 <p className="text-black leading-relaxed">
-                  I struggled with emir.tif despite this new approach, and this is the only one I believe is not fully aligned. I hypothesize that this is because the subject's face and clothing are not represented in all three color channels with equal intensity and clarity, so in spite of using the NCC metric, alignment wasn't optimal.
+                  I struggled with emir.tif despite this new approach, and this is the only one I believe is not fully aligned. I hypothesize that this is because the subject&apos;s face and clothing are not represented in all three color channels with equal intensity and clarity, so in spite of using the NCC metric, alignment wasn&apos;t optimal.
                 </p>
               </div>
 
