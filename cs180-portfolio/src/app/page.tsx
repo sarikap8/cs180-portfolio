@@ -774,7 +774,7 @@ export default function Home() {
                       
                       <p><strong>Two Loop Implementation:</strong> This method achieves a significant improvement with O(H×W) time complexity. It uses numpy.sum() for vectorized operations on kernel-sized patches, leveraging the optimized C code in numpy for element-wise operations. This approach is much faster than four loops while still maintaining algorithmic clarity.</p>
                       
-                      <p><strong>scipy.signal.convolve2d:</strong> This is a highly optimized C implementation with additional optimizations beyond basic convolution. It uses FFT-based convolution for large kernels when it's more efficient, is memory-efficient, and handles edge cases automatically. This is the fastest option, typically achieving 10-100x speedup over naive implementations.</p>
+                      <p><strong>scipy.signal.convolve2d:</strong> This is a highly optimized C implementation with additional optimizations beyond basic convolution. It uses FFT-based convolution for large kernels when it’s more efficient, is memory-efficient, and handles edge cases automatically. This is the fastest option, typically achieving 10-100x speedup over naive implementations.</p>
                       
                       <p><strong>Boundary Handling:</strong> Zero padding preserves output dimensions (same mode) and prevents information loss at image boundaries. All three methods produce identical results when proper padding is applied, demonstrating the correctness of the implementations and the importance of boundary handling in convolution operations.</p>
                     </div>
@@ -1081,7 +1081,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                           className="w-full h-80 object-contain rounded-lg shadow-md border-2 border-gray-200 mb-2 bg-white"
                         />
                         <p className="text-sm font-semibold text-black">Cameraman Blurred with Gaussian</p>
-                        <p className="text-xs text-black">Original image ⊗ Gaussian filter</p>
+                      <p className="text-xs text-black">Original image ⊗ Gaussian filter</p>
                       </div>
                     </div>
                   </div>
