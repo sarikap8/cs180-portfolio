@@ -1,0 +1,5 @@
+im1_path=./hybrid_python/nutmeg.jpg
+im2_path=./hybrid_python/DerekPicture.jpg
+sigma_high=4.0
+sigma_low=8.0
+k_high=25, k_low=49

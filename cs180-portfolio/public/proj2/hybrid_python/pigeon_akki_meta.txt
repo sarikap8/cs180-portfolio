@@ -1,0 +1,5 @@
+im1_path=./hybrid_python/myopp.jpg
+im2_path=./hybrid_python/akki.jpg
+sigma_high=4.0
+sigma_low=10.0
+k_high=25, k_low=61
