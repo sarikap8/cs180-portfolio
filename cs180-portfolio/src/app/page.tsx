@@ -1183,7 +1183,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                 {/* Part 2.1: Image Sharpening */}
                 <div className="border-l-4 border-orange-400 pl-6 bg-gray-50/50 rounded-r-lg py-6 mb-6">
                   <h5 className="text-xl font-bold text-black mb-4">
-                    Part 2.1: Image "Sharpening"
+                    Part 2.1: Image &quot;Sharpening&quot;
                   </h5>
                   <p className="text-black leading-relaxed mb-4">
                     Implemented the unsharp masking technique to enhance image sharpness. This method works by extracting high-frequency details 
