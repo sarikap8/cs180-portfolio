@@ -18,7 +18,14 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "next-env.d.ts",
+      "submission/**",
+      "src/app/proj2/**/*.py",
+      "public/proj2/**",
     ],
+    rules: {
+      "@next/next/no-img-element": "off",
+      "react/no-unescaped-entities": "off",
+    },
   },
 ];
 
