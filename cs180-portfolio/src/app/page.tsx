@@ -1604,15 +1604,15 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                   <h5 className="text-lg font-semibold text-black mb-3">Image Set 1: Strawberry Creek Bridge &amp; Campanile</h5>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
-                      <img src="/project3a/left.jpg" alt="Left view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project3a/left.jpg" alt="Left view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Left</p>
                     </div>
                     <div className="text-center">
-                      <img src="/project3a/center.jpg" alt="Center view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project3a/center.jpg" alt="Center view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Center</p>
                     </div>
                     <div className="text-center">
-                      <img src="/project3a/right.jpg" alt="Right view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project3a/right.jpg" alt="Right view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Right</p>
                     </div>
                   </div>
@@ -1623,15 +1623,15 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                   <h5 className="text-lg font-semibold text-black mb-3">Image Set 2: Sunset on my rooftop</h5>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
-                      <img src="/project3a/left2.jpg" alt="Left view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project3a/left2.jpg" alt="Left view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Left</p>
                     </div>
                     <div className="text-center">
-                      <img src="/project3a/center2.jpg" alt="Center view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project3a/center2.jpg" alt="Center view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Center</p>
                     </div>
                     <div className="text-center">
-                      <img src="/project3a/right2.jpg" alt="Right view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project3a/right2.jpg" alt="Right view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Right</p>
                     </div>
                   </div>
@@ -1650,21 +1650,21 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                   <h5 className="text-lg font-semibold text-black mb-3">Point Correspondences</h5>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div className="text-center">
-                      <img src="/project3a/a2left.jpg" alt="Image 1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project3a/a2left.jpg" alt="Image 1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Image 1 (Source)</p>
                     </div>
                     <div className="text-center">
-                      <img src="/project3a/a2right.jpg" alt="Image 2" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project3a/a2right.jpg" alt="Image 2" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Image 2 (Target)</p>
                     </div>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="text-center">
-                      <img src="/project3a/a2_correspondences.jpg" alt="Correspondences Image 1" className="w-full h-auto object-contain rounded-lg border-2 border-blue-400 mb-2" />
+                      <img src="/cs180-portfolio/project3a/a2_correspondences.jpg" alt="Correspondences Image 1" className="w-full h-auto object-contain rounded-lg border-2 border-blue-400 mb-2" />
                       <p className="text-xs text-black">Corresponding points marked</p>
                     </div>
                     <div className="text-center">
-                      <img src="/project3a/a2_correspondence_lines.jpg" alt="Correspondences Image 2" className="w-full h-auto object-contain rounded-lg border-2 border-blue-400 mb-2" />
+                      <img src="/cs180-portfolio/project3a/a2_correspondence_lines.jpg" alt="Correspondences Image 2" className="w-full h-auto object-contain rounded-lg border-2 border-blue-400 mb-2" />
                       <p className="text-xs text-black">Correspondences with connecting lines</p>
                     </div>
                   </div>
@@ -1835,11 +1835,11 @@ Matrix A shape: (50, 8) | Vector b shape: (50,)
                   {/* Correspondence Images */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     <div className="text-center">
-                      <img src="/project3a/center_right_correspondences.jpg" alt="Correspondence Points - Center to Right (4 points)" className="w-full h-auto object-contain rounded-lg border-2 border-blue-400 mb-2" />
+                      <img src="/cs180-portfolio/project3a/center_right_correspondences.jpg" alt="Correspondence Points - Center to Right (4 points)" className="w-full h-auto object-contain rounded-lg border-2 border-blue-400 mb-2" />
                       <p className="text-xs text-black">Correspondence Points - Center to Right (4 points)</p>
                     </div>
                     <div className="text-center">
-                      <img src="/project3a/center_right_correspondence_lines.jpg" alt="Correspondence Lines - Center to Right (4 points)" className="w-full h-auto object-contain rounded-lg border-2 border-blue-400 mb-2" />
+                      <img src="/cs180-portfolio/project3a/center_right_correspondence_lines.jpg" alt="Correspondence Lines - Center to Right (4 points)" className="w-full h-auto object-contain rounded-lg border-2 border-blue-400 mb-2" />
                       <p className="text-xs text-black">Correspondence Lines - Center to Right (4 points)</p>
                     </div>
                   </div>
@@ -2007,15 +2007,15 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <h6 className="text-md font-semibold text-black mb-3">Laptop Rectification</h6>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="text-center">
-                        <img src="/project3a/laptop_original_marked.jpg" alt="Laptop Original with Marked Points" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <img src="/cs180-portfolio/project3a/laptop_original_marked.jpg" alt="Laptop Original with Marked Points" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">Original with marked corner points</p>
                       </div>
                       <div className="text-center">
-                        <img src="/project3a/laptop_rectified_comparison.jpg" alt="Laptop Rectification Comparison" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <img src="/cs180-portfolio/project3a/laptop_rectified_comparison.jpg" alt="Laptop Rectification Comparison" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">Rectified (Nearest Neighbor vs Bilinear)</p>
                       </div>
                       <div className="text-center">
-                        <img src="/project3a/laptop_rectified_zoomed.jpg" alt="Laptop Rectified Cropped" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <img src="/cs180-portfolio/project3a/laptop_rectified_zoomed.jpg" alt="Laptop Rectified Cropped" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">Final cropped rectified laptop</p>
                       </div>
                     </div>
@@ -2026,15 +2026,15 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <h6 className="text-md font-semibold text-black mb-3">UGBA102B Folder Rectification</h6>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="text-center">
-                        <img src="/project3a/folder_original_marked.jpg" alt="Folder Original with Marked Points" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <img src="/cs180-portfolio/project3a/folder_original_marked.jpg" alt="Folder Original with Marked Points" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">Original with marked corner points</p>
                       </div>
                       <div className="text-center">
-                        <img src="/project3a/folder_rectified_comparison.jpg" alt="Folder Rectification Comparison" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <img src="/cs180-portfolio/project3a/folder_rectified_comparison.jpg" alt="Folder Rectification Comparison" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">Rectified (Nearest Neighbor vs Bilinear)</p>
                       </div>
                       <div className="text-center">
-                        <img src="/project3a/folder_rectified_zoomed.jpg" alt="Folder Rectified Cropped" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <img src="/cs180-portfolio/project3a/folder_rectified_zoomed.jpg" alt="Folder Rectified Cropped" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">Final cropped rectified folder</p>
                       </div>
                     </div>
@@ -2089,7 +2089,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <h6 className="text-md font-semibold text-black mb-3">Source Images</h6>
                     <div className="flex justify-center mb-4">
                       <img 
-                        src="/project3a/mosaic_sunset_sources.jpg" 
+                        src="/cs180-portfolio/project3a/mosaic_sunset_sources.jpg" 
                         alt="Sunset panorama source images"
                         className="max-w-full h-auto object-contain"
                       />
@@ -2100,7 +2100,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <h6 className="text-md font-semibold text-black mb-3">Blending Method Comparison</h6>
                     <div className="flex justify-center mb-4">
                       <img 
-                        src="/project3a/mosaic_sunset_all_methods_comparison.jpg" 
+                        src="/cs180-portfolio/project3a/mosaic_sunset_all_methods_comparison.jpg" 
                         alt="Sunset panorama blending comparison"
                         className="max-w-full h-auto object-contain"
                       />
@@ -2120,7 +2120,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <h6 className="text-md font-semibold text-black mb-3">Laplacian Blending Result</h6>
                     <div className="flex justify-center mb-4">
                       <img 
-                        src="/project3a/mosaic_sunset_laplacian.jpg" 
+                        src="/cs180-portfolio/project3a/mosaic_sunset_laplacian.jpg" 
                         alt="Sunset panorama with Laplacian blending"
                         className="max-w-full h-auto object-contain"
                       />
@@ -2139,7 +2139,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <h6 className="text-md font-semibold text-black mb-3">Source Images</h6>
                     <div className="flex justify-center mb-4">
                       <img 
-                        src="/project3a/mosaic_statue_sources.jpg" 
+                        src="/cs180-portfolio/project3a/mosaic_statue_sources.jpg" 
                         alt="Statue panorama source images"
                         className="max-w-full h-auto object-contain"
                       />
@@ -2150,7 +2150,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <h6 className="text-md font-semibold text-black mb-3">Blending Comparison</h6>
                     <div className="flex justify-center mb-4">
                       <img 
-                        src="/project3a/mosaic_statue_comparison.jpg" 
+                        src="/cs180-portfolio/project3a/mosaic_statue_comparison.jpg" 
                         alt="Statue panorama blending comparison"
                         className="max-w-full h-auto object-contain"
                       />
@@ -2170,7 +2170,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <h6 className="text-md font-semibold text-black mb-3">Feathered Result</h6>
                     <div className="flex justify-center mb-4">
                       <img 
-                        src="/project3a/mosaic_statue_feathered.jpg" 
+                        src="/cs180-portfolio/project3a/mosaic_statue_feathered.jpg" 
                         alt="Statue panorama with feathering"
                         className="max-w-full h-auto object-contain"
                       />
@@ -2186,7 +2186,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <h6 className="text-md font-semibold text-black mb-3">Source Images</h6>
                     <div className="flex justify-center mb-4">
                       <img 
-                        src="/project3a/mosaic_a2_sources.jpg" 
+                        src="/cs180-portfolio/project3a/mosaic_a2_sources.jpg" 
                         alt="A2 panorama source images"
                         className="max-w-full h-auto object-contain"
                       />
@@ -2200,7 +2200,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <h6 className="text-md font-semibold text-black mb-3">Blending Comparison</h6>
                     <div className="flex justify-center mb-4">
                       <img 
-                        src="/project3a/mosaic_a2_comparison.jpg" 
+                        src="/cs180-portfolio/project3a/mosaic_a2_comparison.jpg" 
                         alt="A2 panorama blending comparison"
                         className="max-w-full h-auto object-contain"
                       />
@@ -2220,7 +2220,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <h6 className="text-md font-semibold text-black mb-3">Feathered Result</h6>
                     <div className="flex justify-center mb-4">
                       <img 
-                        src="/project3a/mosaic_a2_feathered.jpg" 
+                        src="/cs180-portfolio/project3a/mosaic_a2_feathered.jpg" 
                         alt="A2 panorama with feathering"
                         className="max-w-full h-auto object-contain"
                       />
