@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production';
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
   images: { unoptimized: true },
-  // Comment out for local development, uncomment for GitHub Pages deployment
-  basePath: '/cs180-portfolio',
-  assetPrefix: '/cs180-portfolio/',
+  basePath: isProd ? '/cs180-portfolio' : '',
+  assetPrefix: isProd ? '/cs180-portfolio/' : undefined,
 };
 
 module.exports = nextConfig;

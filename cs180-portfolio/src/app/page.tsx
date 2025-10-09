@@ -9,6 +9,7 @@ export default function Home() {
     { id: 'project0', label: 'Project 0', title: 'Becoming Friends with Your Camera' },
     { id: 'project1', label: 'Project 1', title: 'Images of the Russian Empire' },
     { id: 'project2', label: 'Project 2', title: 'Fun with Filters and Frequencies' },
+    { id: 'project3a', label: 'Project 3A', title: 'Image Warping and Mosaicing' },
   ];
 
   return (
@@ -1572,6 +1573,712 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                   image processing technique lies careful mathematical reasoning and computational optimization.
                 </p>
               </div>
+            </div>
+          )}
+
+          {activeTab === 'project3a' && (
+            <div className="space-y-8 text-left">
+              <div className="text-center mb-8">
+                <h3 className="text-3xl font-bold text-black mb-2">Project 3A: Image Warping and Mosaicing</h3>
+                <p className="text-black italic">Homographies, inverse warping, rectification, and mosaics</p>
+              </div>
+
+              {/* Overview */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">Overview</h4>
+                <p className="text-black leading-relaxed">
+                  The goal of this assignment is to register, warp, resample, and composite images into mosaics.
+                  I did this via computing homographies between images and using them to perform inverse warping and blending.
+                </p>
+              </div>
+
+              {/* A.1 Shoot the Pictures */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">A.1: Shoot and Digitize Pictures (20 pts)</h4>
+                <p className="text-black leading-relaxed mb-3">
+                  I did this by capturing 2 photographs with a fixed center of projection and rotating the camera.
+                </p>
+                
+                {/* Image Set 1: Strawberry Creek Bridge & Campanile */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Image Set 1: Strawberry Creek Bridge &amp; Campanile</h5>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="text-center">
+                      <img src="/project3a/left.jpg" alt="Left view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Left</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/project3a/center.jpg" alt="Center view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Center</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/project3a/right.jpg" alt="Right view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Right</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Image Set 2: Sunset on my rooftop */}
+                <div className="mb-4">
+                  <h5 className="text-lg font-semibold text-black mb-3">Image Set 2: Sunset on my rooftop</h5>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="text-center">
+                      <img src="/project3a/left2.jpg" alt="Left view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Left</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/project3a/center2.jpg" alt="Center view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Center</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/project3a/right2.jpg" alt="Right view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Right</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* A.2 Recover Homographies */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">A.2: Recover Homographies</h4>
+                <p className="text-black leading-relaxed mb-4">
+                  To compute homographies between image pairs, I implemented a least-squares solver that recovers the 3×3 transformation matrix from point correspondences. I manually selected corresponding points using the <a href="https://cal-cs180.github.io/fa23/hw/proj3/tool.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">correspondence tool</a> for each image pair.
+                </p>
+
+                {/* Point Correspondences Visualization */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Point Correspondences</h5>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div className="text-center">
+                      <img src="/project3a/a2left.jpg" alt="Image 1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Image 1 (Source)</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/project3a/a2right.jpg" alt="Image 2" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Image 2 (Target)</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="text-center">
+                      <img src="/project3a/a2_correspondences.jpg" alt="Correspondences Image 1" className="w-full h-auto object-contain rounded-lg border-2 border-blue-400 mb-2" />
+                      <p className="text-xs text-black">Corresponding points marked</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/project3a/a2_correspondence_lines.jpg" alt="Correspondences Image 2" className="w-full h-auto object-contain rounded-lg border-2 border-blue-400 mb-2" />
+                      <p className="text-xs text-black">Correspondences with connecting lines</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Implementation Explanation */}
+                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border-2 border-blue-300 mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-4">Implementation: computeH(im1_pts, im2_pts)</h5>
+                  
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-2">Mathematical Formulation</h6>
+                    <p className="text-black text-sm leading-relaxed mb-3">
+                      A homography matrix <strong>H</strong> relates corresponding points between two images through the projective transformation:
+                    </p>
+                    <div className="bg-white p-3 rounded border border-blue-200 mb-3 font-mono text-sm">
+                      H · [x, y, 1]ᵀ = λ[u, v, 1]ᵀ
+                    </div>
+                    <p className="text-black text-sm leading-relaxed">
+                      Where (x, y) are coordinates in the first image and (u, v) are corresponding coordinates in the second image.
+                    </p>
+                  </div>
+
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-2">Least Squares Solution</h6>
+                    <p className="text-black text-sm leading-relaxed mb-3">
+                      Given n corresponding point pairs, we construct a system of linear equations <strong>Ah = b</strong>, where A is a 2n × 8 matrix, h is the 8-element vector of homography parameters, and b contains the target coordinates.
+                    </p>
+                    <p className="text-black text-sm leading-relaxed mb-3">
+                      For each point pair (xᵢ, yᵢ) ↔ (uᵢ, vᵢ), we add two equations by setting h₃₃ = 1:
+                    </p>
+                    <div className="bg-white p-3 rounded border border-blue-200 mb-3 space-y-2">
+                      <div className="font-mono text-xs text-black">
+                        Row 1: [-x, -y, -1,  0,  0,  0, u·x, u·y] · h = -u
+                      </div>
+                      <div className="font-mono text-xs text-black">
+                        Row 2: [ 0,  0,  0, -x, -y, -1, v·x, v·y] · h = -v
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-2">Key Implementation Details</h6>
+                    <div className="bg-white p-4 rounded border border-blue-200">
+                      <pre className="text-xs overflow-x-auto text-black">
+{`# Build least-squares system with h33 = 1 fixed
+for (x, y), (u, v) in zip(pts1, pts2):
+    A.append([-x, -y, -1,  0,  0,  0,  u*x, u*y])
+    b.append(-u)
+    A.append([ 0,  0,  0, -x, -y, -1,  v*x, v*y])
+    b.append(-v)
+
+# Solve least-squares and reconstruct H
+x, _, _, _ = np.linalg.lstsq(A, b, rcond=None)
+h11, h12, h13, h21, h22, h23, h31, h32 = x
+H = np.array([[h11, h12, h13],
+              [h21, h22, h23],
+              [h31, h32, 1.0]])`}
+                      </pre>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h6 className="text-md font-semibold text-black mb-2">Matrix Reconstruction</h6>
+                    <p className="text-black text-sm leading-relaxed">
+                      The solution vector h = [h₀, h₁, h₂, h₃, h₄, h₅, h₆, h₇]ᵀ is used to reconstruct the 3×3 homography matrix:
+                    </p>
+                    <div className="bg-white p-3 rounded border border-blue-200 mt-2 font-mono text-sm text-black">
+                      H = [[h₀, h₁, h₂], [h₃, h₄, h₅], [h₆, h₇, 1]]
+                    </div>
+                  </div>
+                </div>
+
+                {/* System of Equations */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Complete System of Equations</h5>
+                  <p className="text-black text-sm leading-relaxed mb-4">
+                    With multiple correspondences, we have an overdetermined system. Below is the complete system in normalized coordinate space:
+                  </p>
+                  <div className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-xs font-mono max-h-96 overflow-y-auto">
+                    <pre>{`COMPLETE SYSTEM OF EQUATIONS: Ah = b
+
+Homography transformation: p' = Hp where p' = (u,v,1)^T and p = (x,y,1)^T
+
+For each correspondence point pair, we get 2 equations:
+  Equation 1: -x*h11 - y*h12 - h13 + 0*h21 + 0*h22 + 0*h23 + u*x*h31 + u*y*h32 = -u
+  Equation 2: 0*h11 + 0*h12 + 0*h13 - x*h21 - y*h22 - h23 + v*x*h31 + v*y*h32 = -v
+
+where h33 = 1 (fixed)
+
+EQUATIONS (in normalized coordinate space):
+Format: [h11_coef, h12_coef, h13_coef, h21_coef, h22_coef, h23_coef, h31_coef, h32_coef] = b
+
+Eq  1 (Corr  0, u-equation): [  0.4949,  -1.7703,  -1.0000,   0.0000,   0.0000,   0.0000,   0.2316,  -0.8283] =   0.4679
+Eq  2 (Corr  0, v-equation): [  0.0000,   0.0000,   0.0000,   0.4949,  -1.7703,  -1.0000,  -0.8253,   2.9521] =  -1.6676
+Eq  3 (Corr  1, u-equation): [ -1.5749,  -1.7645,  -1.0000,   0.0000,   0.0000,   0.0000,   2.2605,   2.5326] =  -1.4353
+Eq  4 (Corr  1, v-equation): [  0.0000,   0.0000,   0.0000,  -1.5749,  -1.7645,  -1.0000,   2.6036,   2.9170] =  -1.6531
+Eq  5 (Corr  2, u-equation): [ -1.5144,  -1.5656,  -1.0000,   0.0000,   0.0000,   0.0000,   2.0815,   2.1519] =  -1.3745
+Eq  6 (Corr  2, v-equation): [  0.0000,   0.0000,   0.0000,  -1.5144,  -1.5656,  -1.0000,   2.1525,   2.2253] =  -1.4214
+Eq  7 (Corr  3, u-equation): [ -0.2892,  -1.5022,  -1.0000,   0.0000,   0.0000,   0.0000,   0.0716,   0.3720] =  -0.2476
+Eq  8 (Corr  3, v-equation): [  0.0000,   0.0000,   0.0000,  -0.2892,  -1.5022,  -1.0000,   0.4345,   2.2570] =  -1.5025
+Eq  9 (Corr  4, u-equation): [  0.3277,  -1.4618,  -1.0000,   0.0000,   0.0000,   0.0000,   0.1287,  -0.5739] =   0.3926
+Eq 10 (Corr  4, v-equation): [  0.0000,   0.0000,   0.0000,   0.3277,  -1.4618,  -1.0000,  -0.5076,   2.2641] =  -1.5489
+Eq 11 (Corr  5, u-equation): [ -1.3558,  -1.0755,  -1.0000,   0.0000,   0.0000,   0.0000,   1.7104,   1.3568] =  -1.2615
+Eq 12 (Corr  5, v-equation): [  0.0000,   0.0000,   0.0000,  -1.3558,  -1.0755,  -1.0000,   1.3184,   1.0458] =  -0.9724
+Eq 13 (Corr  6, u-equation): [ -0.3872,  -1.0640,  -1.0000,   0.0000,   0.0000,   0.0000,   0.1452,   0.3991] =  -0.3751
+Eq 14 (Corr  6, v-equation): [  0.0000,   0.0000,   0.0000,  -0.3872,  -1.0640,  -1.0000,   0.4057,   1.1147] =  -1.0477
+Eq 15 (Corr  7, u-equation): [  0.1865,  -0.7728,  -1.0000,   0.0000,   0.0000,   0.0000,   0.0343,  -0.1422] =   0.1840
+Eq 16 (Corr  7, v-equation): [  0.0000,   0.0000,   0.0000,   0.1865,  -0.7728,  -1.0000,  -0.1516,   0.6284] =  -0.8131
+Eq 17 (Corr  8, u-equation): [  0.8351,  -0.8132,  -1.0000,   0.0000,   0.0000,   0.0000,   0.7536,  -0.7338] =   0.9024
+Eq 18 (Corr  8, v-equation): [  0.0000,   0.0000,   0.0000,   0.8351,  -0.8132,  -1.0000,  -0.7637,   0.7436] =  -0.9145
+Eq 19 (Corr  9, u-equation): [  0.3219,   0.8502,  -1.0000,   0.0000,   0.0000,   0.0000,   0.0844,   0.2229] =   0.2622
+Eq 20 (Corr  9, v-equation): [  0.0000,   0.0000,   0.0000,   0.3219,   0.8502,  -1.0000,   0.2782,   0.7347] =   0.8642
+Eq 21 (Corr 10, u-equation): [  0.9648,   0.8127,  -1.0000,   0.0000,   0.0000,   0.0000,   0.9489,   0.7993] =   0.9835
+Eq 22 (Corr 10, v-equation): [  0.0000,   0.0000,   0.0000,   0.9648,   0.8127,  -1.0000,   0.7946,   0.6694] =   0.8236
+Eq 23 (Corr 11, u-equation): [ -0.3440,   0.1900,  -1.0000,   0.0000,   0.0000,   0.0000,   0.1470,  -0.0812] =  -0.4272
+Eq 24 (Corr 11, v-equation): [  0.0000,   0.0000,   0.0000,  -0.3440,   0.1900,  -1.0000,  -0.0721,   0.0398] =   0.2095
+Eq 25 (Corr 12, u-equation): [ -0.2950,   0.5706,  -1.0000,   0.0000,   0.0000,   0.0000,   0.1158,  -0.2239] =  -0.3925
+Eq 26 (Corr 12, v-equation): [  0.0000,   0.0000,   0.0000,  -0.2950,   0.5706,  -1.0000,  -0.1677,   0.3245] =   0.5687
+Eq 27 (Corr 13, u-equation): [ -1.5173,   0.4005,  -1.0000,   0.0000,   0.0000,   0.0000,   2.2656,  -0.5980] =  -1.4932
+Eq 28 (Corr 13, v-equation): [  0.0000,   0.0000,   0.0000,  -1.5173,   0.4005,  -1.0000,  -0.7002,   0.1848] =   0.4615
+Eq 29 (Corr 14, u-equation): [ -1.2146,   3.0843,  -1.0000,   0.0000,   0.0000,   0.0000,   1.5744,  -3.9981] =  -1.2963
+Eq 30 (Corr 14, v-equation): [  0.0000,   0.0000,   0.0000,  -1.2146,   3.0843,  -1.0000,  -3.5864,   9.1074] =   2.9528
+Eq 31 (Corr 15, u-equation): [ -0.2027,   2.4617,  -1.0000,   0.0000,   0.0000,   0.0000,   0.0707,  -0.8591] =  -0.3490
+Eq 32 (Corr 15, v-equation): [  0.0000,   0.0000,   0.0000,  -0.2027,   2.4617,  -1.0000,  -0.4987,   6.0565] =   2.4603
+Eq 33 (Corr 16, u-equation): [ -0.2460,   1.8678,  -1.0000,   0.0000,   0.0000,   0.0000,   0.0958,  -0.7276] =  -0.3896
+Eq 34 (Corr 16, v-equation): [  0.0000,   0.0000,   0.0000,  -0.2460,   1.8678,  -1.0000,  -0.4605,   3.4970] =   1.8723
+Eq 35 (Corr 17, u-equation): [ -0.2488,   1.6631,  -1.0000,   0.0000,   0.0000,   0.0000,   0.0991,  -0.6623] =  -0.3983
+Eq 36 (Corr 17, v-equation): [  0.0000,   0.0000,   0.0000,  -0.2488,   1.6631,  -1.0000,  -0.4154,   2.7766] =   1.6695
+Eq 37 (Corr 18, u-equation): [  1.1839,  -0.0723,  -1.0000,   0.0000,   0.0000,   0.0000,   1.4971,  -0.0914] =   1.2645
+Eq 38 (Corr 18, v-equation): [  0.0000,   0.0000,   0.0000,   1.1839,  -0.0723,  -1.0000,  -0.1601,   0.0098] =  -0.1352
+Eq 39 (Corr 19, u-equation): [  0.9129,  -0.4211,  -1.0000,   0.0000,   0.0000,   0.0000,   0.8635,  -0.3983] =   0.9459
+Eq 40 (Corr 19, v-equation): [  0.0000,   0.0000,   0.0000,   0.9129,  -0.4211,  -1.0000,  -0.4593,   0.2119] =  -0.5031
+Eq 41 (Corr 20, u-equation): [  1.2070,   0.2679,  -1.0000,   0.0000,   0.0000,   0.0000,   1.5332,   0.3403] =   1.2703
+Eq 42 (Corr 20, v-equation): [  0.0000,   0.0000,   0.0000,   1.2070,   0.2679,  -1.0000,   0.2913,   0.0647] =   0.2414
+Eq 43 (Corr 21, u-equation): [  0.8610,   0.0863,  -1.0000,   0.0000,   0.0000,   0.0000,   0.7521,   0.0753] =   0.8734
+Eq 44 (Corr 21, v-equation): [  0.0000,   0.0000,   0.0000,   0.8610,   0.0863,  -1.0000,   0.0407,   0.0041] =   0.0473
+Eq 45 (Corr 22, u-equation): [  0.7601,  -0.1300,  -1.0000,   0.0000,   0.0000,   0.0000,   0.5803,  -0.0992] =   0.7634
+Eq 46 (Corr 22, v-equation): [  0.0000,   0.0000,   0.0000,   0.7601,  -0.1300,  -1.0000,  -0.1182,   0.0202] =  -0.1555
+Eq 47 (Corr 23, u-equation): [  1.3511,   0.5706,  -1.0000,   0.0000,   0.0000,   0.0000,   1.8807,   0.7942] =   1.3920
+Eq 48 (Corr 23, v-equation): [  0.0000,   0.0000,   0.0000,   1.3511,   0.5706,  -1.0000,   0.7488,   0.3162] =   0.5542
+Eq 49 (Corr 24, u-equation): [ -0.2171,  -0.4125,  -1.0000,   0.0000,   0.0000,   0.0000,   0.0569,   0.1081] =  -0.2621
+Eq 50 (Corr 24, v-equation): [  0.0000,   0.0000,   0.0000,  -0.2171,  -0.4125,  -1.0000,   0.0847,   0.1609] =  -0.3901
+
+Matrix A shape: (50, 8) | Vector b shape: (50,)
+`}</pre>
+                  </div>
+                </div>
+
+                {/* Recovered Homography */}
+                <div className="mb-4">
+                  <h5 className="text-lg font-semibold text-black mb-3">Recovered Homography Matrix (Left → Center)</h5>
+                  <p className="text-black text-sm leading-relaxed mb-3">
+                    The least-squares solution yields the following homography matrix H, which maps points from the left image to the center image:
+                  </p>
+                  <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+                    <pre>{`H maps points from Left to Center: p_center = H * p_left
+
+[[ 1.25965271e+00 -4.47193026e-02 -5.15388894e+02]
+ [ 2.04026908e-01  1.17932617e+00 -1.54973764e+02]
+ [ 1.65831711e-04  9.97615699e-06  1.00000000e+00]]`}</pre>
+                  </div>
+                </div>
+
+                {/* Center-Right Pair */}
+                <div className="border-t-2 border-gray-300 pt-6 mt-6">
+                  <h5 className="text-lg font-semibold text-black mb-4">Second Image Pair: Center → Right</h5>
+                  
+                  {/* Correspondence Images */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div className="text-center">
+                      <img src="/project3a/center_right_correspondences.jpg" alt="Correspondence Points - Center to Right (4 points)" className="w-full h-auto object-contain rounded-lg border-2 border-blue-400 mb-2" />
+                      <p className="text-xs text-black">Correspondence Points - Center to Right (4 points)</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/project3a/center_right_correspondence_lines.jpg" alt="Correspondence Lines - Center to Right (4 points)" className="w-full h-auto object-contain rounded-lg border-2 border-blue-400 mb-2" />
+                      <p className="text-xs text-black">Correspondence Lines - Center to Right (4 points)</p>
+                    </div>
+                  </div>
+                  
+                  {/* System of Equations for Center-Right */}
+                  <div className="mb-6">
+                    <h6 className="text-md font-semibold text-black mb-3">Complete System of Equations</h6>
+                    <p className="text-black text-sm leading-relaxed mb-4">
+                      For the center-right image pair, the complete system in normalized coordinate space:
+                    </p>
+                    <div className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-xs font-mono max-h-96 overflow-y-auto">
+                      <pre>{`COMPLETE SYSTEM OF EQUATIONS: Ah = b (Center-Right Pair)
+
+Homography transformation: p' = Hp where p' = (u,v,1)^T and p = (x,y,1)^T
+
+For each correspondence point pair, we get 2 equations:
+  Equation 1: -x*h11 - y*h12 - h13 + 0*h21 + 0*h22 + 0*h23 + u*x*h31 + u*y*h32 = -u
+  Equation 2: 0*h11 + 0*h12 + 0*h13 - x*h21 - y*h22 - h23 + v*x*h31 + v*y*h32 = -v
+
+where h33 = 1 (fixed)
+
+EQUATIONS (in normalized coordinate space):
+Format: [h11_coef, h12_coef, h13_coef, h21_coef, h22_coef, h23_coef, h31_coef, h32_coef] = b
+
+Eq  1 (Corr  0, u-equation): [  0.6289,   2.2835,  -1.0000,   0.0000,   0.0000,   0.0000,   0.3124,   1.1343] =   0.4967
+Eq  2 (Corr  0, v-equation): [  0.0000,   0.0000,   0.0000,   0.6289,   2.2835,  -1.0000,   1.4635,   5.3142] =   2.3272
+Eq  3 (Corr  1, u-equation): [ -0.5570,  -1.1764,  -1.0000,   0.0000,   0.0000,   0.0000,   0.2767,   0.5844] =  -0.4967
+Eq  4 (Corr  1, v-equation): [  0.0000,   0.0000,   0.0000,  -0.5570,  -1.1764,  -1.0000,   0.6170,   1.3032] =  -1.1078
+Eq  5 (Corr  2, u-equation): [  0.6099,  -1.1520,  -1.0000,   0.0000,   0.0000,   0.0000,   0.4077,  -0.7701] =   0.6685
+Eq  6 (Corr  2, v-equation): [  0.0000,   0.0000,   0.0000,   0.6099,  -1.1520,  -1.0000,  -0.7465,   1.4100] =  -1.2240
+Eq  7 (Corr  3, u-equation): [ -0.6818,   0.0448,  -1.0000,   0.0000,   0.0000,   0.0000,   0.4558,  -0.0299] =  -0.6685
+Eq  8 (Corr  3, v-equation): [  0.0000,   0.0000,   0.0000,  -0.6818,   0.0448,  -1.0000,  -0.0032,   0.0002] =   0.0046
+
+Matrix A shape: (8, 8) | Vector b shape: (8,)
+`}</pre>
+                    </div>
+                  </div>
+
+                  {/* Recovered Homography for Center-Right */}
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-3">Recovered Homography Matrix (Center → Right)</h6>
+                    <p className="text-black text-sm leading-relaxed mb-3">
+                      The homography matrix H mapping points from the center image to the right image:
+                    </p>
+                    <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+                      <pre>{`H maps points from Center to Right: p_right = H * p_center
+
+[[ 1.58561381e+00 -7.25189509e-02 -7.41536337e+02]
+ [ 4.63038690e-01  1.37287860e+00 -4.86638181e+02]
+ [ 3.85086877e-04  6.81732362e-06  1.00000000e+00]]`}</pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* A.3 Warp the Images */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">A.3: Warp the Images</h4>
+                <p className="text-black leading-relaxed mb-4">
+                  With homography parameters recovered, I implemented inverse warping to avoid holes in the output image.
+                  I implemented two interpolation methods from scratch: Nearest Neighbor and Bilinear interpolation.
+                  I chose to rectify my two most beloved possessions in this world: my laptop and my UGBA102B Managerial Accounting folder.
+                </p>
+
+                {/* Implementation Methodology */}
+                <div className="bg-gradient-to-br from-green-50 to-blue-50 p-6 rounded-xl border-2 border-green-300 mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-4">Implementation Methodology</h5>
+                  
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-2">Inverse Warping Process</h6>
+                    <p className="text-black text-sm leading-relaxed mb-3">
+                      For each output pixel, I compute its corresponding location in the source image using the inverse homography H⁻¹.
+                      This ensures no holes in the output, as every output pixel is explicitly computed.
+                    </p>
+                    <p className="text-black text-sm leading-relaxed mb-3">
+                      The bounding box is determined by projecting the four corners of the source image through the homography,
+                      then creating an output grid covering this transformed region.
+                    </p>
+                  </div>
+
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-2">Interpolation Methods</h6>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="bg-white p-4 rounded border border-green-200">
+                        <h6 className="text-sm font-semibold text-black mb-2">Nearest Neighbor</h6>
+                        <p className="text-black text-xs leading-relaxed mb-2">
+                          Round the source coordinates to the nearest integer pixel location.
+                          Fast but can produce blocky artifacts.
+                        </p>
+                        <div className="bg-gray-900 text-green-400 p-2 rounded text-xs font-mono">
+                          <pre>{`Ui = np.rint(U).astype(int)
+Vi = np.rint(V).astype(int)
+ch[valid] = imf[Vi[valid], Ui[valid], c]`}</pre>
+                        </div>
+                      </div>
+                      <div className="bg-white p-4 rounded border border-green-200">
+                        <h6 className="text-sm font-semibold text-black mb-2">Bilinear Interpolation</h6>
+                        <p className="text-black text-xs leading-relaxed mb-2">
+                          Weighted average of the four nearest pixels based on fractional distances.
+                          Smoother results but computationally more expensive.
+                        </p>
+                        <div className="bg-gray-900 text-green-400 p-2 rounded text-xs font-mono">
+                          <pre>{`# Weighted combination of 4 corners
+ch[valid] = (
+    (1-du)*(1-dv)*I00 + du*(1-dv)*I10 +
+    (1-du)*dv*I01 + du*dv*I11
+)`}</pre>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-2">Quality vs Speed Trade-offs</h6>
+                    <p className="text-black text-sm leading-relaxed mb-3">
+                      <strong>Nearest Neighbor:</strong> ~2x faster, but produces stair-step artifacts and jagged edges.
+                      <br />
+                      <strong>Bilinear:</strong> Smoother gradients and better quality, but requires more computation per pixel.
+                      For rectification tasks, bilinear interpolation is preferred as it maintains the visual quality of the transformed objects.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h6 className="text-md font-semibold text-black mb-2">Performance Analysis</h6>
+                    <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-xs">
+                      <pre>{`Rectifying laptop image...
+================================================================================
+Nearest Neighbor:
+  - Time: 54.556 seconds
+  - Output shape: (6981, 10312, 3)
+
+Bilinear Interpolation:
+  - Time: 113.574 seconds
+  - Output shape: (6981, 10312, 3)
+
+Speed comparison: Bilinear is 2.08x slower
+
+Rectifying folder image...
+================================================================================
+Nearest Neighbor:
+  - Time: 0.165 seconds
+  - Output shape: (1383, 923, 3)
+
+Bilinear Interpolation:
+  - Time: 0.292 seconds
+  - Output shape: (1383, 923, 3)
+
+Speed comparison: Bilinear is 1.77x slower`}</pre>
+                    </div>
+                    <p className="text-black text-sm leading-relaxed mt-3">
+                      The laptop image required significantly more computation due to its large output dimensions (6981×10312 pixels).
+                      Initially, my kernel crashed due to memory constraints with the full-resolution image, so I downscaled the source
+                      and defined a smaller target rectangle for the homography mapping. The folder image was much more manageable
+                      at 1383×923 pixels, processing in under a second for both methods.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Rectification Results */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-4">Rectification Results</h5>
+                  
+                  {/* Laptop Rectification */}
+                  <div className="mb-6">
+                    <h6 className="text-md font-semibold text-black mb-3">Laptop Rectification</h6>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="text-center">
+                        <img src="/project3a/laptop_original_marked.jpg" alt="Laptop Original with Marked Points" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Original with marked corner points</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/project3a/laptop_rectified_comparison.jpg" alt="Laptop Rectification Comparison" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Rectified (Nearest Neighbor vs Bilinear)</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/project3a/laptop_rectified_zoomed.jpg" alt="Laptop Rectified Cropped" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Final cropped rectified laptop</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Folder Rectification */}
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-3">UGBA102B Folder Rectification</h6>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="text-center">
+                        <img src="/project3a/folder_original_marked.jpg" alt="Folder Original with Marked Points" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Original with marked corner points</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/project3a/folder_rectified_comparison.jpg" alt="Folder Rectification Comparison" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Rectified (Nearest Neighbor vs Bilinear)</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/project3a/folder_rectified_zoomed.jpg" alt="Folder Rectified Cropped" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Final cropped rectified folder</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                    <h6 className="text-md font-semibold text-black mb-2">Rectification Process</h6>
+                    <p className="text-black text-sm leading-relaxed mb-3">
+                      For each object, I manually selected the four corners of the rectangular surface (laptop screen, folder cover)
+                      and defined the target coordinates as a perfect rectangle. The homography transformation then warps the
+                      perspective-distorted image to show the object front-on, making it appear as if photographed perpendicularly.
+                      The bilinear interpolation clearly produces smoother, more natural-looking results compared to nearest neighbor.
+                    </p>
+                    <p className="text-black text-sm leading-relaxed">
+                      <strong>Cropping:</strong> The rectified images contain significant empty space around the target objects
+                      due to the homography transformation. I cropped the results to focus on the rectified objects themselves,
+                      removing the unnecessary background areas and creating cleaner, more focused final images that highlight
+                      the successful rectification of the rectangular surfaces.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* A.4 Mosaic Blending */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">A.4: Blend Images into a Mosaic</h4>
+                
+                <div className="text-black mb-6">
+                  <p className="text-sm leading-relaxed mb-4">
+                    The final step in creating panoramic mosaics involves warping registered images into a common coordinate space and blending them seamlessly. Instead of having one image overwrite another (which creates harsh edge artifacts), I implemented three different blending techniques to create smooth transitions between overlapping regions.
+                  </p>
+                  
+                  <div className="bg-blue-50 p-4 rounded-lg mb-4">
+                    <h5 className="font-semibold text-black mb-2">Implementation Approach</h5>
+                    <p className="text-sm leading-relaxed mb-2">
+                      <strong>Canvas Construction:</strong> First, I compute the bounding box by projecting each image's corners through its homography to determine the final mosaic dimensions. All images are then warped into this common coordinate space.
+                    </p>
+                    <p className="text-sm leading-relaxed mb-2">
+                      <strong>Blending Methods:</strong> I implemented three techniques: (1) Simple weighted averaging with binary alpha masks, (2) Distance-based feathering with smooth alpha falloff, and (3) Laplacian pyramid blending for multi-resolution smoothing.
+                    </p>
+                    <p className="text-sm leading-relaxed">
+                      <strong>Reference Strategy:</strong> I use the center image as reference (identity homography) and warp left/right images into its coordinate space using the computed homographies from A.2.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Mosaic 1: Sunset Panorama */}
+                <div className="mb-8">
+                  <h5 className="text-lg font-bold text-black mb-4">Mosaic 1: Sunset Panorama (3-Image)</h5>
+                  
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-3">Source Images</h6>
+                    <div className="flex justify-center mb-4">
+                      <img 
+                        src="/project3a/mosaic_sunset_sources.jpg" 
+                        alt="Sunset panorama source images"
+                        className="max-w-full h-auto object-contain"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="mb-6">
+                    <h6 className="text-md font-semibold text-black mb-3">Blending Method Comparison</h6>
+                    <div className="flex justify-center mb-4">
+                      <img 
+                        src="/project3a/mosaic_sunset_all_methods_comparison.jpg" 
+                        alt="Sunset panorama blending comparison"
+                        className="max-w-full h-auto object-contain"
+                      />
+                    </div>
+                    
+                    <div className="bg-white p-4 rounded border border-blue-200 mb-4">
+                      <h6 className="font-semibold text-black mb-2">Method Analysis:</h6>
+                      <ul className="text-sm text-black space-y-1">
+                        <li><strong>Simple Weighted Averaging:</strong> Binary alpha masks (0 or 1) create visible seams, especially in the sky region</li>
+                        <li><strong>Distance-Based Feathering:</strong> Smooth alpha falloff from center to edges reduces seam visibility significantly - this method produced the best results</li>
+                        <li><strong>Laplacian Pyramid Blending:</strong> Multi-resolution approach (5 levels, σ=8.0) actually performed worse than expected, likely due to imperfect correspondences creating ghosting artifacts at multiple frequency levels</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-3">Laplacian Blending Result</h6>
+                    <div className="flex justify-center mb-4">
+                      <img 
+                        src="/project3a/mosaic_sunset_laplacian.jpg" 
+                        alt="Sunset panorama with Laplacian blending"
+                        className="max-w-full h-auto object-contain"
+                      />
+                    </div>
+                    <p className="text-sm text-black leading-relaxed">
+                      While the Laplacian pyramid approach theoretically should create seamless blends by combining images at multiple frequency levels, in practice it amplified misalignments from my correspondence points, creating visible ghosting artifacts. Distance-based feathering proved more robust to small registration errors.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Mosaic 2: Statue Panorama */}
+                <div className="mb-8">
+                  <h5 className="text-lg font-bold text-black mb-4">Mosaic 2: Statue Panorama (3-Image)</h5>
+                  
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-3">Source Images</h6>
+                    <div className="flex justify-center mb-4">
+                      <img 
+                        src="/project3a/mosaic_statue_sources.jpg" 
+                        alt="Statue panorama source images"
+                        className="max-w-full h-auto object-contain"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-3">Blending Comparison</h6>
+                    <div className="flex justify-center mb-4">
+                      <img 
+                        src="/project3a/mosaic_statue_comparison.jpg" 
+                        alt="Statue panorama blending comparison"
+                        className="max-w-full h-auto object-contain"
+                      />
+                    </div>
+                    
+                    <div className="bg-white p-4 rounded border border-blue-200 mb-4">
+                      <h6 className="font-semibold text-black mb-2">Performance Metrics:</h6>
+                      <ul className="text-sm text-black space-y-1">
+                        <li><strong>Simple Averaging:</strong> 1.66s processing time</li>
+                        <li><strong>Distance Feathering:</strong> 1.36s processing time (0.82x overhead)</li>
+                        <li><strong>Quality:</strong> Feathering eliminates harsh seams in the grass and statue regions</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-3">Feathered Result</h6>
+                    <div className="flex justify-center mb-4">
+                      <img 
+                        src="/project3a/mosaic_statue_feathered.jpg" 
+                        alt="Statue panorama with feathering"
+                        className="max-w-full h-auto object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Mosaic 3: A2 Willard Park */}
+                <div className="mb-8">
+                  <h5 className="text-lg font-bold text-black mb-4">Mosaic 3: Willard Park Panorama (2-Image)</h5>
+                  
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-3">Source Images</h6>
+                    <div className="flex justify-center mb-4">
+                      <img 
+                        src="/project3a/mosaic_a2_sources.jpg" 
+                        alt="A2 panorama source images"
+                        className="max-w-full h-auto object-contain"
+                      />
+                    </div>
+                    <p className="text-sm text-black leading-relaxed mb-4">
+                      Using the same image pair from A.2 correspondence work, demonstrating the complete pipeline from homography recovery to final mosaic creation.
+                    </p>
+                  </div>
+
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-3">Blending Comparison</h6>
+                    <div className="flex justify-center mb-4">
+                      <img 
+                        src="/project3a/mosaic_a2_comparison.jpg" 
+                        alt="A2 panorama blending comparison"
+                        className="max-w-full h-auto object-contain"
+                      />
+                    </div>
+                    
+                    <div className="bg-white p-4 rounded border border-blue-200 mb-4">
+                      <h6 className="font-semibold text-black mb-2">Performance Metrics:</h6>
+                      <ul className="text-sm text-black space-y-1">
+                        <li><strong>Simple Averaging:</strong> 15.73s processing time</li>
+                        <li><strong>Distance Feathering:</strong> 9.29s processing time (0.59x overhead)</li>
+                        <li><strong>Quality:</strong> Feathering creates smooth transitions across the bridge and foliage</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-3">Feathered Result</h6>
+                    <div className="flex justify-center mb-4">
+                      <img 
+                        src="/project3a/mosaic_a2_feathered.jpg" 
+                        alt="A2 panorama with feathering"
+                        className="max-w-full h-auto object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Technical Implementation */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-bold text-black mb-4">Technical Implementation Details</h5>
+                  
+                  <div className="bg-blue-50 p-4 rounded-lg mb-4">
+                    <h6 className="font-semibold text-black mb-2">Canvas Bounds Computation</h6>
+                    <div className="bg-white p-3 rounded border border-blue-200 font-mono text-sm text-black">
+                      <div># Project each image's corners through its homography</div>
+                      <div>corners = np.array([[0, 0, w-1, w-1], [0, h-1, 0, h-1], [1, 1, 1, 1]])</div>
+                      <div>proj = H @ corners</div>
+                      <div>proj /= np.maximum(proj[2:3, :], 1e-12)</div>
+                      <div># Compute global bounding box</div>
+                    </div>
+                  </div>
+
+                  <div className="bg-blue-50 p-4 rounded-lg mb-4">
+                    <h6 className="font-semibold text-black mb-2">Distance-Based Feathering</h6>
+                    <div className="bg-white p-3 rounded border border-blue-200 font-mono text-sm text-black">
+                      <div># Alpha = 1 at center, falls off linearly to 0 at edges</div>
+                      <div>center = (h//2, w//2)</div>
+                      <div>distances = distance_transform_edt(alpha_mask)</div>
+                      <div>max_dist = distances.max()</div>
+                      <div>alpha_feathered = distances / max_dist</div>
+                    </div>
+                  </div>
+
+                  <div className="bg-blue-50 p-4 rounded-lg mb-4">
+                    <h6 className="font-semibold text-black mb-2">Laplacian Pyramid Blending</h6>
+                    <div className="bg-white p-3 rounded border border-blue-200 font-mono text-sm text-black">
+                      <div># Build Gaussian stack for each image</div>
+                      <div>gauss_stack = [gaussian_filter(im, sigma * 2**i) for i in range(levels)]</div>
+                      <div># Build Laplacian stack (differences between levels)</div>
+                      <div>laplacian_stack = [gauss_stack[i] - gauss_stack[i+1] for i in range(levels-1)]</div>
+                      <div># Blend at each level, then reconstruct</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white p-4 rounded border border-blue-200">
+                  <h5 className="font-semibold text-black mb-2">Key Insights</h5>
+                  <ul className="text-sm text-black space-y-1">
+                    <li>• <strong>Simple averaging</strong> is fastest but creates visible seams in homogeneous regions (sky, grass)</li>
+                    <li>• <strong>Distance feathering</strong> provides the best balance of quality and robustness to registration errors - this was my most successful method</li>
+                    <li>• <strong>Laplacian blending</strong> is theoretically superior but requires extremely precise correspondences; with my manual point selection, it actually amplified misalignments and created ghosting artifacts</li>
+                    <li>• The choice of blending method depends critically on the accuracy of the homography - simpler methods are more forgiving of small registration errors</li>
+                    <li>• Future work could improve results by using more correspondence points or automatic feature detection for better alignment</li>
+                  </ul>
+                </div>
+              </div>
+
+              
             </div>
           )}
         </div>
