@@ -1,5 +1,0 @@
-im1_path=./hybrid_python/beach.jpg
-im2_path=./hybrid_python/city.jpg
-sigma_high=6.0
-sigma_low=12.0
-k_high=37, k_low=73
