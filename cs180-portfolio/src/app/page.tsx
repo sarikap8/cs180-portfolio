@@ -65,7 +65,7 @@ export default function Home() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="text-center">
                     <img 
-                      src="/cs180-portfolio/project-0/closeup.png" 
+                      src="/project-0/closeup.png" 
                       alt="Close-up selfie showing distortion" 
                       className="w-full h-auto rounded-lg shadow-md border-2 border-gray-200 mb-2"
                     />
@@ -74,7 +74,7 @@ export default function Home() {
                   </div>
                   <div className="text-center">
                     <img 
-                      src="/cs180-portfolio/project-0/zoomedin.png" 
+                      src="/project-0/zoomedin.png" 
                       alt="Zoomed-in photo from distance showing better proportions" 
                       className="w-full h-auto rounded-lg shadow-md border-2 border-gray-200 mb-2"
                     />
@@ -91,7 +91,7 @@ export default function Home() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="text-center">
                     <img 
-                      src="/cs180-portfolio/project-0/zoomtree.png" 
+                      src="/project-0/zoomtree.png" 
                       alt="Zoomed-in view of street scene showing compression" 
                       className="w-full h-auto rounded-lg shadow-md border-2 border-gray-200 mb-2"
                     />
@@ -100,7 +100,7 @@ export default function Home() {
                   </div>
                   <div className="text-center">
                     <img 
-                      src="/cs180-portfolio/project-0/fartree.png" 
+                      src="/project-0/fartree.png" 
                       alt="Close-up wide angle view showing natural depth" 
                       className="w-full h-auto rounded-lg shadow-md border-2 border-gray-200 mb-2"
                     />
@@ -120,7 +120,7 @@ export default function Home() {
                 <div className="flex justify-center">
                   <div className="text-center max-w-md">
                     <img 
-                      src="/cs180-portfolio/project-0/Image from Imgflip.gif" 
+                      src="/project-0/Image from Imgflip.gif" 
                       alt="Dolly zoom effect animation showing perspective distortion" 
                       className="w-full h-auto rounded-lg shadow-lg border-2 border-gray-300 mb-3"
                     />
@@ -210,7 +210,7 @@ export default function Home() {
                 {/* Cathedral */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/cs180-portfolio/project-1/colorized_cathedral.jpg" 
+                    src="/project-1/colorized_cathedral.jpg" 
                     alt="Colorized Cathedral" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -227,7 +227,7 @@ export default function Home() {
                 {/* Church */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/cs180-portfolio/project-1/colorized_church.jpg" 
+                    src="/project-1/colorized_church.jpg" 
                     alt="Colorized Church" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -244,7 +244,7 @@ export default function Home() {
                 {/* Emir */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/cs180-portfolio/project-1/colorized_emir.jpg" 
+                    src="/project-1/colorized_emir.jpg" 
                     alt="Colorized Emir" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -261,7 +261,7 @@ export default function Home() {
                 {/* Harvesters */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/cs180-portfolio/project-1/colorized_harvesters.jpg" 
+                    src="/project-1/colorized_harvesters.jpg" 
                     alt="Colorized Harvesters" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -278,7 +278,7 @@ export default function Home() {
                 {/* Icon */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/cs180-portfolio/project-1/colorized_icon.jpg" 
+                    src="/project-1/colorized_icon.jpg" 
                     alt="Colorized Icon" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -295,7 +295,7 @@ export default function Home() {
                 {/* Italil */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/cs180-portfolio/project-1/colorized_italil.jpg" 
+                    src="/project-1/colorized_italil.jpg" 
                     alt="Colorized Italil" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -312,7 +312,7 @@ export default function Home() {
                 {/* Lastochikino */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/cs180-portfolio/project-1/colorized_lastochikino.jpg" 
+                    src="/project-1/colorized_lastochikino.jpg" 
                     alt="Colorized Lastochikino" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -329,7 +329,7 @@ export default function Home() {
                 {/* Lugano */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/cs180-portfolio/project-1/colorized_lugano.jpg" 
+                    src="/project-1/colorized_lugano.jpg" 
                     alt="Colorized Lugano" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -346,7 +346,7 @@ export default function Home() {
                 {/* Melons */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/cs180-portfolio/project-1/colorized_melons.jpg" 
+                    src="/project-1/colorized_melons.jpg" 
                     alt="Colorized Melons" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -363,7 +363,7 @@ export default function Home() {
                 {/* Monastery */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/cs180-portfolio/project-1/colorized_monastery.jpg" 
+                    src="/project-1/colorized_monastery.jpg" 
                     alt="Colorized Monastery" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -380,7 +380,7 @@ export default function Home() {
                 {/* Self Portrait */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/cs180-portfolio/project-1/colorized_self_portrait.jpg" 
+                    src="/project-1/colorized_self_portrait.jpg" 
                     alt="Colorized Self Portrait" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -397,7 +397,7 @@ export default function Home() {
                 {/* Siren */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/cs180-portfolio/project-1/colorized_siren.jpg" 
+                    src="/project-1/colorized_siren.jpg" 
                     alt="Colorized Siren" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -414,7 +414,7 @@ export default function Home() {
                 {/* Three Generations */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/cs180-portfolio/project-1/colorized_three_generations.jpg" 
+                    src="/project-1/colorized_three_generations.jpg" 
                     alt="Colorized Three Generations" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -431,7 +431,7 @@ export default function Home() {
                 {/* Tobolsk */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/cs180-portfolio/project-1/colorized_tobolsk.jpg" 
+                    src="/project-1/colorized_tobolsk.jpg" 
                     alt="Colorized Tobolsk" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -460,7 +460,7 @@ export default function Home() {
                   {/* Mosque */}
                   <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                     <img 
-                      src="/cs180-portfolio/project-1/colorized_mosque.jpg" 
+                      src="/project-1/colorized_mosque.jpg" 
                       alt="Colorized Mosque" 
                       className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                     />
@@ -477,7 +477,7 @@ export default function Home() {
                   {/* Rose Garden */}
                   <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                     <img 
-                      src="/cs180-portfolio/project-1/colorized_rose_garden.jpg" 
+                      src="/project-1/colorized_rose_garden.jpg" 
                       alt="Colorized Rose Garden" 
                       className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                     />
@@ -494,7 +494,7 @@ export default function Home() {
                   {/* Arch */}
                   <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                     <img 
-                      src="/cs180-portfolio/project-1/colorized_arch.jpg" 
+                      src="/project-1/colorized_arch.jpg" 
                       alt="Colorized Arch" 
                       className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                     />
@@ -511,7 +511,7 @@ export default function Home() {
                   {/* Rug */}
                   <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                     <img 
-                      src="/cs180-portfolio/project-1/colorized_rug.jpg" 
+                      src="/project-1/colorized_rug.jpg" 
                       alt="Colorized Rug" 
                       className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                     />
@@ -528,7 +528,7 @@ export default function Home() {
                   {/* Botanical Garden */}
                   <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                     <img 
-                      src="/cs180-portfolio/project-1/colorized_botanical_garden.jpg" 
+                      src="/project-1/colorized_botanical_garden.jpg" 
                       alt="Colorized Botanical Garden" 
                       className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                     />
