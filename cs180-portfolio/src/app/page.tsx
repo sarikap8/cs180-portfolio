@@ -65,7 +65,7 @@ export default function Home() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="text-center">
                     <img 
-                      src="/project-0/closeup.png" 
+                      src="/cs180-portfolio/project-0/closeup.png" 
                       alt="Close-up selfie showing distortion" 
                       className="w-full h-auto rounded-lg shadow-md border-2 border-gray-200 mb-2"
                     />
@@ -74,7 +74,7 @@ export default function Home() {
                   </div>
                   <div className="text-center">
                     <img 
-                      src="/project-0/zoomedin.png" 
+                      src="/cs180-portfolio/project-0/zoomedin.png" 
                       alt="Zoomed-in photo from distance showing better proportions" 
                       className="w-full h-auto rounded-lg shadow-md border-2 border-gray-200 mb-2"
                     />
@@ -91,7 +91,7 @@ export default function Home() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="text-center">
                     <img 
-                      src="/project-0/zoomtree.png" 
+                      src="/cs180-portfolio/project-0/zoomtree.png" 
                       alt="Zoomed-in view of street scene showing compression" 
                       className="w-full h-auto rounded-lg shadow-md border-2 border-gray-200 mb-2"
                     />
@@ -100,7 +100,7 @@ export default function Home() {
                   </div>
                   <div className="text-center">
                     <img 
-                      src="/project-0/fartree.png" 
+                      src="/cs180-portfolio/project-0/fartree.png" 
                       alt="Close-up wide angle view showing natural depth" 
                       className="w-full h-auto rounded-lg shadow-md border-2 border-gray-200 mb-2"
                     />
@@ -120,7 +120,7 @@ export default function Home() {
                 <div className="flex justify-center">
                   <div className="text-center max-w-md">
                     <img 
-                      src="/project-0/Image from Imgflip.gif" 
+                      src="/cs180-portfolio/project-0/Image from Imgflip.gif" 
                       alt="Dolly zoom effect animation showing perspective distortion" 
                       className="w-full h-auto rounded-lg shadow-lg border-2 border-gray-300 mb-3"
                     />
@@ -210,7 +210,7 @@ export default function Home() {
                 {/* Cathedral */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/project-1/colorized_cathedral.jpg" 
+                    src="/cs180-portfolio/project-1/colorized_cathedral.jpg" 
                     alt="Colorized Cathedral" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -227,7 +227,7 @@ export default function Home() {
                 {/* Church */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/project-1/colorized_church.jpg" 
+                    src="/cs180-portfolio/project-1/colorized_church.jpg" 
                     alt="Colorized Church" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -244,7 +244,7 @@ export default function Home() {
                 {/* Emir */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/project-1/colorized_emir.jpg" 
+                    src="/cs180-portfolio/project-1/colorized_emir.jpg" 
                     alt="Colorized Emir" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -261,7 +261,7 @@ export default function Home() {
                 {/* Harvesters */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/project-1/colorized_harvesters.jpg" 
+                    src="/cs180-portfolio/project-1/colorized_harvesters.jpg" 
                     alt="Colorized Harvesters" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -278,7 +278,7 @@ export default function Home() {
                 {/* Icon */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/project-1/colorized_icon.jpg" 
+                    src="/cs180-portfolio/project-1/colorized_icon.jpg" 
                     alt="Colorized Icon" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -295,7 +295,7 @@ export default function Home() {
                 {/* Italil */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/project-1/colorized_italil.jpg" 
+                    src="/cs180-portfolio/project-1/colorized_italil.jpg" 
                     alt="Colorized Italil" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -312,7 +312,7 @@ export default function Home() {
                 {/* Lastochikino */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/project-1/colorized_lastochikino.jpg" 
+                    src="/cs180-portfolio/project-1/colorized_lastochikino.jpg" 
                     alt="Colorized Lastochikino" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -329,7 +329,7 @@ export default function Home() {
                 {/* Lugano */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/project-1/colorized_lugano.jpg" 
+                    src="/cs180-portfolio/project-1/colorized_lugano.jpg" 
                     alt="Colorized Lugano" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -346,7 +346,7 @@ export default function Home() {
                 {/* Melons */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/project-1/colorized_melons.jpg" 
+                    src="/cs180-portfolio/project-1/colorized_melons.jpg" 
                     alt="Colorized Melons" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -363,7 +363,7 @@ export default function Home() {
                 {/* Monastery */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/project-1/colorized_monastery.jpg" 
+                    src="/cs180-portfolio/project-1/colorized_monastery.jpg" 
                     alt="Colorized Monastery" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -380,7 +380,7 @@ export default function Home() {
                 {/* Self Portrait */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/project-1/colorized_self_portrait.jpg" 
+                    src="/cs180-portfolio/project-1/colorized_self_portrait.jpg" 
                     alt="Colorized Self Portrait" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -397,7 +397,7 @@ export default function Home() {
                 {/* Siren */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/project-1/colorized_siren.jpg" 
+                    src="/cs180-portfolio/project-1/colorized_siren.jpg" 
                     alt="Colorized Siren" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -414,7 +414,7 @@ export default function Home() {
                 {/* Three Generations */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/project-1/colorized_three_generations.jpg" 
+                    src="/cs180-portfolio/project-1/colorized_three_generations.jpg" 
                     alt="Colorized Three Generations" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -431,7 +431,7 @@ export default function Home() {
                 {/* Tobolsk */}
                 <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                   <img 
-                    src="/project-1/colorized_tobolsk.jpg" 
+                    src="/cs180-portfolio/project-1/colorized_tobolsk.jpg" 
                     alt="Colorized Tobolsk" 
                     className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                   />
@@ -460,7 +460,7 @@ export default function Home() {
                   {/* Mosque */}
                   <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                     <img 
-                      src="/project-1/colorized_mosque.jpg" 
+                      src="/cs180-portfolio/project-1/colorized_mosque.jpg" 
                       alt="Colorized Mosque" 
                       className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                     />
@@ -477,7 +477,7 @@ export default function Home() {
                   {/* Rose Garden */}
                   <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                     <img 
-                      src="/project-1/colorized_rose_garden.jpg" 
+                      src="/cs180-portfolio/project-1/colorized_rose_garden.jpg" 
                       alt="Colorized Rose Garden" 
                       className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                     />
@@ -494,7 +494,7 @@ export default function Home() {
                   {/* Arch */}
                   <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                     <img 
-                      src="/project-1/colorized_arch.jpg" 
+                      src="/cs180-portfolio/project-1/colorized_arch.jpg" 
                       alt="Colorized Arch" 
                       className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                     />
@@ -511,7 +511,7 @@ export default function Home() {
                   {/* Rug */}
                   <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                     <img 
-                      src="/project-1/colorized_rug.jpg" 
+                      src="/cs180-portfolio/project-1/colorized_rug.jpg" 
                       alt="Colorized Rug" 
                       className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                     />
@@ -528,7 +528,7 @@ export default function Home() {
                   {/* Botanical Garden */}
                   <div className="group relative bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 hover:shadow-xl">
                     <img 
-                      src="/project-1/colorized_botanical_garden.jpg" 
+                      src="/cs180-portfolio/project-1/colorized_botanical_garden.jpg" 
                       alt="Colorized Botanical Garden" 
                       className="w-full h-48 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-300"
                     />
@@ -785,7 +785,7 @@ export default function Home() {
                     <h6 className="text-lg font-semibold text-black mb-4">Original Image</h6>
                     <div className="text-center">
                       <img 
-                        src="/project-2/convolveOut/before.jpg" 
+                        src="/cs180-portfolio/project-2/convolveOut/before.jpg" 
                         alt="Original selfie" 
                         className="w-full max-w-md h-auto rounded-lg shadow-md border-2 border-gray-200 mb-2"
                       />
@@ -799,7 +799,7 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="text-center">
                         <img 
-                          src="/project-2/convolveOut/im_box_scratch.jpg" 
+                          src="/cs180-portfolio/project-2/convolveOut/im_box_scratch.jpg" 
                           alt="Box filter - 4 loops" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -808,7 +808,7 @@ export default function Home() {
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/convolveOut/im_box_fast.jpg" 
+                          src="/cs180-portfolio/project-2/convolveOut/im_box_fast.jpg" 
                           alt="Box filter - 2 loops" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -817,7 +817,7 @@ export default function Home() {
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/convolveOut/im_box_lib.jpg" 
+                          src="/cs180-portfolio/project-2/convolveOut/im_box_lib.jpg" 
                           alt="Box filter - scipy" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -833,7 +833,7 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="text-center">
                         <img 
-                          src="/project-2/convolveOut/im_dx_scratch.jpg" 
+                          src="/cs180-portfolio/project-2/convolveOut/im_dx_scratch.jpg" 
                           alt="Dx - 4 loops" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -842,7 +842,7 @@ export default function Home() {
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/convolveOut/im_dx_fast.jpg" 
+                          src="/cs180-portfolio/project-2/convolveOut/im_dx_fast.jpg" 
                           alt="Dx - 2 loops" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -851,7 +851,7 @@ export default function Home() {
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/convolveOut/im_dx_lib.jpg" 
+                          src="/cs180-portfolio/project-2/convolveOut/im_dx_lib.jpg" 
                           alt="Dx - scipy" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -867,7 +867,7 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="text-center">
                         <img 
-                          src="/project-2/convolveOut/im_dy_scratch.jpg" 
+                          src="/cs180-portfolio/project-2/convolveOut/im_dy_scratch.jpg" 
                           alt="Dy - 4 loops" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -876,7 +876,7 @@ export default function Home() {
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/convolveOut/im_dy_fast.jpg" 
+                          src="/cs180-portfolio/project-2/convolveOut/im_dy_fast.jpg" 
                           alt="Dy - 2 loops" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -885,7 +885,7 @@ export default function Home() {
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/convolveOut/im_dy_lib.jpg" 
+                          src="/cs180-portfolio/project-2/convolveOut/im_dy_lib.jpg" 
                           alt="Dy - scipy" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -904,7 +904,7 @@ export default function Home() {
                     </p>
                     <div className="text-center">
                       <img 
-                        src="/project-2/convolveOut/im_box_25_scratch.jpg" 
+                        src="/cs180-portfolio/project-2/convolveOut/im_box_25_scratch.jpg" 
                         alt="25x25 box filter result" 
                         className="w-full max-w-md h-auto rounded-lg shadow-md border-2 border-gray-200 mb-2"
                       />
@@ -929,7 +929,7 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                       <div className="text-center">
                         <img 
-                          src="/project-2/binaryOut/cameraman.png" 
+                          src="/cs180-portfolio/project-2/binaryOut/cameraman.png" 
                           alt="Original cameraman image" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -938,7 +938,7 @@ export default function Home() {
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/binaryOut/cameraman_dx.jpg" 
+                          src="/cs180-portfolio/project-2/binaryOut/cameraman_dx.jpg" 
                           alt="Cameraman Dx derivative" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -947,7 +947,7 @@ export default function Home() {
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/binaryOut/cameraman_dy.jpg" 
+                          src="/cs180-portfolio/project-2/binaryOut/cameraman_dy.jpg" 
                           alt="Cameraman Dy derivative" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -956,7 +956,7 @@ export default function Home() {
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/binaryOut/cameraman_gradient_magnitude.jpg" 
+                          src="/cs180-portfolio/project-2/binaryOut/cameraman_gradient_magnitude.jpg" 
                           alt="Gradient magnitude" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -989,7 +989,7 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                       <div className="text-center">
                         <img 
-                          src="/project-2/binaryOut/cameraman_edges_thresh_1.jpg" 
+                          src="/cs180-portfolio/project-2/binaryOut/cameraman_edges_thresh_1.jpg" 
                           alt="Threshold 1" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -998,7 +998,7 @@ export default function Home() {
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/binaryOut/cameraman_edges_thresh_2.jpg" 
+                          src="/cs180-portfolio/project-2/binaryOut/cameraman_edges_thresh_2.jpg" 
                           alt="Threshold 2" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -1007,7 +1007,7 @@ export default function Home() {
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/binaryOut/cameraman_edges_thresh_3.jpg" 
+                          src="/cs180-portfolio/project-2/binaryOut/cameraman_edges_thresh_3.jpg" 
                           alt="Threshold 3" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -1016,7 +1016,7 @@ export default function Home() {
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/binaryOut/cameraman_edges_thresh_4.jpg" 
+                          src="/cs180-portfolio/project-2/binaryOut/cameraman_edges_thresh_4.jpg" 
                           alt="Threshold 4" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -1068,7 +1068,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="text-center">
                         <img 
-                          src="/project-2/gaussianOut/gaussian_filter.jpg" 
+                          src="/cs180-portfolio/project-2/gaussianOut/gaussian_filter.jpg" 
                           alt="2D Gaussian filter" 
                           className="w-full h-80 object-contain rounded-lg shadow-md border-2 border-gray-200 mb-2 bg-white"
                         />
@@ -1077,7 +1077,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/gaussianOut/cameraman_blurred.jpg" 
+                          src="/cs180-portfolio/project-2/gaussianOut/cameraman_blurred.jpg" 
                           alt="Blurred cameraman image" 
                           className="w-full h-80 object-contain rounded-lg shadow-md border-2 border-gray-200 mb-2 bg-white"
                         />
@@ -1095,7 +1095,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="text-center">
                         <img 
-                          src="/project-2/gaussianOut/cameraman_dx_smoothed.jpg" 
+                          src="/cs180-portfolio/project-2/gaussianOut/cameraman_dx_smoothed.jpg" 
                           alt="Dx after Gaussian smoothing" 
                           className="w-full h-80 object-contain rounded-lg shadow-md border-2 border-gray-200 mb-2 bg-white"
                         />
@@ -1104,7 +1104,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/gaussianOut/cameraman_dy_smoothed.jpg" 
+                          src="/cs180-portfolio/project-2/gaussianOut/cameraman_dy_smoothed.jpg" 
                           alt="Dy after Gaussian smoothing" 
                           className="w-full h-80 object-contain rounded-lg shadow-md border-2 border-gray-200 mb-2 bg-white"
                         />
@@ -1122,7 +1122,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                       <div className="text-center">
                         <img 
-                          src="/project-2/gaussianOut/dog_x_filter.jpg" 
+                          src="/cs180-portfolio/project-2/gaussianOut/dog_x_filter.jpg" 
                           alt="DoG X filter" 
                           className="w-full h-80 object-contain rounded-lg shadow-md border-2 border-gray-200 mb-2 bg-white"
                         />
@@ -1131,7 +1131,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/gaussianOut/dog_y_filter.jpg" 
+                          src="/cs180-portfolio/project-2/gaussianOut/dog_y_filter.jpg" 
                           alt="DoG Y filter" 
                           className="w-full h-80 object-contain rounded-lg shadow-md border-2 border-gray-200 mb-2 bg-white"
                         />
@@ -1143,7 +1143,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="text-center">
                         <img 
-                          src="/project-2/gaussianOut/cameraman_dx_dog.jpg" 
+                          src="/cs180-portfolio/project-2/gaussianOut/cameraman_dx_dog.jpg" 
                           alt="Dx using DoG filter" 
                           className="w-full h-80 object-contain rounded-lg shadow-md border-2 border-gray-200 mb-2 bg-white"
                         />
@@ -1152,7 +1152,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/gaussianOut/cameraman_dy_dog.jpg" 
+                          src="/cs180-portfolio/project-2/gaussianOut/cameraman_dy_dog.jpg" 
                           alt="Dy using DoG filter" 
                           className="w-full h-80 object-contain rounded-lg shadow-md border-2 border-gray-200 mb-2 bg-white"
                         />
@@ -1219,7 +1219,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
                       <div className="text-center">
                         <img 
-                          src="/project-2/sharpenOut/Taj (1).jpg" 
+                          src="/cs180-portfolio/project-2/sharpenOut/Taj (1).jpg" 
                           alt="Original Taj Mahal" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -1228,7 +1228,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/sharpenOut/taj_blurred.jpg" 
+                          src="/cs180-portfolio/project-2/sharpenOut/taj_blurred.jpg" 
                           alt="Blurred Taj Mahal" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -1237,7 +1237,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/sharpenOut/taj_high_frequencies.jpg" 
+                          src="/cs180-portfolio/project-2/sharpenOut/taj_high_frequencies.jpg" 
                           alt="High frequencies" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -1246,7 +1246,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/sharpenOut/taj_sharpened_1.5.jpg" 
+                          src="/cs180-portfolio/project-2/sharpenOut/taj_sharpened_1.5.jpg" 
                           alt="Sharpened Taj Mahal" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -1260,7 +1260,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         <div className="text-center">
                           <img 
-                            src="/project-2/sharpenOut/taj_sharpened_0.5.jpg" 
+                            src="/cs180-portfolio/project-2/sharpenOut/taj_sharpened_0.5.jpg" 
                             alt="Taj sharpened 0.5" 
                             className="w-full h-60 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                           />
@@ -1269,7 +1269,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                         </div>
                         <div className="text-center">
                           <img 
-                            src="/project-2/sharpenOut/taj_sharpened_1.0.jpg" 
+                            src="/cs180-portfolio/project-2/sharpenOut/taj_sharpened_1.0.jpg" 
                             alt="Taj sharpened 1.0" 
                             className="w-full h-60 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                           />
@@ -1278,7 +1278,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                         </div>
                         <div className="text-center">
                           <img 
-                            src="/project-2/sharpenOut/taj_sharpened_1.5.jpg" 
+                            src="/cs180-portfolio/project-2/sharpenOut/taj_sharpened_1.5.jpg" 
                             alt="Taj sharpened 1.5" 
                             className="w-full h-60 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                           />
@@ -1287,7 +1287,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                         </div>
                         <div className="text-center">
                           <img 
-                            src="/project-2/sharpenOut/taj_sharpened_2.0.jpg" 
+                            src="/cs180-portfolio/project-2/sharpenOut/taj_sharpened_2.0.jpg" 
                             alt="Taj sharpened 2.0" 
                             className="w-full h-60 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                           />
@@ -1303,7 +1303,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
                       <div className="text-center">
                         <img 
-                          src="/project-2/sharpenOut/golden-gate.jpg" 
+                          src="/cs180-portfolio/project-2/sharpenOut/golden-gate.jpg" 
                           alt="Original Golden Gate" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -1312,7 +1312,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/sharpenOut/golden-gate_blurred.jpg" 
+                          src="/cs180-portfolio/project-2/sharpenOut/golden-gate_blurred.jpg" 
                           alt="Blurred Golden Gate" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -1321,7 +1321,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/sharpenOut/golden-gate_high_frequencies.jpg" 
+                          src="/cs180-portfolio/project-2/sharpenOut/golden-gate_high_frequencies.jpg" 
                           alt="Golden Gate high frequencies" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -1330,7 +1330,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/sharpenOut/golden-gate_sharpened_1.5.jpg" 
+                          src="/cs180-portfolio/project-2/sharpenOut/golden-gate_sharpened_1.5.jpg" 
                           alt="Sharpened Golden Gate" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -1349,7 +1349,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                       <div className="text-center">
                         <img 
-                          src="/project-2/sharpenOut/golden-gate_eval_original.jpg" 
+                          src="/cs180-portfolio/project-2/sharpenOut/golden-gate_eval_original.jpg" 
                           alt="Original sharp image" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -1358,7 +1358,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/sharpenOut/golden-gate_eval_blurred.jpg" 
+                          src="/cs180-portfolio/project-2/sharpenOut/golden-gate_eval_blurred.jpg" 
                           alt="Artificially blurred" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -1367,7 +1367,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                       </div>
                       <div className="text-center">
                         <img 
-                          src="/project-2/sharpenOut/golden-gate_eval_resharpened_1.5.jpg" 
+                          src="/cs180-portfolio/project-2/sharpenOut/golden-gate_eval_resharpened_1.5.jpg" 
                           alt="Re-sharpened" 
                           className="w-full h-48 object-cover rounded-lg shadow-md border-2 border-gray-200 mb-2"
                         />
@@ -1403,40 +1403,40 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                     <h6 className="text-lg font-semibold text-black mb-3">Derek + Nutmeg (Full Process)</h6>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                       <div className="text-center">
-                        <img src="/project-2/hybrid_python/derek_nutmeg_high_input.jpg" alt="Derek (high input)" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
+                        <img src="/cs180-portfolio/project-2/hybrid_python/derek_nutmeg_high_input.jpg" alt="Derek (high input)" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
                         <p className="text-xs text-black">High-frequency input</p>
                       </div>
                       <div className="text-center">
-                        <img src="/project-2/hybrid_python/derek_nutmeg_low_input.jpg" alt="Nutmeg (low input)" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
+                        <img src="/cs180-portfolio/project-2/hybrid_python/derek_nutmeg_low_input.jpg" alt="Nutmeg (low input)" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
                         <p className="text-xs text-black">Low-frequency input</p>
                       </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                       <div className="text-center">
-                        <img src="/project-2/hybrid_python/derek_nutmeg_high_aligned.jpg" alt="Derek aligned" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
+                        <img src="/cs180-portfolio/project-2/hybrid_python/derek_nutmeg_high_aligned.jpg" alt="Derek aligned" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
                         <p className="text-xs text-black">High image (aligned & cropped)</p>
                       </div>
                       <div className="text-center">
-                        <img src="/project-2/hybrid_python/derek_nutmeg_low_aligned.jpg" alt="Nutmeg aligned" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
+                        <img src="/cs180-portfolio/project-2/hybrid_python/derek_nutmeg_low_aligned.jpg" alt="Nutmeg aligned" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
                         <p className="text-xs text-black">Low image (aligned & cropped)</p>
                       </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                       <div className="text-center">
-                        <img src="/project-2/hybrid_python/derek_nutmeg_high_only.jpg" alt="High-pass result" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
+                        <img src="/cs180-portfolio/project-2/hybrid_python/derek_nutmeg_high_only.jpg" alt="High-pass result" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
                         <p className="text-xs text-black">High-pass result</p>
                       </div>
                       <div className="text-center">
-                        <img src="/project-2/hybrid_python/derek_nutmeg_low_only.jpg" alt="Low-pass result" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
+                        <img src="/cs180-portfolio/project-2/hybrid_python/derek_nutmeg_low_only.jpg" alt="Low-pass result" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
                         <p className="text-xs text-black">Low-pass result</p>
                       </div>
                       <div className="text-center">
-                        <img src="/project-2/hybrid_python/derek_nutmeg_hybrid.jpg" alt="Hybrid image" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
+                        <img src="/cs180-portfolio/project-2/hybrid_python/derek_nutmeg_hybrid.jpg" alt="Hybrid image" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
                         <p className="text-xs text-black">Final hybrid</p>
                       </div>
                     </div>
                     <div className="text-center mb-4">
-                      <img src="/project-2/hybrid_python/derek_nutmeg_fourier_process.jpg" alt="Derek+Nutmeg Fourier process" className="w-full h-96 object-contain bg-white rounded-lg border-2 border-gray-200" />
+                      <img src="/cs180-portfolio/project-2/hybrid_python/derek_nutmeg_fourier_process.jpg" alt="Derek+Nutmeg Fourier process" className="w-full h-96 object-contain bg-white rounded-lg border-2 border-gray-200" />
                     </div>
                   </div>
 
@@ -1445,40 +1445,40 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                     <h6 className="text-lg font-semibold text-black mb-3">Pigeon + Akki (Full Process)</h6>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                       <div className="text-center">
-                        <img src="/project-2/hybrid_python/pigeon_akki_high_input.jpg" alt="Pigeon (high input)" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
+                        <img src="/cs180-portfolio/project-2/hybrid_python/pigeon_akki_high_input.jpg" alt="Pigeon (high input)" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
                         <p className="text-xs text-black">High-frequency input</p>
                       </div>
                       <div className="text-center">
-                        <img src="/project-2/hybrid_python/pigeon_akki_low_input.jpg" alt="Akki (low input)" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
+                        <img src="/cs180-portfolio/project-2/hybrid_python/pigeon_akki_low_input.jpg" alt="Akki (low input)" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
                         <p className="text-xs text-black">Low-frequency input</p>
                       </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                       <div className="text-center">
-                        <img src="/project-2/hybrid_python/pigeon_akki_high_aligned.jpg" alt="Pigeon aligned" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
+                        <img src="/cs180-portfolio/project-2/hybrid_python/pigeon_akki_high_aligned.jpg" alt="Pigeon aligned" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
                         <p className="text-xs text-black">High image (aligned & cropped)</p>
                       </div>
                       <div className="text-center">
-                        <img src="/project-2/hybrid_python/pigeon_akki_low_aligned.jpg" alt="Akki aligned" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
+                        <img src="/cs180-portfolio/project-2/hybrid_python/pigeon_akki_low_aligned.jpg" alt="Akki aligned" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
                         <p className="text-xs text-black">Low image (aligned & cropped)</p>
                       </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                       <div className="text-center">
-                        <img src="/project-2/hybrid_python/pigeon_akki_high_only.jpg" alt="High-pass result" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
+                        <img src="/cs180-portfolio/project-2/hybrid_python/pigeon_akki_high_only.jpg" alt="High-pass result" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
                         <p className="text-xs text-black">High-pass result</p>
                       </div>
                       <div className="text-center">
-                        <img src="/project-2/hybrid_python/pigeon_akki_low_only.jpg" alt="Low-pass result" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
+                        <img src="/cs180-portfolio/project-2/hybrid_python/pigeon_akki_low_only.jpg" alt="Low-pass result" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
                         <p className="text-xs text-black">Low-pass result</p>
                       </div>
                       <div className="text-center">
-                        <img src="/project-2/hybrid_python/pigeon_akki_hybrid.jpg" alt="Hybrid image" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
+                        <img src="/cs180-portfolio/project-2/hybrid_python/pigeon_akki_hybrid.jpg" alt="Hybrid image" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
                         <p className="text-xs text-black">Final hybrid</p>
                       </div>
                     </div>
                     <div className="text-center mb-4">
-                      <img src="/project-2/hybrid_python/pigeon_akki_fourier_process.jpg" alt="Pigeon+Akki Fourier process" className="w-full h-96 object-contain bg-white rounded-lg border-2 border-gray-200" />
+                      <img src="/cs180-portfolio/project-2/hybrid_python/pigeon_akki_fourier_process.jpg" alt="Pigeon+Akki Fourier process" className="w-full h-96 object-contain bg-white rounded-lg border-2 border-gray-200" />
                     </div>
                   </div>
 
@@ -1486,7 +1486,7 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                   <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 border-2 border-gray-200 shadow">
                     <h6 className="text-lg font-semibold text-black mb-3">Beach + City (Final Hybrid)</h6>
                     <div className="text-center">
-                      <img src="/project-2/hybrid_python/beach_city_result.jpg" alt="Beach+City hybrid" className="w-full h-96 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
+                      <img src="/cs180-portfolio/project-2/hybrid_python/beach_city_result.jpg" alt="Beach+City hybrid" className="w-full h-96 object-contain bg-white rounded-lg border-2 border-gray-200 mb-2" />
                       <p className="text-xs text-black">Inputs filtered (low + high) and summed to create the hybrid.</p>
                     </div>
                   </div>
@@ -1504,18 +1504,18 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                     <p className="text-sm text-black font-medium mb-3">Apple + Orange (Oraple) Stacks</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                       <div className="text-center">
-                        <img src="/project-2/gaussianLaplacianBlendOut/oraple_gaussian_A.jpg" alt="Oraple A Gaussian stack" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200" />
+                        <img src="/cs180-portfolio/project-2/gaussianLaplacianBlendOut/oraple_gaussian_A.jpg" alt="Oraple A Gaussian stack" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200" />
                       </div>
                       <div className="text-center">
-                        <img src="/project-2/gaussianLaplacianBlendOut/oraple_gaussian_B.jpg" alt="Oraple B Gaussian stack" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200" />
+                        <img src="/cs180-portfolio/project-2/gaussianLaplacianBlendOut/oraple_gaussian_B.jpg" alt="Oraple B Gaussian stack" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200" />
                       </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="text-center">
-                        <img src="/project-2/gaussianLaplacianBlendOut/oraple_laplacian_A.jpg" alt="Oraple A Laplacian stack" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200" />
+                        <img src="/cs180-portfolio/project-2/gaussianLaplacianBlendOut/oraple_laplacian_A.jpg" alt="Oraple A Laplacian stack" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200" />
                       </div>
                       <div className="text-center">
-                        <img src="/project-2/gaussianLaplacianBlendOut/oraple_laplacian_B.jpg" alt="Oraple B Laplacian stack" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200" />
+                        <img src="/cs180-portfolio/project-2/gaussianLaplacianBlendOut/oraple_laplacian_B.jpg" alt="Oraple B Laplacian stack" className="w-full h-64 object-contain bg-white rounded-lg border-2 border-gray-200" />
                       </div>
                     </div>
                   </div>
@@ -1531,15 +1531,15 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                     <div className="text-center">
-                      <img src="/project-2/gaussianLaplacianBlendOut/oraple_blend_vertical.jpg" alt="Oraple vertical seam" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200" />
+                      <img src="/cs180-portfolio/project-2/gaussianLaplacianBlendOut/oraple_blend_vertical.jpg" alt="Oraple vertical seam" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200" />
                       <p className="text-xs text-black mt-1">Vertical seam</p>
                     </div>
                     <div className="text-center">
-                      <img src="/project-2/gaussianLaplacianBlendOut/oraple_blend_horizontal.jpg" alt="Oraple horizontal seam" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200" />
+                      <img src="/cs180-portfolio/project-2/gaussianLaplacianBlendOut/oraple_blend_horizontal.jpg" alt="Oraple horizontal seam" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200" />
                       <p className="text-xs text-black mt-1">Horizontal seam</p>
                     </div>
                     <div className="text-center">
-                      <img src="/project-2/gaussianLaplacianBlendOut/oraple_blend_circular.jpg" alt="Oraple circular mask" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200" />
+                      <img src="/cs180-portfolio/project-2/gaussianLaplacianBlendOut/oraple_blend_circular.jpg" alt="Oraple circular mask" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200" />
                       <p className="text-xs text-black mt-1">Irregular/circular mask</p>
                     </div>
                   </div>
@@ -1547,11 +1547,11 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                     <p className="text-sm text-black font-medium mb-3">Additional Creative Blends</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="text-center">
-                        <img src="/project-2/gaussianLaplacianBlendOut/flowers_space_blend_circular.jpg" alt="Flowers+Space circular" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200" />
+                        <img src="/cs180-portfolio/project-2/gaussianLaplacianBlendOut/flowers_space_blend_circular.jpg" alt="Flowers+Space circular" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200" />
                         <p className="text-xs text-black mt-1">Flowers + Space (circular)</p>
                       </div>
                       <div className="text-center">
-                        <img src="/project-2/gaussianLaplacianBlendOut/mountain_borealis_blend_horizontal.jpg" alt="Mountain+Borealis horizontal" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200" />
+                        <img src="/cs180-portfolio/project-2/gaussianLaplacianBlendOut/mountain_borealis_blend_horizontal.jpg" alt="Mountain+Borealis horizontal" className="w-full h-56 object-contain bg-white rounded-lg border-2 border-gray-200" />
                         <p className="text-xs text-black mt-1">Mountain + Borealis (horizontal)</p>
                       </div>
                     </div>
@@ -1604,15 +1604,15 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                   <h5 className="text-lg font-semibold text-black mb-3">Image Set 1: Strawberry Creek Bridge &amp; Campanile</h5>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
-                      <img src="/project-3a/left.jpg" alt="Left view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project-3a/left.jpg" alt="Left view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Left</p>
                     </div>
                     <div className="text-center">
-                      <img src="/project-3a/center.jpg" alt="Center view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project-3a/center.jpg" alt="Center view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Center</p>
                     </div>
                     <div className="text-center">
-                      <img src="/project-3a/right.jpg" alt="Right view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project-3a/right.jpg" alt="Right view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Right</p>
                     </div>
                   </div>
@@ -1623,15 +1623,15 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                   <h5 className="text-lg font-semibold text-black mb-3">Image Set 2: Sunset on my rooftop</h5>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
-                      <img src="/project-3a/left2.jpg" alt="Left view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project-3a/left2.jpg" alt="Left view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Left</p>
                     </div>
                     <div className="text-center">
-                      <img src="/project-3a/center2.jpg" alt="Center view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project-3a/center2.jpg" alt="Center view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Center</p>
                     </div>
                     <div className="text-center">
-                      <img src="/project-3a/right2.jpg" alt="Right view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project-3a/right2.jpg" alt="Right view" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Right</p>
                     </div>
                   </div>
@@ -1650,21 +1650,21 @@ dy_dog = conv2d(im, dog_y_filter, mode='same')`}
                   <h5 className="text-lg font-semibold text-black mb-3">Point Correspondences</h5>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div className="text-center">
-                      <img src="/project-3a/a2left.jpg" alt="Image 1" className="w-full h-96 object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project-3a/a2left.jpg" alt="Image 1" className="w-full h-96 object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Image 1 (Source)</p>
                     </div>
                     <div className="text-center">
-                      <img src="/project-3a/a2right.jpg" alt="Image 2" className="w-full h-96 object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project-3a/a2right.jpg" alt="Image 2" className="w-full h-96 object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Image 2 (Target)</p>
                     </div>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="text-center">
-                      <img src="/project-3a/a2_correspondences.jpg" alt="Correspondences Image 1" className="w-full h-96 object-contain rounded-lg border-2 border-blue-400 mb-2" />
+                      <img src="/cs180-portfolio/project-3a/a2_correspondences.jpg" alt="Correspondences Image 1" className="w-full h-96 object-contain rounded-lg border-2 border-blue-400 mb-2" />
                       <p className="text-xs text-black">Corresponding points marked</p>
                     </div>
                     <div className="text-center">
-                      <img src="/project-3a/a2_correspondence_lines.jpg" alt="Correspondences Image 2" className="w-full h-96 object-contain rounded-lg border-2 border-blue-400 mb-2" />
+                      <img src="/cs180-portfolio/project-3a/a2_correspondence_lines.jpg" alt="Correspondences Image 2" className="w-full h-96 object-contain rounded-lg border-2 border-blue-400 mb-2" />
                       <p className="text-xs text-black">Correspondences with connecting lines</p>
                     </div>
                   </div>
@@ -1835,11 +1835,11 @@ Matrix A shape: (50, 8) | Vector b shape: (50,)
                   {/* Correspondence Images */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     <div className="text-center">
-                      <img src="/project-3a/center_right_correspondences.jpg" alt="Correspondence Points - Center to Right (4 points)" className="w-full h-96 object-contain rounded-lg border-2 border-blue-400 mb-2" />
+                      <img src="/cs180-portfolio/project-3a/center_right_correspondences.jpg" alt="Correspondence Points - Center to Right (4 points)" className="w-full h-96 object-contain rounded-lg border-2 border-blue-400 mb-2" />
                       <p className="text-xs text-black">Correspondence Points - Center to Right (4 points)</p>
                     </div>
                     <div className="text-center">
-                      <img src="/project-3a/center_right_correspondence_lines.jpg" alt="Correspondence Lines - Center to Right (4 points)" className="w-full h-96 object-contain rounded-lg border-2 border-blue-400 mb-2" />
+                      <img src="/cs180-portfolio/project-3a/center_right_correspondence_lines.jpg" alt="Correspondence Lines - Center to Right (4 points)" className="w-full h-96 object-contain rounded-lg border-2 border-blue-400 mb-2" />
                       <p className="text-xs text-black">Correspondence Lines - Center to Right (4 points)</p>
                     </div>
                   </div>
@@ -2007,15 +2007,15 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <h6 className="text-md font-semibold text-black mb-3">Laptop Rectification</h6>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="text-center">
-                        <img src="/project-3a/laptop_original_marked.jpg" alt="Laptop Original with Marked Points" className="w-full h-80 object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <img src="/cs180-portfolio/project-3a/laptop_original_marked.jpg" alt="Laptop Original with Marked Points" className="w-full h-80 object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">Original with marked corner points</p>
                       </div>
                       <div className="text-center">
-                        <img src="/project-3a/laptop_rectified_comparison.jpg" alt="Laptop Rectification Comparison" className="w-full h-80 object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <img src="/cs180-portfolio/project-3a/laptop_rectified_comparison.jpg" alt="Laptop Rectification Comparison" className="w-full h-80 object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">Rectified (Nearest Neighbor vs Bilinear)</p>
                       </div>
                       <div className="text-center">
-                        <img src="/project-3a/laptop_rectified_zoomed.jpg" alt="Laptop Rectified Cropped" className="w-full h-80 object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <img src="/cs180-portfolio/project-3a/laptop_rectified_zoomed.jpg" alt="Laptop Rectified Cropped" className="w-full h-80 object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">Final cropped rectified laptop</p>
                       </div>
                     </div>
@@ -2026,15 +2026,15 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <h6 className="text-md font-semibold text-black mb-3">UGBA102B Folder Rectification</h6>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="text-center">
-                        <img src="/project-3a/folder_original_marked.jpg" alt="Folder Original with Marked Points" className="w-full h-80 object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <img src="/cs180-portfolio/project-3a/folder_original_marked.jpg" alt="Folder Original with Marked Points" className="w-full h-80 object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">Original with marked corner points</p>
                       </div>
                       <div className="text-center">
-                        <img src="/project-3a/folder_rectified_comparison.jpg" alt="Folder Rectification Comparison" className="w-full h-80 object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <img src="/cs180-portfolio/project-3a/folder_rectified_comparison.jpg" alt="Folder Rectification Comparison" className="w-full h-80 object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">Rectified (Nearest Neighbor vs Bilinear)</p>
                       </div>
                       <div className="text-center">
-                        <img src="/project-3a/folder_rectified_zoomed.jpg" alt="Folder Rectified Cropped" className="w-full h-80 object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <img src="/cs180-portfolio/project-3a/folder_rectified_zoomed.jpg" alt="Folder Rectified Cropped" className="w-full h-80 object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">Final cropped rectified folder</p>
                       </div>
                     </div>
@@ -2092,7 +2092,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <h6 className="text-md font-semibold text-black mb-3">Source Images</h6>
                     <div className="flex justify-center mb-4">
                       <img 
-                        src="/project-3a/mosaic_sunset_sources.jpg" 
+                        src="/cs180-portfolio/project-3a/mosaic_sunset_sources.jpg" 
                         alt="Sunset panorama source images"
                         className="max-w-full h-auto object-contain"
                       />
@@ -2103,7 +2103,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <h6 className="text-md font-semibold text-black mb-3">Blending Method Comparison</h6>
                     <div className="flex justify-center mb-4">
                       <img 
-                        src="/project-3a/mosaic_sunset_all_methods_comparison.jpg" 
+                        src="/cs180-portfolio/project-3a/mosaic_sunset_all_methods_comparison.jpg" 
                         alt="Sunset panorama blending comparison"
                         className="max-w-full h-auto object-contain"
                       />
@@ -2130,7 +2130,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <h6 className="text-md font-semibold text-black mb-3">Source Images</h6>
                     <div className="flex justify-center mb-4">
                       <img 
-                        src="/project-3a/mosaic_statue_sources.jpg" 
+                        src="/cs180-portfolio/project-3a/mosaic_statue_sources.jpg" 
                         alt="Statue panorama source images"
                         className="max-w-full h-auto object-contain"
                       />
@@ -2141,7 +2141,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <h6 className="text-md font-semibold text-black mb-3">Blending Comparison</h6>
                     <div className="flex justify-center mb-4">
                       <img 
-                        src="/project-3a/mosaic_statue_comparison.jpg" 
+                        src="/cs180-portfolio/project-3a/mosaic_statue_comparison.jpg" 
                         alt="Statue panorama blending comparison"
                         className="max-w-full h-auto object-contain"
                       />
@@ -2166,7 +2166,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <h6 className="text-md font-semibold text-black mb-3">Source Images</h6>
                     <div className="flex justify-center mb-4">
                       <img 
-                        src="/project-3a/mosaic_a2_sources.jpg" 
+                        src="/cs180-portfolio/project-3a/mosaic_a2_sources.jpg" 
                         alt="A2 panorama source images"
                         className="max-w-full h-auto object-contain"
                       />
@@ -2180,7 +2180,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <h6 className="text-md font-semibold text-black mb-3">Blending Comparison</h6>
                     <div className="flex justify-center mb-4">
                       <img 
-                        src="/project-3a/mosaic_a2_comparison.jpg" 
+                        src="/cs180-portfolio/project-3a/mosaic_a2_comparison.jpg" 
                         alt="A2 panorama blending comparison"
                         className="max-w-full h-auto object-contain"
                       />
