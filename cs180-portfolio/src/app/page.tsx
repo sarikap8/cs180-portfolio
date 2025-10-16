@@ -10,6 +10,7 @@ export default function Home() {
     { id: 'project1', label: 'Project 1', title: 'Images of the Russian Empire' },
     { id: 'project2', label: 'Project 2', title: 'Fun with Filters and Frequencies' },
     { id: 'project3a', label: 'Project 3A', title: 'Image Warping and Mosaicing' },
+    { id: 'project3b', label: 'Project 3B', title: 'Feature Matching for Autostitching' },
   ];
 
   return (
@@ -2244,6 +2245,294 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <li>• The choice of blending method depends critically on the accuracy of the homography - simpler methods are more forgiving of small registration errors</li>
                     <li>• Future work could improve results by using more correspondence points or automatic feature detection for better alignment</li>
                   </ul>
+                </div>
+              </div>
+
+              
+            </div>
+          )}
+
+          {activeTab === 'project3b' && (
+            <div className="space-y-8 text-left">
+              <div className="text-center mb-8">
+                <h3 className="text-3xl font-bold text-black mb-2">Project 3B: Feature Matching for Autostitching</h3>
+                <p className="text-black italic">Automatic image alignment using feature detection and RANSAC</p>
+              </div>
+
+              {/* Overview */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">Overview</h4>
+                <p className="text-black leading-relaxed mb-3">
+                  The goal of this project is to create a system for automatically stitching images into a mosaic. 
+                  This involves detecting corner features, extracting feature descriptors, matching features between images, 
+                  and using RANSAC to compute robust homographies for automatic image alignment.
+                </p>
+                <p className="text-black leading-relaxed">
+                  Following the paper <em>"Multi-Image Matching using Multi-Scale Oriented Patches"</em> by Brown et al., 
+                  I implemented Harris corner detection with Adaptive Non-Maximal Suppression (ANMS), extracted normalized 
+                  feature descriptors, matched features using Lowe's ratio test, and used 4-point RANSAC to compute robust 
+                  homographies for automatic panorama stitching.
+                </p>
+              </div>
+
+              {/* B.1: Harris Corner Detection */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">B.1: Harris Corner Detection & Adaptive Non-Maximal Suppression</h4>
+                <p className="text-black leading-relaxed mb-4">
+                  I implemented the Harris Interest Point Detector to find corner features in images. The initial detection 
+                  typically finds thousands of corners (over 11,000 in my test images), many of which are clustered together. 
+                  To get a well-distributed set of feature points, I implemented Adaptive Non-Maximal Suppression (ANMS), 
+                  which selects the 500 strongest corners that are spatially well-distributed across the image.
+                </p>
+
+                {/* Harris corners - raw detection */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Harris Corners (Raw Detection)</h5>
+                  <p className="text-sm text-black mb-3 italic">
+                    Initial corner detection found 11,301 corners in center image and 11,352 corners in left image. 
+                    Note how corners tend to cluster in high-texture regions.
+                  </p>
+                  <div className="text-center">
+                    <img src="/cs180-portfolio/project-3b/harris_corners.jpg" alt="Harris corners on both images" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                    <p className="text-xs text-black">Harris corners detected on left and center images (red + markers)</p>
+                  </div>
+                </div>
+
+                {/* ANMS corners */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Adaptive Non-Maximal Suppression (ANMS)</h5>
+                  <p className="text-sm text-black mb-3 italic">
+                    ANMS reduces the corner count to 500 well-distributed points per image. For each corner, ANMS computes 
+                    the minimum distance to a significantly stronger corner (using c_robust = 0.9), then keeps the corners 
+                    with the largest suppression radii.
+                  </p>
+                  <div className="text-center mb-4">
+                    <img src="/cs180-portfolio/project-3b/anms_corners.jpg" alt="ANMS corners on both images" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                    <p className="text-xs text-black">Selected 500 corners after ANMS for both images (blue + markers)</p>
+                  </div>
+                </div>
+
+                {/* Comparison visualizations */}
+                <div className="mb-4">
+                  <h5 className="text-lg font-semibold text-black mb-3">Comparison: Harris vs ANMS</h5>
+                  <p className="text-sm text-black mb-3 italic">
+                    These side-by-side comparisons show how ANMS dramatically reduces corner density while maintaining 
+                    spatial distribution across the entire image.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-3b/comparison_center_harris_anms.jpg" alt="Harris vs ANMS - Center" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Center image: All Harris corners vs ANMS selection</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-3b/comparison_left_harris_anms.jpg" alt="Harris vs ANMS - Left" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Left image: All Harris corners vs ANMS selection</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* B.2: Feature Descriptor Extraction */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">B.2: Feature Descriptor Extraction</h4>
+                <p className="text-black leading-relaxed mb-4">
+                  For each corner point, I extracted an axis-aligned 8×8 feature descriptor by sampling from a larger 
+                  40×40 window around the corner. This larger window provides anti-aliasing and makes the descriptors 
+                  more robust. Each 8×8 descriptor is then bias/gain-normalized (subtract mean, divide by standard 
+                  deviation) to be invariant to illumination changes. After extracting descriptors near image borders 
+                  (which don't have full 40×40 windows), I kept 500 valid descriptors per image.
+                </p>
+
+                <div className="mb-4">
+                  <h5 className="text-lg font-semibold text-black mb-3">Descriptor Centers Overlay</h5>
+                  <p className="text-sm text-black mb-3 italic">
+                    Visualization showing the 500 descriptor centers (magenta circles) overlaid on the original images.
+                  </p>
+                  <div className="text-center">
+                    <img src="/cs180-portfolio/project-3b/descriptor_centers_overlay.jpg" alt="Descriptor centers overlaid" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                    <p className="text-xs text-black">Descriptor centers overlaid on left and center images (magenta circles)</p>
+                  </div>
+                </div>
+
+                <div className="mb-4">
+                  <h5 className="text-lg font-semibold text-black mb-3">Sample Feature Descriptors</h5>
+                  <p className="text-sm text-black mb-3 italic">
+                    Below are 16 sample normalized 8×8 feature descriptors extracted from each image. 
+                    Each patch is sampled from a 40×40 window, downsampled to 8×8 with anti-aliasing, 
+                    and then bias/gain-normalized. These small patches capture the local appearance around each corner 
+                    and enable matching between images. Each descriptor is a 64-dimensional feature vector (8×8 = 64 values).
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-3b/descriptor_patches_center.jpg" alt="Sample descriptor patches - Center image" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">16 sample 8×8 normalized descriptors from center image</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-3b/descriptor_patches_left.jpg" alt="Sample descriptor patches - Left image" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">16 sample 8×8 normalized descriptors from left image</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* B.3: Feature Matching */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">B.3: Feature Matching with Lowe's Ratio Test</h4>
+                <p className="text-black leading-relaxed mb-4">
+                  To match features between image pairs, I used Lowe's ratio test. For each feature in the first image, 
+                  I found the two nearest neighbors in the second image (by Euclidean distance in descriptor space). 
+                  A match is accepted only if the ratio of the nearest to second-nearest distance is below a threshold 
+                  (I used 0.7 as suggested in the paper). This ratio test effectively rejects ambiguous matches where 
+                  multiple features look similar, keeping only distinctive matches.
+                </p>
+
+                {/* Feature matching visualization */}
+                <div className="mb-4">
+                  <h5 className="text-lg font-semibold text-black mb-3">Feature Matches: Left-Center Image Pair</h5>
+                  <p className="text-sm text-black mb-3 italic">
+                    With a ratio threshold of 0.7, I found 53 accepted matches between the left and center images. 
+                    Yellow lines connect matched features, with red dots marking the feature locations.
+                  </p>
+                  <div className="text-center">
+                    <img src="/cs180-portfolio/project-3b/matches_left_center_ratio_0.70.jpg" alt="Feature matches with Lowe ratio test" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                    <p className="text-xs text-black">53 matched features between left and center images (ratio &lt; 0.7)</p>
+                  </div>
+                </div>
+
+                <div className="bg-blue-50 border-l-4 border-blue-500 p-4">
+                  <p className="text-sm text-black">
+                    <strong>Key Insight:</strong> The ratio test is very effective at filtering bad matches. 
+                    By comparing to the second-nearest neighbor, we ensure that accepted matches are distinctive 
+                    and not ambiguous. The median ratio of accepted matches was 0.501, well below the 0.7 threshold.
+                  </p>
+                </div>
+              </div>
+
+              {/* B.4: RANSAC and Automatic Stitching */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">B.4: RANSAC for Robust Homography Estimation</h4>
+                <p className="text-black leading-relaxed mb-4">
+                  Even after Lowe's ratio test, some feature matches can still be incorrect outliers. To compute a 
+                  robust homography, I implemented 4-point RANSAC from scratch. The algorithm repeatedly samples 4 
+                  random correspondence pairs, computes a homography from those 4 points, tests how many other points 
+                  are consistent with that homography (inliers), and keeps the homography with the most inliers. 
+                  Finally, I refit the homography using all inlier correspondences.
+                </p>
+
+                {/* RANSAC visualization */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">RANSAC Inlier Detection</h5>
+                  <p className="text-sm text-black mb-3 italic">
+                    Left: All 53 matches from Lowe's ratio test (before RANSAC). 
+                    Right: 40 inlier matches after RANSAC (75.5% inlier ratio, threshold = 3.0 pixels).
+                  </p>
+                  <div className="text-center mb-4">
+                    <img src="/cs180-portfolio/project-3b/ransac_inliers_comparison.jpg" alt="Before and after RANSAC" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                    <p className="text-xs text-black">RANSAC filtering: before (red, all matches) vs after (green, inliers only)</p>
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Automatic Mosaics: Manual vs Automatic Comparison</h5>
+                  <p className="text-sm text-black mb-4">
+                    I applied this automatic feature matching and RANSAC pipeline to create three automatic panoramas, 
+                    using the same image sets from Project 3A. Below are side-by-side comparisons of manual stitching 
+                    (from Part A, using hand-selected correspondences) versus automatic stitching (from Part B, using 
+                    detected features and RANSAC).
+                  </p>
+
+                  {/* Mosaic 1: Willard Park */}
+                  <div className="mb-6">
+                    <h6 className="text-md font-semibold text-black mb-3">Mosaic 1: Willard Park (2 images)</h6>
+                    <p className="text-sm text-black mb-3">
+                      This mosaic was particularly challenging. I initially found 48 Lowe ratio matches, but with the 
+                      standard RANSAC threshold of 3.0 pixels, I only got 20 inliers (41.7% inlier ratio). This low 
+                      inlier ratio caused visible <strong>ghosting artifacts</strong> in the stitched result. To address 
+                      this, I experimented with 4 different RANSAC thresholds (3.0, 7.0, 8.5, and 10.0 pixels) to find 
+                      a better balance. Using a more generous threshold of 8.5 pixels, I was able to increase the inlier 
+                      count to 36 (75.0% inlier ratio), which significantly reduced the ghosting and produced a cleaner mosaic.
+                    </p>
+                    <div className="text-center mb-4">
+                      <img src="/cs180-portfolio/project-3b/willard_park_improvement_comparison.jpg" alt="Willard Park improvement comparison" className="w-full h-auto object-contain rounded-lg border-2 border-blue-300 mb-2" />
+                      <p className="text-xs text-black">Willard Park: Manual (left), Original RANSAC with 41.7% inliers (center), Improved RANSAC with 75.0% inliers (right)</p>
+                    </div>
+                    <div className="text-center mb-4">
+                      <img src="/cs180-portfolio/project-3b/mosaic_a2_comparison_manual_vs_auto.jpg" alt="Willard Park manual vs auto" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Willard Park: Manual stitching (left) vs Automatic stitching with RANSAC (right)</p>
+                    </div>
+                  </div>
+
+                  {/* Mosaic 2: Statue Panorama */}
+                  <div className="mb-6">
+                    <h6 className="text-md font-semibold text-black mb-3">Mosaic 2: Statue Panorama (3 images)</h6>
+                    <p className="text-sm text-black mb-3">
+                      This three-image panorama required two homographies: left-to-center and center-to-right. 
+                      RANSAC found 41/53 inliers (77.4%) for the left-center pair and 34/39 inliers (87.2%) for 
+                      the center-right pair. The high inlier ratios indicate very good match quality.
+                    </p>
+                    <div className="text-center mb-4">
+                      <img src="/cs180-portfolio/project-3b/mosaic_statue_comparison_manual_vs_auto.jpg" alt="Statue manual vs auto" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Statue Panorama: Manual stitching (left) vs Automatic stitching with RANSAC (right)</p>
+                    </div>
+                  </div>
+
+                  {/* Mosaic 3: Sunset Panorama */}
+                  <div className="mb-6">
+                    <h6 className="text-md font-semibold text-black mb-3">Mosaic 3: Sunset Panorama (3 images)</h6>
+                    <p className="text-sm text-black mb-3">
+                      The sunset panorama was more challenging due to lower texture and fewer distinctive features. 
+                      RANSAC found only 12/22 inliers (54.5%) for the left-center pair and 16/26 inliers (61.5%) 
+                      for the center-right pair. Despite the lower inlier ratios, the automatic stitching still 
+                      produced a good result.
+                    </p>
+                    <div className="text-center mb-4">
+                      <img src="/cs180-portfolio/project-3b/mosaic_sunset_comparison_manual_vs_auto.jpg" alt="Sunset manual vs auto" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Sunset Panorama: Manual stitching (left) vs Automatic stitching with RANSAC (right)</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Summary of all mosaics */}
+                <div className="mb-4">
+                  <h5 className="text-lg font-semibold text-black mb-3">Summary: All Three Automatic Mosaics</h5>
+                  <p className="text-sm text-black mb-3 italic">
+                    All three panoramas created automatically using Harris corners, ANMS, feature descriptors, 
+                    Lowe's ratio matching, and RANSAC homography estimation.
+                  </p>
+                  <div className="text-center">
+                    <img src="/cs180-portfolio/project-3b/all_automatic_mosaics_summary.jpg" alt="All automatic mosaics" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                    <p className="text-xs text-black">Three automatic panoramas: Willard Park, Statue, and Sunset</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Reflection */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">Reflection & What I Learned</h4>
+                <div className="space-y-3 text-black leading-relaxed">
+                  <p>
+                    The most interesting thing I learned from this project was how automatic feature detection and matching 
+                    can produce results comparable to (or better than) manual correspondence selection. The RANSAC algorithm 
+                    was particularly impressive in its ability to reject outlier matches and find accurate homographies even 
+                    when a significant fraction of the initial matches were incorrect.
+                  </p>
+                  <p>
+                    <strong>Key takeaways:</strong>
+                  </p>
+                  <ul className="text-sm text-black space-y-2 ml-4">
+                    <li>• <strong>Harris corners</strong> provide robust, repeatable interest points that can be reliably detected across different views of the same scene</li>
+                    <li>• <strong>ANMS</strong> is crucial for getting a well-distributed set of feature points rather than clusters concentrated in high-texture regions</li>
+                    <li>• <strong>Feature descriptors</strong> must be normalized (bias/gain) to be robust to illumination changes between images</li>
+                    <li>• <strong>Lowe's ratio test</strong> is very effective at filtering ambiguous matches by comparing to the second-nearest neighbor</li>
+                    <li>• <strong>RANSAC</strong> is extremely powerful at filtering outliers - even with ~50% initial outliers, it can find the correct transformation</li>
+                    <li>• <strong>Parameter tuning</strong> matters: different image pairs may need different RANSAC thresholds depending on alignment quality</li>
+                    <li>• <strong>Automatic methods</strong> can be more accurate than manual selection because they use many more correspondences and robust statistical estimation</li>
+                  </ul>
+                  <p className="mt-4">
+                    <strong>Challenges:</strong> The sunset panorama was particularly challenging due to smooth gradients and fewer distinctive features. 
+                    This resulted in fewer matches and lower inlier ratios, demonstrating that automatic methods work best on scenes with 
+                    rich texture and distinctive features.
+                  </p>
                 </div>
               </div>
 
