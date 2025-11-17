@@ -2575,7 +2575,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                   <p className="text-sm text-black mb-3">
                     Some sample images captured for camera calibration using ArUco tags:
                   </p>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="text-center">
                       <img src="/cs180-portfolio/project-4/IMG_9603.jpg" alt="Calibration image IMG_9603" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Calibration image IMG_9603</p>
@@ -2583,10 +2583,6 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <div className="text-center">
                       <img src="/cs180-portfolio/project-4/IMG_9604.jpg" alt="Calibration image IMG_9604" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Calibration image IMG_9604</p>
-                    </div>
-                    <div className="text-center">
-                      <img src="/cs180-portfolio/project-4/IMG_9844.jpg" alt="Calibration image IMG_9844" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
-                      <p className="text-xs text-black">Calibration image IMG_9844</p>
                     </div>
                   </div>
                 </div>
@@ -2623,19 +2619,19 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div className="text-center">
-                      <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 1.08.45 AM.png" alt="Camera pose visualization 1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project-4/screenshot-2025-11-16-010845.png" alt="Camera pose visualization 1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Camera pose visualization - View 1</p>
                     </div>
                     <div className="text-center">
-                      <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 9.53.58 PM.png" alt="Camera pose visualization 2" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project-4/screenshot-2025-11-16-215358.png" alt="Camera pose visualization 2" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Camera pose visualization - View 2</p>
                     </div>
                     <div className="text-center">
-                      <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 9.54.15 PM.png" alt="Camera pose visualization 3" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project-4/screenshot-2025-11-16-215415.png" alt="Camera pose visualization 3" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Camera pose visualization - View 3</p>
                     </div>
                     <div className="text-center">
-                      <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 9.54.49 PM.png" alt="Camera pose visualization 4" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <img src="/cs180-portfolio/project-4/screenshot-2025-11-16-215449.png" alt="Camera pose visualization 4" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Camera pose visualization - View 4</p>
                     </div>
                   </div>
@@ -2673,7 +2669,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     2 + 4L = 42 dimensions. This helps the network learn high-frequency details.
                     <div className="mt-3 mb-2">
                       <img 
-                        src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 7.17.27 PM.png" 
+                        src="/cs180-portfolio/project-4/screenshot-2025-11-16-191727.png" 
                         alt="Positional Encoding Formula" 
                         className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 max-w-2xl mx-auto" 
                       />
@@ -2695,7 +2691,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                   </p>
                   <div className="mb-4">
                     <img 
-                      src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 6.15.02 PM.png" 
+                      src="/cs180-portfolio/project-4/screenshot-2025-11-16-181502.png" 
                       alt="Neural Network Architecture Diagram" 
                       className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 max-w-3xl mx-auto" 
                     />
@@ -2961,15 +2957,15 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     </ul>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                       <div className="text-center">
-                        <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 9.59.49 PM.png" alt="Part 2.3 Visualization 1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <img src="/cs180-portfolio/project-4/screenshot-2025-11-16-215949.png" alt="Part 2.3 Visualization 1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">Part 2.3 Visualization 1</p>
                       </div>
                       <div className="text-center">
-                        <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 10.02.15 PM.png" alt="Part 2.3 Visualization 2" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <img src="/cs180-portfolio/project-4/screenshot-2025-11-16-220215.png" alt="Part 2.3 Visualization 2" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">Part 2.3 Visualization 2</p>
                       </div>
                       <div className="text-center">
-                        <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 10.03.22 PM.png" alt="Part 2.3 Visualization 3" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <img src="/cs180-portfolio/project-4/screenshot-2025-11-16-220322.png" alt="Part 2.3 Visualization 3" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">Part 2.3 Visualization 3</p>
                       </div>
                     </div>
@@ -2983,7 +2979,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     </p>
                     <div className="mb-3">
                       <img 
-                        src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 9.29.04 PM.png" 
+                        src="/cs180-portfolio/project-4/screenshot-2025-11-16-212904.png" 
                         alt="NeRF Network Architecture" 
                         className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 max-w-3xl mx-auto" 
                       />
@@ -3018,7 +3014,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     </p>
                     <div className="mb-3">
                       <img 
-                        src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 9.29.53 PM.png" 
+                        src="/cs180-portfolio/project-4/screenshot-2025-11-16-212953.png"
                         alt="Volume Rendering Equation C(r)" 
                         className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 max-w-2xl mx-auto" 
                       />
@@ -3123,10 +3119,6 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                   <p className="text-sm text-black mb-3 italic">Novel view video rendered using test camera poses (c2ws_test)</p>
                   <div className="text-center">
                     <img src="/cs180-portfolio/project-4/nerf_outputs/lego_spherical.gif" alt="Lego spherical rendering video" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 max-w-2xl mx-auto" />
-                    <p className="text-xs text-black">Novel view spherical rendering of Lego scene</p>
-                  </div>
-                  <div className="text-center mt-4">
-                    <img src="/cs180-portfolio/project-4/lego_spherical (1).gif" alt="Lego spherical rendering video 2" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 max-w-2xl mx-auto" />
                     <p className="text-xs text-black">Novel view spherical rendering of Lego scene</p>
                   </div>
                 </div>
