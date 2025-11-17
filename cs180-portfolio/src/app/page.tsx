@@ -11,6 +11,7 @@ export default function Home() {
     { id: 'project2', label: 'Project 2', title: 'Fun with Filters and Frequencies' },
     { id: 'project3a', label: 'Project 3A', title: 'Image Warping and Mosaicing' },
     { id: 'project3b', label: 'Project 3B', title: 'Feature Matching for Autostitching' },
+    { id: 'project4', label: 'Project 4', title: 'Neural Radiance Field' },
   ];
 
   return (
@@ -2533,6 +2534,764 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     This resulted in fewer matches and lower inlier ratios, demonstrating that automatic methods work best on scenes with 
                     rich texture and distinctive features.
                   </p>
+                </div>
+              </div>
+
+              
+            </div>
+          )}
+
+          {activeTab === 'project4' && (
+            <div className="space-y-8 text-left">
+              <div className="text-center mb-8">
+                <h3 className="text-3xl font-bold text-black mb-2">Project 4: Neural Radiance Field</h3>
+                <p className="text-black italic">3D scene representation using neural networks and multi-view image synthesis</p>
+              </div>
+
+              {/* Overview */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">Overview</h4>
+                <p className="text-black leading-relaxed mb-3">
+                  In this project, I implemented a Neural Radiance Field (NeRF) to represent 3D scenes from multi-view images. 
+                  The project involved camera calibration using ArUco markers, pose estimation, and training a neural network 
+                  to learn a continuous volumetric scene representation that can render novel views.
+                </p>
+                <p className="text-black leading-relaxed">
+                  The project is divided into several parts: camera calibration and 3D scanning, fitting a neural field to a 2D image, 
+                  extending to 3D with volume rendering, and finally training on my own captured object.
+                </p>
+              </div>
+
+              {/* Part 0: Camera Calibration */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">Part 0: Camera Calibration and 3D Scanning</h4>
+                <p className="text-black leading-relaxed mb-4">
+                  I calibrated my camera using ArUco markers to compute intrinsic parameters (focal length, principal point) 
+                  and distortion coefficients. Then I captured a 3D scan of my object with the ArUco tag as a reference, 
+                  and estimated camera poses for each image using the Perspective-n-Point (PnP) algorithm.
+                </p>
+                <div className="mb-8">
+                  <h5 className="text-lg font-semibold text-black mb-3">Example Calibration Images</h5>
+                  <p className="text-sm text-black mb-3">
+                    Some sample images captured for camera calibration using ArUco tags:
+                  </p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/calib_example_1.jpg" alt="Calibration example 1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Calibration image 1</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/calib_example_2.jpg" alt="Calibration example 2" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Calibration image 2</p>
+                    </div>
+                  </div>
+                </div>
+
+
+                {/* Part 0.1 */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 0.1: Camera Calibration</h5>
+                  <p className="text-sm text-black mb-3">
+                    Captured 50 images of calibration ArUco tags from various angles and distances. Of these, the markers were detected in all 50 of the images.
+                    Used OpenCV's ArUco detector to find corners in each image, then used <code>cv2.calibrateCamera()</code> 
+                    to compute camera intrinsics and distortion coefficients.
+                  </p>
+                </div>
+
+                {/* Part 0.2 */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 0.2: Capturing a 3D Object Scan</h5>
+                  <p className="text-sm text-black mb-3">
+                    Selected my object and captured 37 images from different angles with a single ArUco tag as reference. Of these, the tag was detected in 33 of the images. 
+                    One limitation I had was that the bottle covered the ArUco tag in some of the images, which meant that I was missing one section of the 360 degree view. 
+                    Maintained consistent camera settings and distance for optimal NeRF quality.
+                  </p>
+                </div>
+
+                {/* Part 0.3 */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 0.3: Camera Pose Estimation</h5>
+                  <p className="text-sm text-black mb-3">
+                    For each image, detected the ArUco tag and used <code>cv2.solvePnP()</code> to estimate camera pose. 
+                    Converted the world-to-camera transformation to camera-to-world (c2w) 
+                    matrices for NeRF training.
+                    When I did 2.6, I didn't get a good NeRf reconstruction. So, I went back and I reshot the data, and even though I used less images this time, I think changing the lighting, and putting the bottle ON the paper itself, as well as being more consistent with the angle of the camera helped a lot.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 7.17.27 PM.png" alt="Camera frustums visualization 1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Camera frustums visualization - View 1</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 9.29.04 PM.png" alt="Camera frustums visualization 2" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Camera frustums visualization - View 2</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 9.29.53 PM.png" alt="Camera frustums visualization 3" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Camera frustums visualization - View 3</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Part 0.4 */}
+                <div className="mb-4">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 0.4: Undistorting Images and Creating Dataset</h5>
+                  <p className="text-sm text-black mb-3">
+                    Used <code>cv2.undistort()</code> to remove lens distortion from all images, handling black boundaries 
+                    with optimal camera matrix computation. Saved the dataset in .npz format with training/validation/test splits, 
+                    including images, c2w matrices, and focal length. I sanity checked this on the Lafufu dataset, and it looked like what I expected, so I concluded my calibration pipeline was valid.
+                  </p>
+                </div>
+              </div>
+
+              {/* Part 1: Neural Field for 2D Image */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">Part 1: Fit a Neural Field to a 2D Image</h4>
+                <p className="text-black leading-relaxed mb-4">
+                  Started with a 2D version of NeRF. 
+                  This helped me understand the core components: MLP architecture, positional encoding, and optimization.
+                </p>
+
+                {/* Implementation Approach */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Implementation Approach</h5>
+                  <p className="text-sm text-black mb-3">
+                    The neural field learns to map 2D coordinates (x, y) normalized to [0, 1] to RGB color values. 
+                    The key components include:
+                  </p>
+                  <ul className="text-sm text-black space-y-2 ml-4 mb-3">
+                    <li>• <strong>Positional Encoding:</strong> Sinusoidal encoding with L=10 frequency levels. For each coordinate, 
+                    we compute sin(2<sup>i</sup>πx) and cos(2<sup>i</sup>πx) for i ∈ [0, L-1], expanding the 2D input to 
+                    2 + 4L = 42 dimensions. This helps the network learn high-frequency details.
+                    <div className="mt-3 mb-2">
+                      <img 
+                        src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 7.17.27 PM.png" 
+                        alt="Positional Encoding Formula" 
+                        className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 max-w-2xl mx-auto" 
+                      />
+                      <p className="text-xs text-black text-center italic mt-1">Positional Encoding (PE) formula</p>
+                    </div>
+                    </li>
+                    <li>• <strong>Data Preparation:</strong> Each pixel's (x/W, y/H) coordinates are paired with its RGB color value. 
+                    Training uses random batches of 10,000 pixels sampled from the full image.</li>
+                    <li>• <strong>Loss Function:</strong> Mean Squared Error (MSE) between predicted and ground truth RGB values.</li>
+                    <li>• <strong>Optimization:</strong> Adam optimizer with learning rate 1e-2, trained for 2000 iterations.</li>
+                  </ul>
+                </div>
+
+                {/* Model Architecture */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Model Architecture</h5>
+                  <p className="text-sm text-black mb-3">
+                    <strong>Architecture:</strong> MLP with Sinusoidal Positional Encoding (PE)
+                  </p>
+                  <div className="mb-4">
+                    <img 
+                      src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 6.15.02 PM.png" 
+                      alt="Neural Network Architecture Diagram" 
+                      className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 max-w-3xl mx-auto" 
+                    />
+                    <p className="text-xs text-black text-center italic">Neural network architecture: 2D input → Positional Encoding → 3 hidden layers (256 units each) → 3D RGB output</p>
+                  </div>
+                  <ul className="text-sm text-black space-y-1 ml-4 mb-3">
+                    <li>• <strong>Number of layers:</strong> 4 linear layers (3 hidden layers + 1 output layer)</li>
+                    <li>• <strong>Width (channel size):</strong> 256 units per hidden layer</li>
+                    <li>• <strong>Learning rate:</strong> 1e-2 (Adam optimizer)</li>
+                    <li>• <strong>Max PE frequency (L):</strong> 10</li>
+                    <li>• <strong>Batch size:</strong> 10,000 pixels</li>
+                    <li>• <strong>Training iterations:</strong> 2000</li>
+                    <li>• <strong>Activation functions:</strong> ReLU for hidden layers, Sigmoid for output</li>
+                  </ul>
+                </div>
+
+                {/* Training Progression */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Training Progression</h5>
+                  <p className="text-sm text-black mb-3 italic">Visualization of training process across different iterations</p>
+                  
+                  {/* Provided test image */}
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-2">Provided Test Image (Fox)</h6>
+                    <p className="text-xs text-black mb-3 italic">Training progression on a 689×1024 pixel fox image</p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-4/fox_iter1.png" alt="Iteration 1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Iteration 1</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-4/fox_iter50.png" alt="Iteration 50" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Iteration 50</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-4/fox_iter200.png" alt="Iteration 200" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Iteration 200</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-4/fox_iter500.png" alt="Iteration 500" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Iteration 500</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-4/fox_iter1k.png" alt="Iteration 1000" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Iteration 1000</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-4/fox_iter2k.png" alt="Iteration 2000" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Iteration 2000</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Own image */}
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-2">My Own Image</h6>
+                    <p className="text-xs text-black mb-3 italic">Training progression on a picture of me after running a half marathon (not so subtle flex :P)</p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-4/me_it1.png" alt="Iteration 1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Iteration 1</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-4/me_it50.png" alt="Iteration 50" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Iteration 50</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-4/me_it200.png" alt="Iteration 200" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Iteration 200</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-4/me_it500.png" alt="Iteration 500" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Iteration 500</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-4/me_iter1k.png" alt="Iteration 1000" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Iteration 1000</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-4/me_it2k.png" alt="Iteration 2000" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Iteration 2000</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Hyperparameter Comparison */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Hyperparameter Tuning: Max PE Frequency vs Width</h5>
+                  <p className="text-sm text-black mb-3 italic">4×4 grid showing effects of varying positional encoding frequency (L) and network width</p>
+                  
+                  {/* Provided Test Image (Fox) Hyperparameters */}
+                  <div className="mb-6">
+                    <h6 className="text-md font-semibold text-black mb-3">Provided Test Image (Fox) - Hyperparameter Results</h6>
+                    <div className="mb-4">
+                      <img src="/cs180-portfolio/project-4/fox_hyperparams.png" alt="Fox hyperparameter tuning grid" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                    </div>
+                    <div className="bg-gray-50/50 rounded-lg p-4 mb-3">
+                      <p className="text-sm text-black font-semibold mb-2">Final PSNR Values (after 400 iterations):</p>
+                      <ul className="text-sm text-black space-y-1">
+                        <li>• <strong>L=4, width=64:</strong> 21.54 dB</li>
+                        <li>• <strong>L=4, width=256:</strong> 23.27 dB</li>
+                        <li>• <strong>L=10, width=64:</strong> 24.29 dB</li>
+                        <li>• <strong>L=10, width=256:</strong> 24.87 dB (Best)</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* My Own Image Hyperparameters */}
+                  <div className="mb-6">
+                    <h6 className="text-md font-semibold text-black mb-3">My Own Image - Hyperparameter Results</h6>
+                    <div className="mb-4">
+                      <img src="/cs180-portfolio/project-4/me_hyperparams.png" alt="My image hyperparameter tuning grid" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                    </div>
+                    <div className="bg-gray-50/50 rounded-lg p-4 mb-3">
+                      <p className="text-sm text-black font-semibold mb-2">Final PSNR Values (after 400 iterations):</p>
+                      <ul className="text-sm text-black space-y-1">
+                        <li>• <strong>L=4, width=64:</strong> 19.39 dB</li>
+                        <li>• <strong>L=4, width=256:</strong> 19.71 dB</li>
+                        <li>• <strong>L=10, width=64:</strong> 20.07 dB</li>
+                        <li>• <strong>L=10, width=256:</strong> 21.29 dB (Best)</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <p className="text-sm text-black mb-2">
+                    <strong>Key Observations:</strong>
+                  </p>
+                  <ul className="text-sm text-black space-y-1 ml-4">
+                    <li>• Higher positional encoding frequency (L=10) significantly improves reconstruction quality for both images</li>
+                    <li>• Wider networks (256 units) provide better capacity for learning fine details</li>
+                    <li>• Best configuration for both images: L=10, width=256</li>
+                    <li>• The combination of high frequency encoding and wide network yields the best visual and quantitative results</li>
+                    <li>• The fox image achieved higher PSNR (24.87 dB) compared to my own image (21.29 dB), likely due to image complexity and content differences</li>
+                  </ul>
+                </div>
+
+                {/* Training Results */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Training Results</h5>
+                  <p className="text-sm text-black mb-3">
+                    Training on a 689×1024 pixel image (705,536 total pixels) with the optimal configuration (L=10, width=256):
+                  </p>
+                  <div className="bg-gray-50/50 rounded-lg p-4 mb-3">
+                    <ul className="text-sm text-black space-y-1">
+                      <li>• <strong>Iteration 100:</strong> Loss=0.005885, PSNR=22.30 dB</li>
+                      <li>• <strong>Iteration 500:</strong> Loss=0.003257, PSNR=24.87 dB</li>
+                      <li>• <strong>Iteration 1000:</strong> Loss=0.002766, PSNR=25.58 dB</li>
+                      <li>• <strong>Iteration 2000 (Final):</strong> Loss=0.002211, PSNR=26.55 dB</li>
+                    </ul>
+                  </div>
+                  <p className="text-sm text-black">
+                    The model achieved a final PSNR of <strong>26.55 dB</strong> after 2000 iterations, demonstrating successful 
+                    learning of the 2D image representation through the neural field approach.
+                  </p>
+                </div>
+
+                {/* PSNR Curves */}
+                <div className="mb-4">
+                  <h5 className="text-lg font-semibold text-black mb-3">PSNR Curves</h5>
+                  <p className="text-sm text-black mb-3 italic">Peak Signal-to-Noise Ratio over training iterations</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/fox_psnrcurve.png" alt="PSNR curve for fox image" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black font-semibold">Provided Test Image (Fox)</p>
+                      <p className="text-xs text-black">Training PSNR progression showing steady improvement</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/me_psnrcurve.png" alt="PSNR curve for my own image" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black font-semibold">My Own Image</p>
+                      <p className="text-xs text-black">Training PSNR progression showing steady improvement</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Part 2: NeRF from Multi-view Images */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">Part 2: Fit a Neural Radiance Field from Multi-view Images</h4>
+                <p className="text-black leading-relaxed mb-4">
+                  Extended the 2D neural field to 3D by implementing ray sampling, volume rendering, and a NeRF network 
+                  that predicts density and view-dependent color for 3D points. Trained on the Lego dataset with 100 images.
+                </p>
+
+                {/* Implementation Description */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Detailed Implementation</h5>
+                  
+                  {/* Part 2.1 */}
+                  <div className="mb-6">
+                    <h6 className="text-md font-semibold text-black mb-2">Part 2.1: Create Rays from Cameras</h6>
+                    <p className="text-sm text-black mb-2">
+                      To render a 3D scene, we need to cast rays from each camera pixel into 3D space. This requires three coordinate transformations:
+                    </p>
+                    <ul className="text-sm text-black space-y-2 ml-4 mb-3">
+                      <li>
+                        <strong>Camera-to-World Transformation:</strong> Implemented <code>transform(c2w, x_c)</code> that converts 
+                        3D points from camera coordinates to world coordinates using the camera-to-world matrix. The transformation 
+                        uses homogeneous coordinates: x_w = c2w @ [x_c, 1]^T, where c2w is a 3×4 matrix containing rotation and translation.
+                      </li>
+                      <li>
+                        <strong>Pixel-to-Camera Conversion:</strong> Implemented <code>pixel_to_camera(K, uv, s)</code> that inverts the 
+                        pinhole camera projection. Given pixel coordinates (u, v) and intrinsic matrix K, we compute camera coordinates: 
+                        x_c = (u - cx) / fx, y_c = (v - cy) / fy, z_c = s. This converts 2D pixel locations back to 3D camera space 
+                        at a chosen depth s=1.0.
+                      </li>
+                      <li>
+                        <strong>Pixel-to-Ray Conversion:</strong> Implemented <code>pixel_to_ray(K, c2w, uv)</code> and its batched 
+                        version <code>pixel_to_ray_batch()</code>. The ray origin is the camera position (extracted from c2w[:3, 3]). 
+                        The ray direction is computed by: (1) converting pixel to camera coordinates, (2) transforming to world space, 
+                        (3) subtracting the camera origin, and (4) normalizing. The batched version supports both NumPy (for visualization) 
+                        and PyTorch (for training) with optimized operations.
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Part 2.2 */}
+                  <div className="mb-6">
+                    <h6 className="text-md font-semibold text-black mb-2">Part 2.2: Sampling</h6>
+                    <p className="text-sm text-black mb-2">
+                      Two levels of sampling are needed: sampling rays from images, and sampling points along each ray.
+                    </p>
+                    <ul className="text-sm text-black space-y-2 ml-4 mb-3">
+                      <li>
+                        <strong>Sampling Rays from Images:</strong> Implemented <code>sample_random_rays()</code> that performs global 
+                        random sampling across all training images. It flattens all pixels (N × H × W total), randomly selects indices, 
+                        then groups rays by image for efficient batched ray generation. Pixel centers are computed by adding 0.5 to 
+                        integer coordinates (u = x + 0.5, v = y + 0.5) to account for the offset from image coordinates to pixel centers.
+                      </li>
+                      <li>
+                        <strong>Sampling Points Along Rays:</strong> Implemented <code>sample_along_rays()</code> that discretizes each 
+                        ray into 3D sample points. For the Lego scene, near=2.0 and far=6.0 define the sampling bounds. During training, 
+                        I use stratified random sampling: divide the [near, far] interval into n_samples bins, then randomly sample within 
+                        each bin to prevent overfitting to fixed locations. During rendering, uniform sampling is used (random=False). 
+                        The 3D points are computed as: pts = ray_o + ray_d * t, where t are the sampled depth values. Supports both 
+                        NumPy and PyTorch for flexibility.
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Part 2.3 */}
+                  <div className="mb-6">
+                    <h6 className="text-md font-semibold text-black mb-2">Part 2.3: Dataloader Implementation</h6>
+                    <p className="text-sm text-black mb-2">
+                      Implemented the <code>RaysData</code> class that efficiently precomputes and stores all rays for fast training.
+                    </p>
+                    <ul className="text-sm text-black space-y-2 ml-4 mb-3">
+                      <li>
+                        <strong>Precomputation:</strong> In the constructor, I precompute rays for all pixels across all training images. 
+                        For each image, I create a meshgrid of pixel coordinates, convert them to rays using <code>pixel_to_ray_batch()</code>, 
+                        and concatenate everything into arrays: <code>rays_o</code>, <code>rays_d</code>, and <code>pixels</code>. This 
+                        trades memory for speed during training.
+                      </li>
+                      <li>
+                        <strong>Random Sampling:</strong> The <code>sample_rays(B)</code> method randomly samples B rays from the 
+                        precomputed arrays, returning ray origins, directions, and corresponding ground truth pixel colors. This enables 
+                        efficient batch-based training with 10,000 rays per iteration.
+                      </li>
+                      <li>
+                        <strong>Verification:</strong> Added assertions to verify that UV coordinates are correctly indexed (xy vs yx) 
+                        to catch coordinate system bugs early.
+                      </li>
+                    </ul>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 9.59.49 PM.png" alt="Part 2.3 Visualization 1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Part 2.3 Visualization 1</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 10.02.15 PM.png" alt="Part 2.3 Visualization 2" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Part 2.3 Visualization 2</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 10.03.22 PM.png" alt="Part 2.3 Visualization 3" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Part 2.3 Visualization 3</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Part 2.4 */}
+                  <div className="mb-6">
+                    <h6 className="text-md font-semibold text-black mb-2">Part 2.4: Neural Radiance Field Network</h6>
+                    <p className="text-sm text-black mb-2">
+                      The NeRF network predicts density and view-dependent color for 3D points. Key architectural choices:
+                    </p>
+                    <div className="mb-3">
+                      <img 
+                        src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 9.29.04 PM.png" 
+                        alt="NeRF Network Architecture" 
+                        className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 max-w-3xl mx-auto" 
+                      />
+                      <p className="text-xs text-black text-center italic">NeRF network architecture showing the two-branch design with skip connections</p>
+                    </div>
+                    <ul className="text-sm text-black space-y-2 ml-4 mb-3">
+                      <li>
+                        <strong>Input Encoding:</strong> 3D coordinates are encoded with positional encoding (L=10), expanding from 3D 
+                        to 63 dimensions (3 + 2×3×10). View directions are encoded with L=4, expanding from 3D to 27 dimensions (3 + 2×3×4). 
+                        This helps the network learn high-frequency details in geometry and view-dependent effects.
+                      </li>
+                      <li>
+                        <strong>Network Architecture:</strong> Two-branch design: (1) <code>trunk1</code> processes encoded coordinates 
+                        (256→256), (2) <code>trunk2</code> takes concatenated trunk1 output + original encoded coordinates (256+63→256), 
+                        implementing skip connections to prevent information loss. Density is predicted from trunk2 output via a linear layer. 
+                        RGB color is predicted by concatenating trunk2 output with encoded view direction, then passing through a small MLP 
+                        (256+27→128→3) with Sigmoid activation.
+                      </li>
+                      <li>
+                        <strong>Forward Pass:</strong> <code>nerf_forward_points()</code> processes individual 3D points, while 
+                        <code>nerf_forward()</code> handles batched ray samples (N rays × S samples per ray). The view direction is 
+                        expanded to match each sample point, enabling view-dependent color prediction.
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Part 2.5 */}
+                  <div className="mb-6">
+                    <h6 className="text-md font-semibold text-black mb-2">Part 2.5: Volume Rendering</h6>
+                    <p className="text-sm text-black mb-2">
+                      Implemented the discrete volume rendering equation to composite colors and densities along rays.
+                    </p>
+                    <div className="mb-3">
+                      <img 
+                        src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 9.29.53 PM.png" 
+                        alt="Volume Rendering Equation C(r)" 
+                        className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 max-w-2xl mx-auto" 
+                      />
+                      <p className="text-xs text-black text-center italic">Volume rendering equation C(r) for computing pixel colors</p>
+                    </div>
+                    <ul className="text-sm text-black space-y-2 ml-4 mb-3">
+                      <li>
+                        <strong>Transmittance and Alpha:</strong> For each sample point, compute alpha (opacity) as α = 1 - exp(-σ * dt), 
+                        where σ is density and dt is the step size. Transmittance T represents the probability of a ray not terminating 
+                        before reaching a point, computed as the cumulative product of (1 - α) values.
+                      </li>
+                      <li>
+                        <strong>Weighted Summation:</strong> The final pixel color is computed as: C = Σ(T_i * α_i * c_i), where weights 
+                        w_i = T_i * α_i represent the contribution of each sample. This implements alpha compositing along the ray, with 
+                        closer, denser samples contributing more to the final color.
+                      </li>
+                      <li>
+                        <strong>Implementation:</strong> Used <code>torch.cumprod()</code> to efficiently compute transmittance, and 
+                        vectorized operations for the weighted sum. The implementation passes the provided test case with the correct 
+                        numerical values, confirming correctness.
+                      </li>
+                      <li>
+                        <strong>Rendering Function:</strong> <code>render_image()</code> renders a full image by: (1) generating rays 
+                        for all pixels, (2) sampling points along rays, (3) querying the NeRF network, (4) volume rendering, and 
+                        (5) reshaping to image dimensions. Used for validation and novel view synthesis.
+                      </li>
+                    </ul>
+                    <div className="mt-4">
+                      <img src="/cs180-portfolio/project-4/ray_sampling_viz.png" alt="Ray sampling visualization" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black text-center italic">Ray sampling visualization</p>
+                    </div>
+                  </div>
+
+                  {/* Training Details */}
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-2">Training Configuration</h6>
+                    <ul className="text-sm text-black space-y-1 ml-4">
+                      <li>• <strong>Batch size:</strong> 10,000 rays per iteration</li>
+                      <li>• <strong>Samples per ray:</strong> 64 points</li>
+                      <li>• <strong>Learning rate:</strong> 5e-4 (Adam optimizer)</li>
+                      <li>• <strong>Training iterations:</strong> 1,750 iterations</li>
+                      <li>• <strong>Near/Far bounds:</strong> 2.0 to 6.0 for Lego scene</li>
+                      <li>• <strong>Validation:</strong> Evaluated every 50 iterations on 10 validation images</li>
+                      <li>• <strong>Rendering:</strong> Saved intermediate renders every 250 iterations</li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Ray and Sample Visualization */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Ray and Sample Visualization</h5>
+                  <p className="text-sm text-black mb-3 italic">
+                    Visualization of cameras, sampled rays (up to 100), and 3D sample points at a single training step
+                  </p>
+                  <div className="text-center">
+                    <img src="/cs180-portfolio/project-4/rays_samples_visualization.jpg" alt="Rays and samples visualization" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                    <p className="text-xs text-black">Camera frustums, rays, and 3D sample points</p>
+                  </div>
+                </div>
+
+                {/* Training Progression */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Training Progression</h5>
+                  <p className="text-sm text-black mb-3 italic">Novel view rendering at different training iterations</p>
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/nerf_outputs/iter_750.png" alt="Iteration 750" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 750</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/nerf_outputs/iter_1000.png" alt="Iteration 1000" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 1000</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/nerf_outputs/iter_1250.png" alt="Iteration 1250" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 1250</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/nerf_outputs/iter_1500.png" alt="Iteration 1500" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 1500</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/nerf_outputs/iter_1750.png" alt="Iteration 1750" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 1750 (Final)</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* PSNR Curve */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Validation PSNR Curve</h5>
+                  <p className="text-sm text-black mb-3 italic">PSNR on validation set (6 images) over training</p>
+                  <div className="text-center">
+                    <img src="/cs180-portfolio/project-4/lego_psnr.png" alt="NeRF validation PSNR curve" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                    <p className="text-xs text-black">Final validation PSNR: 23.620 dB</p>
+                  </div>
+                </div>
+
+                {/* Spherical Rendering Video */}
+                <div className="mb-4">
+                  <h5 className="text-lg font-semibold text-black mb-3">Spherical Rendering Video</h5>
+                  <p className="text-sm text-black mb-3 italic">Novel view video rendered using test camera poses (c2ws_test)</p>
+                  <div className="text-center">
+                    <img src="/cs180-portfolio/project-4/nerf_outputs/lego_spherical.gif" alt="Lego spherical rendering video" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 max-w-2xl mx-auto" />
+                    <p className="text-xs text-black">Novel view spherical rendering of Lego scene</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Part 2.6: Own Data */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">Part 2.6: Training with My Own Data</h4>
+                <p className="text-black leading-relaxed mb-4">
+                  Trained a NeRF on my own captured object using the dataset created in Part 0. Adjusted hyperparameters 
+                  (near/far bounds, number of samples) for the real-world capture conditions.
+                </p>
+
+                {/* Hyperparameter Changes */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Code and Hyperparameter Changes</h5>
+                  <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+                    <p className="text-sm text-black mb-2">
+                      <strong>Near/Far bounds:</strong> Changed from (2.0, 6.0) for synthetic Lego data to (0.03, 0.6) for real captures. 
+                      The object is much closer to the camera in real-world captures, so the sampling bounds needed to be adjusted 
+                      accordingly. These values define the minimum and maximum distance from the camera sensor where we start and stop 
+                      sampling points along rays.
+                    </p>
+                    <p className="text-sm text-black mb-2">
+                      <strong>Number of samples:</strong> Used 64 samples per ray consistently. Started with 32 samples during initial 
+                      debugging to ensure the pipeline worked correctly, then increased to 64 for final quality. More samples improve 
+                      visual quality but increase training time.
+                    </p>
+                    <p className="text-sm text-black mb-2">
+                      <strong>Image resolution:</strong> Resized images from original resolution to 200×200 pixels to speed up training 
+                      and reduce memory requirements. When resizing, I adjusted the camera intrinsics matrix K accordingly: scaled the 
+                      focal length (fx, fy) and principal point (cx, cy) by the same scale factors (scale_x = 200/orig_W, scale_y = 200/orig_H). 
+                      This ensures the camera model remains consistent after resizing.
+                    </p>
+                    <p className="text-sm text-black mb-2">
+                      <strong>Training iterations:</strong> Trained for 5,000 iterations (compared to 1,750 for Lego) to achieve better 
+                      quality on the real-world dataset, which has more complex lighting and geometry.
+                    </p>
+                    <p className="text-sm text-black">
+                      <strong>Validation and rendering:</strong> Evaluated validation PSNR every 50 iterations and saved intermediate 
+                      renders every 300 iterations to monitor training progress.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Novel View GIF */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Novel View Rendering</h5>
+                  <p className="text-sm text-black mb-3 italic">Camera circling the object showing novel views</p>
+                  <div className="text-center">
+                    <img src="/cs180-portfolio/project-4/output-onlinegiftools.gif" alt="Novel views of my hydroflask" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 max-w-2xl mx-auto" />
+                    <p className="text-xs text-black">Novel view rendering of my captured object</p>
+                  </div>
+                </div>
+
+                {/* Training Loss and PSNR */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Training Loss and PSNR</h5>
+                  <p className="text-sm text-black mb-3 italic">Training loss and training PSNR over iterations</p>
+                  <div className="text-center">
+                    <img src="/cs180-portfolio/project-4/hydro_psnr.png" alt="Training loss and PSNR curves" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                    <p className="text-xs text-black">Training loss and PSNR progression</p>
+                  </div>
+                </div>
+
+                {/* Intermediate Renders */}
+                <div className="mb-4">
+                  <h5 className="text-lg font-semibold text-black mb-3">Intermediate Renders During Training</h5>
+                  <p className="text-sm text-black mb-3 italic">Visualization of scene reconstruction at different training stages</p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/hydro_outputs/hydro_iter_300.png" alt="Iteration 300" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 300</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/hydro_outputs/hydro_iter_600.png" alt="Iteration 600" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 600</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/hydro_outputs/hydro_iter_900.png" alt="Iteration 900" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 900</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/hydro_outputs/hydro_iter_1200.png" alt="Iteration 1200" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 1200</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/hydro_outputs/hydro_iter_1500.png" alt="Iteration 1500" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 1500</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/hydro_outputs/hydro_iter_1800.png" alt="Iteration 1800" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 1800</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/hydro_outputs/hydro_iter_2100.png" alt="Iteration 2100" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 2100</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/hydro_outputs/hydro_iter_2400.png" alt="Iteration 2400" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 2400</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/hydro_outputs/hydro_iter_2700.png" alt="Iteration 2700" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 2700</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/hydro_outputs/hydro_iter_3000.png" alt="Iteration 3000" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 3000</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/hydro_outputs/hydro_iter_3300.png" alt="Iteration 3300" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 3300</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/hydro_outputs/hydro_iter_3600.png" alt="Iteration 3600" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 3600</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/hydro_outputs/hydro_iter_3900.png" alt="Iteration 3900" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 3900</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/hydro_outputs/hydro_iter_4200.png" alt="Iteration 4200" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 4200</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/hydro_outputs/hydro_iter_4500.png" alt="Iteration 4500" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 4500</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/hydro_outputs/hydro_iter_4800.png" alt="Iteration 4800" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Iteration 4800</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Reflection */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">Reflection & What I Learned</h4>
+                <div className="space-y-3 text-black leading-relaxed">
+                  <p>
+                    Building a NeRF from scratch gave me hands-on experience with neural rendering, camera geometry, and the challenges 
+                    of working with real-world data. The journey from 2D image fitting to full 3D scene reconstruction was both challenging 
+                    and rewarding.
+                  </p>
+
+                  <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-3">
+                    <p className="text-sm text-black font-semibold mb-2">GPU and Computational Challenges</p>
+                    <p className="text-sm text-black">
+                      One of the biggest challenges was managing GPU memory. Training NeRF models is extremely memory-intensive, and I had 
+                      to carefully balance batch size, number of samples, and image resolution to fit within available GPU memory. This taught 
+                      me the importance of optimization techniques like precomputing rays and strategically choosing hyperparameters that 
+                      balance quality and computational cost.
+                    </p>
+                  </div>
+
+                  <p>
+                    <strong>Key Takeaways:</strong>
+                  </p>
+                  <ul className="text-sm text-black space-y-1 ml-4 mb-3">
+                    <li>• Positional encoding is crucial for learning high-frequency details - the choice of encoding frequency (L) significantly impacts reconstruction quality</li>
+                    <li>• Volume rendering with transmittance and alpha compositing is fundamental to reconstructing 3D scenes from 2D images</li>
+                    <li>• Real-world data requires careful camera calibration, consistent lighting, and hyperparameter tuning (especially near/far bounds)</li>
+                    <li>• Stratified random sampling during training prevents overfitting while maintaining rendering quality</li>
+                  </ul>
+
+                  <p>
+                    <strong>Future Improvements:</strong>
+                  </p>
+                  <ul className="text-sm text-black space-y-1 ml-4">
+                    <li>• Train on the entire dataset without partitioning to maximize available data</li>
+                    <li>• Generate novel test views by interpolating between training camera positions rather than using predefined poses</li>
+                    <li>• Sample validation rays from training images instead of holding out a separate validation set</li>
+                    <li>• Explore hierarchical sampling and more efficient NeRF architectures like Instant-NGP</li>
+                  </ul>
                 </div>
               </div>
 
