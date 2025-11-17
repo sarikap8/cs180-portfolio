@@ -3042,10 +3042,6 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                         (5) reshaping to image dimensions. Used for validation and novel view synthesis.
                       </li>
                     </ul>
-                    <div className="mt-4">
-                      <img src="/cs180-portfolio/project-4/ray_sampling_viz.png" alt="Ray sampling visualization" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
-                      <p className="text-xs text-black text-center italic">Ray sampling visualization</p>
-                    </div>
                   </div>
 
                   {/* Training Details */}
@@ -3070,7 +3066,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     Visualization of cameras, sampled rays (up to 100), and 3D sample points at a single training step
                   </p>
                   <div className="text-center">
-                    <img src="/cs180-portfolio/project-4/rays_samples_visualization.jpg" alt="Rays and samples visualization" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                    <img src="/cs180-portfolio/project-4/ray_sampling_viz.png" alt="Rays and samples visualization" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                     <p className="text-xs text-black">Camera frustums, rays, and 3D sample points</p>
                   </div>
                 </div>
