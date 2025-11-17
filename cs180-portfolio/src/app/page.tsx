@@ -2575,14 +2575,18 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                   <p className="text-sm text-black mb-3">
                     Some sample images captured for camera calibration using ArUco tags:
                   </p>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
-                      <img src="/cs180-portfolio/project-4/calib_example_1.jpg" alt="Calibration example 1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
-                      <p className="text-xs text-black">Calibration image 1</p>
+                      <img src="/cs180-portfolio/project-4/IMG_9603.jpg" alt="Calibration image IMG_9603" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Calibration image IMG_9603</p>
                     </div>
                     <div className="text-center">
-                      <img src="/cs180-portfolio/project-4/calib_example_2.jpg" alt="Calibration example 2" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
-                      <p className="text-xs text-black">Calibration image 2</p>
+                      <img src="/cs180-portfolio/project-4/IMG_9604.jpg" alt="Calibration image IMG_9604" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Calibration image IMG_9604</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/IMG_9844.jpg" alt="Calibration image IMG_9844" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Calibration image IMG_9844</p>
                     </div>
                   </div>
                 </div>
@@ -2617,18 +2621,22 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     matrices for NeRF training.
                     When I did 2.6, I didn't get a good NeRf reconstruction. So, I went back and I reshot the data, and even though I used less images this time, I think changing the lighting, and putting the bottle ON the paper itself, as well as being more consistent with the angle of the camera helped a lot.
                   </p>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div className="text-center">
-                      <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 7.17.27 PM.png" alt="Camera frustums visualization 1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
-                      <p className="text-xs text-black">Camera frustums visualization - View 1</p>
+                      <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 1.08.45 AM.png" alt="Camera pose visualization 1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Camera pose visualization - View 1</p>
                     </div>
                     <div className="text-center">
-                      <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 9.29.04 PM.png" alt="Camera frustums visualization 2" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
-                      <p className="text-xs text-black">Camera frustums visualization - View 2</p>
+                      <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 9.53.58 PM.png" alt="Camera pose visualization 2" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Camera pose visualization - View 2</p>
                     </div>
                     <div className="text-center">
-                      <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 9.29.53 PM.png" alt="Camera frustums visualization 3" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
-                      <p className="text-xs text-black">Camera frustums visualization - View 3</p>
+                      <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 9.54.15 PM.png" alt="Camera pose visualization 3" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Camera pose visualization - View 3</p>
+                    </div>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-4/Screenshot 2025-11-16 at 9.54.49 PM.png" alt="Camera pose visualization 4" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Camera pose visualization - View 4</p>
                     </div>
                   </div>
                 </div>
@@ -3117,6 +3125,10 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <img src="/cs180-portfolio/project-4/nerf_outputs/lego_spherical.gif" alt="Lego spherical rendering video" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 max-w-2xl mx-auto" />
                     <p className="text-xs text-black">Novel view spherical rendering of Lego scene</p>
                   </div>
+                  <div className="text-center mt-4">
+                    <img src="/cs180-portfolio/project-4/lego_spherical (1).gif" alt="Lego spherical rendering video 2" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 max-w-2xl mx-auto" />
+                    <p className="text-xs text-black">Novel view spherical rendering of Lego scene</p>
+                  </div>
                 </div>
               </div>
 
@@ -3177,6 +3189,16 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                   <div className="text-center">
                     <img src="/cs180-portfolio/project-4/hydro_psnr.png" alt="Training loss and PSNR curves" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                     <p className="text-xs text-black">Training loss and PSNR progression</p>
+                  </div>
+                </div>
+
+                {/* Training Loss Only */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Training Loss (MSE)</h5>
+                  <p className="text-sm text-black mb-3 italic">Hydro object mean squared error throughout optimization</p>
+                  <div className="text-center">
+                    <img src="/cs180-portfolio/project-4/hydro_loss.png" alt="Hydro training loss curve" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                    <p className="text-xs text-black">Hydro training loss vs iterations</p>
                   </div>
                 </div>
 
