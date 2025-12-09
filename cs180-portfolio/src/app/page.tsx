@@ -3213,7 +3213,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <div className="text-center">
                       <img src="/cs180-portfolio/project-4/hydro_outputs/hydro_iter_1500.png" alt="Iteration 1500" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Iteration 1500</p>
-                    </div>
+                  </div>
                     <div className="text-center">
                       <img src="/cs180-portfolio/project-4/hydro_outputs/hydro_iter_1800.png" alt="Iteration 1800" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                       <p className="text-xs text-black">Iteration 1800</p>
@@ -3313,7 +3313,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
               <div className="text-center mb-8">
                 <h3 className="text-3xl font-bold text-black mb-2">Project 5A: The Power of Diffusion Models</h3>
                 <p className="text-black italic">Exploring diffusion models, sampling loops, inpainting, and optical illusions</p>
-              </div>
+        </div>
 
               {/* Overview */}
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
@@ -4345,11 +4345,11 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                       <p className="text-sm text-black mb-3 italic">Sample results on test set with noise level 0.5:</p>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="text-center">
-                          <img src="/cs180-portfolio/project-5b/121epoch1.png" alt="Results after 1st epoch" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                          <img src="/cs180-portfolio/project-5b/121epoch1.png" alt="Results after 1st epoch" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                           <p className="text-xs text-black">After 1st Epoch</p>
                         </div>
                         <div className="text-center">
-                          <img src="/cs180-portfolio/project-5b/121epoch5.png" alt="Results after 5th epoch" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                          <img src="/cs180-portfolio/project-5b/121epoch5.png" alt="Results after 5th epoch" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                           <p className="text-xs text-black">After 5th Epoch</p>
                         </div>
                       </div>
@@ -4393,11 +4393,11 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                       <p className="text-sm text-black mb-3 italic">Sample results on pure noise:</p>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div className="text-center">
-                          <img src="/cs180-portfolio/project-5b/123epoch1.png" alt="Results after 1st epoch" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                          <img src="/cs180-portfolio/project-5b/123epoch1.png" alt="Results after 1st epoch" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                           <p className="text-xs text-black">After 1st Epoch</p>
                         </div>
                         <div className="text-center">
-                          <img src="/cs180-portfolio/project-5b/123epoch5.png" alt="Results after 5th epoch" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                          <img src="/cs180-portfolio/project-5b/123epoch5.png" alt="Results after 5th epoch" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                           <p className="text-xs text-black">After 5th Epoch</p>
                         </div>
                       </div>
@@ -4462,15 +4462,15 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <p className="text-sm text-black mb-3 italic">Sampling results from the time-conditioned UNet:</p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="text-center">
-                        <img src="/cs180-portfolio/project-5b/23_oneepoch.png" alt="Sampling results after 1 epoch" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                        <img src="/cs180-portfolio/project-5b/23_oneepoch.png" alt="Sampling results after 1 epoch" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">After 1 Epoch</p>
                       </div>
                       <div className="text-center">
-                        <img src="/cs180-portfolio/project-5b/23_5epoch.png" alt="Sampling results after 5 epochs" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                        <img src="/cs180-portfolio/project-5b/23_5epoch.png" alt="Sampling results after 5 epochs" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">After 5 Epochs</p>
                       </div>
                       <div className="text-center">
-                        <img src="/cs180-portfolio/project-5b/23_10epoch.png" alt="Sampling results after 10 epochs" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                        <img src="/cs180-portfolio/project-5b/23_10epoch.png" alt="Sampling results after 10 epochs" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">After 10 Epochs</p>
                       </div>
                     </div>
@@ -4525,15 +4525,15 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <p className="text-sm text-black mb-3 italic">Sampling results from the class-conditioned UNet (4 instances of each digit):</p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="text-center">
-                        <img src="/cs180-portfolio/project-5b/26_oneepoch.png" alt="Sampling results after 1 epoch" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                        <img src="/cs180-portfolio/project-5b/26_oneepoch.png" alt="Sampling results after 1 epoch" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">After 1 Epoch</p>
                       </div>
                       <div className="text-center">
-                        <img src="/cs180-portfolio/project-5b/26_5epoch.png" alt="Sampling results after 5 epochs" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                        <img src="/cs180-portfolio/project-5b/26_5epoch.png" alt="Sampling results after 5 epochs" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">After 5 Epochs</p>
                       </div>
                       <div className="text-center">
-                        <img src="/cs180-portfolio/project-5b/26_10epoch.png" alt="Sampling results after 10 epochs" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                        <img src="/cs180-portfolio/project-5b/26_10epoch.png" alt="Sampling results after 10 epochs" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">After 10 Epochs</p>
                       </div>
                     </div>
@@ -4545,7 +4545,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                           <p className="text-xs text-black">Learning Rate Comparison</p>
                         </div>
                         <div className="text-center">
-                          <img src="/cs180-portfolio/project-5b/26_nosched.png" alt="Results without Scheduler" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                          <img src="/cs180-portfolio/project-5b/26_nosched.png" alt="Results without Scheduler" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                           <p className="text-xs text-black">Results without Scheduler</p>
                         </div>
                       </div>
