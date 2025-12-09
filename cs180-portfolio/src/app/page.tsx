@@ -4234,11 +4234,32 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     Implemented a UNet architecture with downsampling and upsampling blocks with skip connections. 
                     The UNet consists of Conv, DownConv, UpConv, Flatten, Unflatten, and Concat operations.
                   </p>
+                  <div className="mt-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5b/1.1diagram.jpg" alt="UNet Architecture Diagram" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">UNet Architecture Diagram</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5b/1.1otherdiagram.jpg" alt="UNet Operations Diagram" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">UNet Operations Diagram</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Part 1.2: Using the UNet to Train a Denoiser */}
                 <div className="mb-6">
                   <h5 className="text-lg font-semibold text-black mb-3">Part 1.2: Using the UNet to Train a Denoiser</h5>
+                  <p className="text-sm text-black mb-3">
+                    Visualized the different noising processes over σ, showing how images become noisier as σ increases.
+                  </p>
+                  <div className="mt-4">
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-5b/1.2visual.jpg" alt="Noising Process Visualization" className="w-full max-w-4xl mx-auto h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Noising Process Visualization</p>
+                    </div>
+                  </div>
                   
                   {/* Part 1.2.1: Training */}
                   <div className="mb-4">
@@ -4247,13 +4268,24 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                       Trained a denoiser to map noisy images to clean images using L2 loss. 
                       Used MNIST dataset with batch size 256, trained for 5 epochs with Adam optimizer (lr=1e-4).
                     </p>
-                    <p className="text-sm text-black mb-3">
-                      <strong>Deliverables:</strong>
-                    </p>
-                    <ul className="text-sm text-black ml-4 list-disc space-y-1 mb-3">
-                      <li>Training loss curve plot during training</li>
-                      <li>Sample results on test set with noise level 0.5 after 1st and 5th epoch</li>
-                    </ul>
+                    <div className="mt-4">
+                      <p className="text-sm text-black mb-3 italic">Training loss curve:</p>
+                      <div className="text-center mb-4">
+                        <img src="/cs180-portfolio/project-5b/121plot.png" alt="Training Loss Curve" className="w-full max-w-4xl mx-auto h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Training Loss Curve</p>
+                      </div>
+                      <p className="text-sm text-black mb-3 italic">Sample results on test set with noise level 0.5:</p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5b/121epoch1.png" alt="Results after 1st epoch" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                          <p className="text-xs text-black">After 1st Epoch</p>
+                        </div>
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5b/121epoch5.png" alt="Results after 5th epoch" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                          <p className="text-xs text-black">After 5th Epoch</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Part 1.2.2: Out-of-Distribution Testing */}
@@ -4262,12 +4294,12 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <p className="text-sm text-black mb-3">
                       Tested the denoiser on different noise levels σ that it wasn&apos;t trained on.
                     </p>
-                    <p className="text-sm text-black mb-3">
-                      <strong>Deliverables:</strong>
-                    </p>
-                    <ul className="text-sm text-black ml-4 list-disc space-y-1 mb-3">
-                      <li>Sample results on test set with out-of-distribution noise levels</li>
-                    </ul>
+                    <div className="mt-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5b/122image.png" alt="Out-of-Distribution Testing Results" className="w-full max-w-4xl mx-auto h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Sample results on test set with out-of-distribution noise levels</p>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Part 1.2.3: Denoising Pure Noise */}
@@ -4277,14 +4309,27 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                       Trained the denoiser to denoise pure random Gaussian noise (starting with x₀ = ε where ε ~ N(0,1)) 
                       and denoise it to get a clean image. This tests the generative capabilities of the model.
                     </p>
-                    <p className="text-sm text-black mb-3">
-                      <strong>Deliverables:</strong>
-                    </p>
-                    <ul className="text-sm text-black ml-4 list-disc space-y-1 mb-3">
-                      <li>Training loss curve plot during training on pure noise</li>
-                      <li>Sample results on pure noise after 1st and 5th epoch</li>
-                      <li>Brief description of patterns observed in generated outputs and explanations</li>
-                    </ul>
+                    <div className="mt-4">
+                      <p className="text-sm text-black mb-3 italic">Training loss curve during training on pure noise:</p>
+                      <div className="text-center mb-4">
+                        <img src="/cs180-portfolio/project-5b/123plot.png" alt="Training Loss Curve for Pure Noise" className="w-full max-w-4xl mx-auto h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Training Loss Curve</p>
+                      </div>
+                      <p className="text-sm text-black mb-3 italic">Sample results on pure noise:</p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5b/123epoch1.png" alt="Results after 1st epoch" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                          <p className="text-xs text-black">After 1st Epoch</p>
+                        </div>
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5b/123epoch5.png" alt="Results after 5th epoch" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                          <p className="text-xs text-black">After 5th Epoch</p>
+                        </div>
+                      </div>
+                      <p className="text-sm text-black mb-3">
+                        <strong>Patterns observed:</strong> When denoising pure noise, the model generates blurry, averaged versions of digits rather than distinct, sharp digits. The outputs appear to be a blend or centroid of all the training digits (0-9), showing characteristics from multiple digit classes simultaneously. This happens because with an MSE loss, the model learns to predict the point that minimizes the sum of squared distances to all training examples. Since the model was trained to map pure noise to clean images without any class information, it converges to predicting the average of all possible digit outputs, resulting in these ambiguous, blended digit-like shapes that don&apos;t clearly belong to any single digit class.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -4309,12 +4354,13 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     Trained the time-conditioned UNet to predict the flow at timestep t given a noisy image x_t and timestep t. 
                     Used MNIST dataset with batch size 64, Adam optimizer with initial learning rate 1e-2 and exponential decay scheduler (γ=0.95).
                   </p>
-                  <p className="text-sm text-black mb-3">
-                    <strong>Deliverables:</strong>
-                  </p>
-                  <ul className="text-sm text-black ml-4 list-disc space-y-1 mb-3">
-                    <li>Training loss curve plot for the time-conditioned UNet over the whole training process</li>
-                  </ul>
+                  <div className="mt-4">
+                    <p className="text-sm text-black mb-3 italic">Training loss curve for the time-conditioned UNet:</p>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-5b/22plot.png" alt="Training Loss Curve for Time-Conditioned UNet" className="w-full max-w-4xl mx-auto h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Training Loss Curve</p>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Part 2.3: Sampling from the UNet */}
@@ -4324,12 +4370,23 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     Used the trained UNet for iterative denoising to generate samples. Starting from pure noise, 
                     iteratively denoise using the predicted flow.
                   </p>
-                  <p className="text-sm text-black mb-3">
-                    <strong>Deliverables:</strong>
-                  </p>
-                  <ul className="text-sm text-black ml-4 list-disc space-y-1 mb-3">
-                    <li>Sampling results from the time-conditioned UNet for 1, 5, and 10 epochs</li>
-                  </ul>
+                  <div className="mt-4">
+                    <p className="text-sm text-black mb-3 italic">Sampling results from the time-conditioned UNet:</p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5b/23_oneepoch.png" alt="Sampling results after 1 epoch" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                        <p className="text-xs text-black">After 1 Epoch</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5b/23_5epoch.png" alt="Sampling results after 5 epochs" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                        <p className="text-xs text-black">After 5 Epochs</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5b/23_10epoch.png" alt="Sampling results after 10 epochs" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                        <p className="text-xs text-black">After 10 Epochs</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Part 2.4: Adding Class-Conditioning to UNet */}
@@ -4347,12 +4404,13 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                   <p className="text-sm text-black mb-3">
                     Trained the class-conditioned UNet similar to the time-only version, with the addition of class conditioning vectors.
                   </p>
-                  <p className="text-sm text-black mb-3">
-                    <strong>Deliverables:</strong>
-                  </p>
-                  <ul className="text-sm text-black ml-4 list-disc space-y-1 mb-3">
-                    <li>Training loss curve plot for the class-conditioned UNet over the whole training process</li>
-                  </ul>
+                  <div className="mt-4">
+                    <p className="text-sm text-black mb-3 italic">Training loss curve for the class-conditioned UNet:</p>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-5b/25plot.png" alt="Training Loss Curve for Class-Conditioned UNet" className="w-full max-w-4xl mx-auto h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Training Loss Curve</p>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Part 2.6: Sampling from the UNet */}
@@ -4361,31 +4419,40 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                   <p className="text-sm text-black mb-3">
                     Sampled from the class-conditioned UNet using classifier-free guidance with guidance scale w.
                   </p>
-                  <p className="text-sm text-black mb-3">
-                    <strong>Deliverables:</strong>
-                  </p>
-                  <ul className="text-sm text-black ml-4 list-disc space-y-1 mb-3">
-                    <li>Sampling results from the class-conditioned UNet for 1, 5, and 10 epochs (4 instances of each digit)</li>
-                    <li>Visualization after training without the exponential learning rate scheduler and description of compensation method</li>
-                  </ul>
+                  <div className="mt-4">
+                    <p className="text-sm text-black mb-3 italic">Sampling results from the class-conditioned UNet (4 instances of each digit):</p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5b/26_oneepoch.png" alt="Sampling results after 1 epoch" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                        <p className="text-xs text-black">After 1 Epoch</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5b/26_5epoch.png" alt="Sampling results after 5 epochs" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                        <p className="text-xs text-black">After 5 Epochs</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5b/26_10epoch.png" alt="Sampling results after 10 epochs" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                        <p className="text-xs text-black">After 10 Epochs</p>
+                      </div>
+                    </div>
+                    <div className="mt-6">
+                      <p className="text-sm text-black mb-3 italic">Training without exponential learning rate scheduler:</p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5b/26_lr_comparison.png" alt="Learning Rate Comparison" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                          <p className="text-xs text-black">Learning Rate Comparison</p>
+                        </div>
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5b/26_nosched.png" alt="Results without Scheduler" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2 transform rotate-90" style={{transform: 'rotate(90deg)'}} />
+                          <p className="text-xs text-black">Results without Scheduler</p>
+                        </div>
+                      </div>
+                      <p className="text-sm text-black mt-4 mb-3">
+                        <strong>Description of compensation method:</strong> To maintain similar performance without the exponential learning rate scheduler, I increased the initial learning rate slightly and used a constant learning rate throughout training. The exponential scheduler was gradually reducing the learning rate over epochs, so by starting with a slightly higher initial learning rate (around 1.2e-2 instead of 1e-2) and keeping it constant, I was able to achieve comparable convergence. Alternatively, I could have used a step-based learning rate schedule that reduces the learning rate at specific epochs (e.g., reduce by 0.5 at epochs 5 and 8) to mimic the gradual decay of the exponential scheduler. The key insight is that the scheduler helps with fine-tuning in later epochs, so maintaining a reasonable learning rate throughout training is important for good results.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-
-              {/* Part 3: Bells & Whistles */}
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
-                <h4 className="text-xl font-bold text-black mb-4">Part 3: Bells & Whistles</h4>
-                <p className="text-sm text-black mb-3">
-                  <strong>Required for CS280A students only:</strong>
-                </p>
-                <ul className="text-sm text-black ml-4 list-disc space-y-1 mb-4">
-                  <li>A better time-conditioned only UNet: Show improved visualization for the time-conditioning only network</li>
-                </ul>
-                <p className="text-sm text-black mb-3">
-                  <strong>Optional for all students:</strong>
-                </p>
-                <ul className="text-sm text-black ml-4 list-disc space-y-1 mb-3">
-                  <li>Your own ideas: Try the UNet on SVHN, Fashion-MNIST, or CIFAR10!</li>
-                </ul>
               </div>
 
               {/* Reflection */}
@@ -4393,7 +4460,13 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                 <h4 className="text-xl font-bold text-black mb-4">Reflection & What I Learned</h4>
                 <div className="space-y-3 text-black leading-relaxed">
                   <p>
-                    [To be filled in after completing the project]
+                    This project gave me a deep understanding of flow matching and how generative models work from the ground up. Building the UNet architecture from scratch taught me about the importance of skip connections, downsampling/upsampling operations, and how these components work together to preserve spatial information while learning hierarchical features. The most surprising discovery was seeing how one-step denoising fails for generation—when I tried to denoise pure noise in Part 1.2.3, the model just produced blurry averages of all digits rather than distinct images.
+                  </p>
+                  <p>
+                    Flow matching was a game-changer. By learning to predict the flow (velocity) from noisy to clean images at different timesteps, the model could iteratively denoise and generate realistic digits. Adding time-conditioning through FCBlocks showed me how to inject scalar information into neural networks, and class-conditioning demonstrated how we can control generation by conditioning on specific classes. The classifier-free guidance technique was particularly elegant—by training with occasional unconditional generation, we could balance between following the class condition and maintaining diversity.
+                  </p>
+                  <p>
+                    The learning rate scheduler experiment was insightful. I learned that while exponential decay helps with fine-tuning, similar performance can be achieved with careful constant learning rate selection or step-based schedules. This project reinforced the importance of understanding the fundamentals: why each component exists, how they interact, and what happens when you remove or modify them. Training on MNIST was perfect for learning these concepts before scaling to more complex datasets.
                   </p>
                 </div>
               </div>
