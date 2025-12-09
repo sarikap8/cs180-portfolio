@@ -3482,7 +3482,11 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                 <div className="mb-6">
                   <h5 className="text-lg font-semibold text-black mb-3">Part 1.1: Implementing the Forward Process</h5>
                   <p className="text-sm text-black mb-3">
-                    Implemented the forward process that adds noise to clean images according to the diffusion model formulation.
+                    Implemented the forward process that adds noise to clean images according to the diffusion model formulation. 
+                    The forward process takes a clean image x₀ and produces a noisy version xₜ at timestep t by sampling from a 
+                    Gaussian distribution with mean √(ᾱₜ)x₀ and variance (1-ᾱₜ)I, where ᾱₜ is the cumulative product of noise 
+                    coefficients. As t increases, more noise is added to the image, with t=0 corresponding to a clean image and 
+                    larger t values producing progressively noisier images.
                   </p>
                   <div className="mt-4">
                     <p className="text-sm text-black mb-3 italic">Original Campanile and noisy versions at different timesteps:</p>
@@ -3511,7 +3515,11 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                 <div className="mb-6">
                   <h5 className="text-lg font-semibold text-black mb-3">Part 1.2: Classical Denoising</h5>
                   <p className="text-sm text-black mb-3">
-                    Attempted to denoise images using Gaussian blur filtering to compare with diffusion-based denoising.
+                    Attempted to denoise images using Gaussian blur filtering to compare with diffusion-based denoising. 
+                    Gaussian blur works by averaging nearby pixels, which reduces noise but also blurs important image details. 
+                    As shown in the results, classical denoising methods struggle with heavily noised images (especially at t=500 and t=750) 
+                    because they cannot distinguish between noise and signal—they simply smooth everything. This demonstrates why 
+                    learned denoising models are necessary for high-quality results.
                   </p>
                   <div className="mt-4">
                     <p className="text-sm text-black mb-3 italic">Noisy images vs Gaussian-denoised versions at each timestep:</p>
@@ -3554,7 +3562,11 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                 <div className="mb-6">
                   <h5 className="text-lg font-semibold text-black mb-3">Part 1.3: One-Step Denoising</h5>
                   <p className="text-sm text-black mb-3">
-                    Used the pretrained diffusion UNet to denoise images in a single step.
+                    Used the pretrained diffusion UNet to denoise images in a single step. The UNet predicts the noise ε in a noisy image 
+                    given the timestep t and a text prompt embedding. By subtracting the predicted noise (scaled appropriately) from the noisy 
+                    image, we can recover an estimate of the clean image. The results show that one-step denoising works well for lightly 
+                    noised images (t=250) but struggles with heavily noised images (t=750), as the model must make a large correction in a 
+                    single step. This motivates the need for iterative denoising.
                   </p>
                   <div className="mt-4">
                     <p className="text-sm text-black mb-3 italic">Original, noisy, and one-step denoised Campanile images at each timestep:</p>
@@ -3618,7 +3630,12 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                 <div className="mb-6">
                   <h5 className="text-lg font-semibold text-black mb-3">Part 1.4: Iterative Denoising</h5>
                   <p className="text-sm text-black mb-3">
-                    Implemented iterative denoising using strided timesteps to generate clean images from noisy inputs.
+                    Implemented iterative denoising using strided timesteps to generate clean images from noisy inputs. Instead of denoising 
+                    in a single large step, we use a sequence of smaller steps by creating strided timesteps (starting at t=990, stepping by 30 
+                    until reaching t=0). At each step, we predict the noise, remove a portion of it, and move to the next timestep. This 
+                    gradual process allows the model to make smaller, more accurate corrections at each iteration, resulting in much better 
+                    quality than one-step denoising. The comparison shows that iterative denoising produces images closer to the original 
+                    than both one-step denoising and Gaussian blur.
                   </p>
                   
                   <div className="mt-4 mb-6">
@@ -3676,7 +3693,10 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                 <div className="mb-6">
                   <h5 className="text-lg font-semibold text-black mb-3">Part 1.5: Diffusion Model Sampling</h5>
                   <p className="text-sm text-black mb-3">
-                    Generated images from scratch by denoising pure noise.
+                    Generated images from scratch by denoising pure noise. Starting with random Gaussian noise (pure noise at timestep t=990), 
+                    we iteratively denoise using the same iterative denoising process. The model gradually transforms the noise into a coherent 
+                    image that matches the text prompt "a high quality photo". The results show reasonable images, though they are not perfect 
+                    and some are non-sensical, demonstrating the need for classifier-free guidance to improve quality.
                   </p>
                   <div className="mt-4">
                     <p className="text-sm text-black mb-3 italic">5 sampled images from the prompt "a high quality photo":</p>
@@ -3709,7 +3729,11 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                 <div className="mb-6">
                   <h5 className="text-lg font-semibold text-black mb-3">Part 1.6: Classifier-Free Guidance (CFG)</h5>
                   <p className="text-sm text-black mb-3">
-                    Implemented classifier-free guidance to improve image quality by combining conditional and unconditional noise estimates.
+                    Implemented classifier-free guidance to improve image quality by combining conditional and unconditional noise estimates. 
+                    CFG computes both a conditional noise estimate ε_cond (with the text prompt) and an unconditional estimate ε_uncond 
+                    (with an empty prompt), then combines them as ε = ε_uncond + w * (ε_cond - ε_uncond), where w is the CFG scale (7 in this case). 
+                    This amplifies the difference between conditional and unconditional predictions, pushing the model to follow the prompt more 
+                    strongly. The results show significantly improved image quality and better prompt alignment compared to sampling without CFG.
                   </p>
                   <div className="mt-4">
                     <p className="text-sm text-black mb-3 italic">5 images generated with CFG scale of 7 for the prompt "a high quality photo":</p>
@@ -3742,7 +3766,12 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                 <div className="mb-6">
                   <h5 className="text-lg font-semibold text-black mb-3">Part 1.7: Image-to-image Translation</h5>
                   <p className="text-sm text-black mb-3">
-                    Used SDEdit algorithm to edit images by adding noise and projecting back onto the natural image manifold.
+                    Used SDEdit algorithm to edit images by adding noise and projecting back onto the natural image manifold. SDEdit works by 
+                    taking an input image, adding a controlled amount of noise (determined by the starting timestep i_start), then iteratively 
+                    denoising it. The amount of noise added controls the strength of the edit: lower noise levels (i_start=1-3) preserve more 
+                    of the original image structure, while higher noise levels (i_start=10-20) allow for more dramatic changes. The denoising 
+                    process "forces" the noisy image back onto the manifold of natural images, effectively editing it. This works particularly 
+                    well for non-realistic inputs like hand-drawn sketches or paintings, which get transformed into photorealistic images.
                   </p>
                   
                   <div className="mb-6">
@@ -3942,6 +3971,13 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
 
                   <div className="mb-6">
                     <h6 className="text-md font-semibold text-black mb-3">Part 1.7.2: Inpainting</h6>
+                    <p className="text-sm text-black mb-3">
+                      Implemented inpainting using the RePaint algorithm, which fills masked regions of an image. The algorithm runs the diffusion 
+                      denoising loop, but at each step, after obtaining the denoised image, we "force" pixels outside the mask to match the 
+                      original image (with the appropriate amount of noise added for that timestep). This ensures that unmasked regions remain 
+                      unchanged while the masked region is filled with new content generated by the diffusion model. The results show seamless 
+                      inpainting that matches the surrounding image context.
+                    </p>
                     <p className="text-sm text-black mb-3 italic">Campanile inpainting using RePaint algorithm:</p>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                       <div className="text-center">
@@ -4005,6 +4041,14 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
 
                   <div className="mb-6">
                     <h6 className="text-md font-semibold text-black mb-3">Part 1.7.3: Text-Conditional Image-to-image Translation</h6>
+                    <p className="text-sm text-black mb-3">
+                      Extended SDEdit to use text prompts for guided image-to-image translation. By conditioning the denoising process on a 
+                      text prompt (instead of just "a high quality photo"), we can control the style and content of the generated edits. The 
+                      model balances between preserving the original image structure and following the text prompt, with the noise level 
+                      controlling this trade-off. Lower noise levels preserve more of the original, while higher noise levels allow the prompt 
+                      to have more influence. This enables creative transformations like turning the Campanile into a rocket ship or converting 
+                      the Space Needle into a pencil drawing.
+                    </p>
                     <p className="text-sm text-black mb-3 italic">Rocket ship edits with text prompt at noise levels [1, 3, 5, 7, 10, 20] (reference: original Campanile):</p>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4 mb-4">
                       <div className="text-center">
@@ -4107,7 +4151,12 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                 <div className="mb-6">
                   <h5 className="text-lg font-semibold text-black mb-3">Part 1.8: Visual Anagrams</h5>
                   <p className="text-sm text-black mb-3">
-                    Created optical illusions where images appear different when flipped upside down by averaging noise estimates from two different prompts.
+                    Created optical illusions where images appear different when flipped upside down by averaging noise estimates from two different prompts. 
+                    The algorithm works by: (1) denoising the image normally with prompt p₁ to get noise estimate ε₁, (2) flipping the image upside down, 
+                    denoising with prompt p₂ to get ε₂, then flipping back, (3) averaging the two noise estimates: ε = (ε₁ + ε₂) / 2, and (4) performing 
+                    the denoising step with this averaged estimate. This creates an image that looks like one scene when upright (matching p₁) but reveals 
+                    a different scene when flipped (matching p₂). The results demonstrate how diffusion models can blend two concepts into a single 
+                    coherent image that changes appearance based on orientation.
                   </p>
                   
                   <div className="mb-6">
@@ -4155,7 +4204,13 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                 <div className="mb-4">
                   <h5 className="text-lg font-semibold text-black mb-3">Part 1.9: Hybrid Images</h5>
                   <p className="text-sm text-black mb-3">
-                    Implemented Factorized Diffusion to create hybrid images by combining low and high frequencies from different prompts.
+                    Implemented Factorized Diffusion to create hybrid images by combining low and high frequencies from different prompts. 
+                    Similar to visual anagrams, we compute noise estimates for two different prompts, but instead of averaging them, we combine 
+                    them in frequency space: ε = LPF(ε₁) + HPF(ε₂), where LPF is a low-pass filter (Gaussian blur) and HPF is a high-pass filter 
+                    (original minus low-pass). This takes low frequencies from one prompt (which determine overall structure and composition) and 
+                    high frequencies from another (which determine fine details and texture). The result is a hybrid image that appears as one scene 
+                    when viewed from a distance (low frequencies dominate) but reveals different details when viewed up close (high frequencies dominate). 
+                    This technique demonstrates how diffusion models can blend concepts at different spatial scales.
                   </p>
                   
                   <div className="mb-6">
