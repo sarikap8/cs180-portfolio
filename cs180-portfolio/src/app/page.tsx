@@ -4565,10 +4565,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     This project gave me a deep understanding of flow matching and how generative models work from the ground up. Building the UNet architecture from scratch taught me about the importance of skip connections, downsampling/upsampling operations, and how these components work together to preserve spatial information while learning hierarchical features. The most surprising discovery was seeing how one-step denoising fails for generation—when I tried to denoise pure noise in Part 1.2.3, the model just produced blurry averages of all digits rather than distinct images.
                   </p>
                   <p>
-                    Flow matching was a game-changer. By learning to predict the flow (velocity) from noisy to clean images at different timesteps, the model could iteratively denoise and generate realistic digits. Adding time-conditioning through FCBlocks showed me how to inject scalar information into neural networks, and class-conditioning demonstrated how we can control generation by conditioning on specific classes. The classifier-free guidance technique was particularly elegant—by training with occasional unconditional generation, we could balance between following the class condition and maintaining diversity.
-                  </p>
-                  <p>
-                    The learning rate scheduler experiment was insightful. I learned that while exponential decay helps with fine-tuning, similar performance can be achieved with careful constant learning rate selection or step-based schedules. This project reinforced the importance of understanding the fundamentals: why each component exists, how they interact, and what happens when you remove or modify them. Training on MNIST was perfect for learning these concepts before scaling to more complex datasets.
+                    Next steps are to try on more complex datasets.
                   </p>
                 </div>
               </div>
