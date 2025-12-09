@@ -14,6 +14,7 @@ export default function Home() {
     { id: 'project3b', label: 'Project 3B', title: 'Feature Matching for Autostitching' },
     { id: 'project4', label: 'Project 4', title: 'Neural Radiance Field' },
     { id: 'project5a', label: 'Project 5A', title: 'The Power of Diffusion Models' },
+    { id: 'project5b', label: 'Project 5B', title: 'Flow Matching from Scratch' },
   ];
 
   return (
@@ -3664,7 +3665,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                         <p className="text-xs text-black">One-Step Denoised</p>
                       </div>
                       <div className="text-center">
-                        <img src="/cs180-portfolio/project-5/1.4_blur_filtered.jpg" alt="Gaussian Blurred Campanile" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <img src="/cs180-portfolio/project-5/1.4_blur_filtered.png" alt="Gaussian Blurred Campanile" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">Gaussian Blurred</p>
                       </div>
                     </div>
@@ -3775,7 +3776,11 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     </div>
                     
                     <p className="text-sm text-black mt-6 mb-3 italic">Example 2: Lotus edits at noise levels [1, 3, 5, 7, 10, 20]:</p>
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-4">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4 mb-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/lotus.jpeg" alt="Original Lotus" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Original</p>
+                      </div>
                       <div className="text-center">
                         <img src="/cs180-portfolio/project-5/lotus_edit_i_start_1.png" alt="Lotus SDEdit with i_start=1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">SDEdit with i_start=1</p>
@@ -3803,7 +3808,11 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     </div>
                     
                     <p className="text-sm text-black mt-6 mb-3 italic">Example 3: Penguin edits at noise levels [1, 3, 5, 7, 10, 20]:</p>
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-4">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4 mb-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/penguin.jpg" alt="Original Penguin" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Original</p>
+                      </div>
                       <div className="text-center">
                         <img src="/cs180-portfolio/project-5/penguin_edit_i_start_1.png" alt="Penguin SDEdit with i_start=1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
                         <p className="text-xs text-black">SDEdit with i_start=1</p>
@@ -4175,6 +4184,208 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     </div>
                   </div>
                 </div>
+              </div>
+
+              {/* Reflection */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">Reflection & What I Learned</h4>
+                <div className="space-y-3 text-black leading-relaxed">
+                  <p>
+                    This project gave me hands-on experience with diffusion models and their practical applications. I learned how iterative denoising works through the forward and reverse diffusion processes, and how classifier-free guidance can significantly improve image quality by balancing conditional and unconditional predictions.
+                  </p>
+                  <p>
+                    The most interesting part was exploring image-to-image translation with SDEdit, where I could transform images by controlling the noise injection level. I also enjoyed creating visual anagrams and hybrid images, which showed how diffusion models can blend concepts in creative ways.
+                  </p>
+                  <p>
+                    Working with inpainting and text-conditional editing helped me understand how diffusion models can be adapted for specific tasks beyond generation. Overall, this project deepened my understanding of how modern generative AI models work under the hood.
+                  </p>
+                </div>
+              </div>
+
+              
+            </div>
+          )}
+
+          {activeTab === 'project5b' && (
+            <div className="space-y-8 text-left">
+              <div className="text-center mb-8">
+                <h3 className="text-3xl font-bold text-black mb-2">Project 5B: Flow Matching from Scratch</h3>
+                <p className="text-black italic">Training flow matching models on MNIST</p>
+              </div>
+
+              {/* Overview */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">Overview</h4>
+                <p className="text-black leading-relaxed mb-3">
+                  In this project, I trained my own flow matching model on MNIST. I implemented a UNet architecture 
+                  for denoising and flow matching, exploring both single-step and iterative denoising approaches. 
+                  I also experimented with time-conditioning and class-conditioning to improve generation quality.
+                </p>
+              </div>
+
+              {/* Part 1: Training a Single-Step Denoising UNet */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">Part 1: Training a Single-Step Denoising UNet</h4>
+                
+                {/* Part 1.1: Implementing the UNet */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 1.1: Implementing the UNet</h5>
+                  <p className="text-sm text-black mb-3">
+                    Implemented a UNet architecture with downsampling and upsampling blocks with skip connections. 
+                    The UNet consists of Conv, DownConv, UpConv, Flatten, Unflatten, and Concat operations.
+                  </p>
+                </div>
+
+                {/* Part 1.2: Using the UNet to Train a Denoiser */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 1.2: Using the UNet to Train a Denoiser</h5>
+                  
+                  {/* Part 1.2.1: Training */}
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-3">Part 1.2.1: Training</h6>
+                    <p className="text-sm text-black mb-3">
+                      Trained a denoiser to map noisy images to clean images using L2 loss. 
+                      Used MNIST dataset with batch size 256, trained for 5 epochs with Adam optimizer (lr=1e-4).
+                    </p>
+                    <p className="text-sm text-black mb-3">
+                      <strong>Deliverables:</strong>
+                    </p>
+                    <ul className="text-sm text-black ml-4 list-disc space-y-1 mb-3">
+                      <li>Training loss curve plot during training</li>
+                      <li>Sample results on test set with noise level 0.5 after 1st and 5th epoch</li>
+                    </ul>
+                  </div>
+
+                  {/* Part 1.2.2: Out-of-Distribution Testing */}
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-3">Part 1.2.2: Out-of-Distribution Testing</h6>
+                    <p className="text-sm text-black mb-3">
+                      Tested the denoiser on different noise levels σ that it wasn&apos;t trained on.
+                    </p>
+                    <p className="text-sm text-black mb-3">
+                      <strong>Deliverables:</strong>
+                    </p>
+                    <ul className="text-sm text-black ml-4 list-disc space-y-1 mb-3">
+                      <li>Sample results on test set with out-of-distribution noise levels</li>
+                    </ul>
+                  </div>
+
+                  {/* Part 1.2.3: Denoising Pure Noise */}
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-3">Part 1.2.3: Denoising Pure Noise</h6>
+                    <p className="text-sm text-black mb-3">
+                      Trained the denoiser to denoise pure random Gaussian noise (starting with x₀ = ε where ε ~ N(0,1)) 
+                      and denoise it to get a clean image. This tests the generative capabilities of the model.
+                    </p>
+                    <p className="text-sm text-black mb-3">
+                      <strong>Deliverables:</strong>
+                    </p>
+                    <ul className="text-sm text-black ml-4 list-disc space-y-1 mb-3">
+                      <li>Training loss curve plot during training on pure noise</li>
+                      <li>Sample results on pure noise after 1st and 5th epoch</li>
+                      <li>Brief description of patterns observed in generated outputs and explanations</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Part 2: Training a Flow Matching Model */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">Part 2: Training a Flow Matching Model</h4>
+                
+                {/* Part 2.1: Adding Time Conditioning to UNet */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 2.1: Adding Time Conditioning to UNet</h5>
+                  <p className="text-sm text-black mb-3">
+                    Added time conditioning to the UNet using FCBlocks (fully-connected blocks) to inject the scalar timestep t 
+                    into the model. The conditioning signal modulates the unflatten and up1 operations.
+                  </p>
+                </div>
+
+                {/* Part 2.2: Training the UNet */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 2.2: Training the UNet</h5>
+                  <p className="text-sm text-black mb-3">
+                    Trained the time-conditioned UNet to predict the flow at timestep t given a noisy image x_t and timestep t. 
+                    Used MNIST dataset with batch size 64, Adam optimizer with initial learning rate 1e-2 and exponential decay scheduler (γ=0.95).
+                  </p>
+                  <p className="text-sm text-black mb-3">
+                    <strong>Deliverables:</strong>
+                  </p>
+                  <ul className="text-sm text-black ml-4 list-disc space-y-1 mb-3">
+                    <li>Training loss curve plot for the time-conditioned UNet over the whole training process</li>
+                  </ul>
+                </div>
+
+                {/* Part 2.3: Sampling from the UNet */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 2.3: Sampling from the UNet</h5>
+                  <p className="text-sm text-black mb-3">
+                    Used the trained UNet for iterative denoising to generate samples. Starting from pure noise, 
+                    iteratively denoise using the predicted flow.
+                  </p>
+                  <p className="text-sm text-black mb-3">
+                    <strong>Deliverables:</strong>
+                  </p>
+                  <ul className="text-sm text-black ml-4 list-disc space-y-1 mb-3">
+                    <li>Sampling results from the time-conditioned UNet for 1, 5, and 10 epochs</li>
+                  </ul>
+                </div>
+
+                {/* Part 2.4: Adding Class-Conditioning to UNet */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 2.4: Adding Class-Conditioning to UNet</h5>
+                  <p className="text-sm text-black mb-3">
+                    Added class-conditioning to the UNet by conditioning on the digit class (0-9). Used one-hot vectors for class conditioning 
+                    and implemented dropout where 10% of the time we drop the class conditioning (for classifier-free guidance).
+                  </p>
+                </div>
+
+                {/* Part 2.5: Training the UNet */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 2.5: Training the UNet</h5>
+                  <p className="text-sm text-black mb-3">
+                    Trained the class-conditioned UNet similar to the time-only version, with the addition of class conditioning vectors.
+                  </p>
+                  <p className="text-sm text-black mb-3">
+                    <strong>Deliverables:</strong>
+                  </p>
+                  <ul className="text-sm text-black ml-4 list-disc space-y-1 mb-3">
+                    <li>Training loss curve plot for the class-conditioned UNet over the whole training process</li>
+                  </ul>
+                </div>
+
+                {/* Part 2.6: Sampling from the UNet */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 2.6: Sampling from the UNet</h5>
+                  <p className="text-sm text-black mb-3">
+                    Sampled from the class-conditioned UNet using classifier-free guidance with guidance scale w.
+                  </p>
+                  <p className="text-sm text-black mb-3">
+                    <strong>Deliverables:</strong>
+                  </p>
+                  <ul className="text-sm text-black ml-4 list-disc space-y-1 mb-3">
+                    <li>Sampling results from the class-conditioned UNet for 1, 5, and 10 epochs (4 instances of each digit)</li>
+                    <li>Visualization after training without the exponential learning rate scheduler and description of compensation method</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Part 3: Bells & Whistles */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">Part 3: Bells & Whistles</h4>
+                <p className="text-sm text-black mb-3">
+                  <strong>Required for CS280A students only:</strong>
+                </p>
+                <ul className="text-sm text-black ml-4 list-disc space-y-1 mb-4">
+                  <li>A better time-conditioned only UNet: Show improved visualization for the time-conditioning only network</li>
+                </ul>
+                <p className="text-sm text-black mb-3">
+                  <strong>Optional for all students:</strong>
+                </p>
+                <ul className="text-sm text-black ml-4 list-disc space-y-1 mb-3">
+                  <li>Your own ideas: Try the UNet on SVHN, Fashion-MNIST, or CIFAR10!</li>
+                </ul>
               </div>
 
               {/* Reflection */}
