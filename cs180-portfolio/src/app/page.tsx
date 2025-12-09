@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('project0');
+  const [promptListExpanded, setPromptListExpanded] = useState(false);
 
   const tabs = [
     { id: 'project0', label: 'Project 0', title: 'Becoming Friends with Your Camera' },
@@ -12,6 +13,7 @@ export default function Home() {
     { id: 'project3a', label: 'Project 3A', title: 'Image Warping and Mosaicing' },
     { id: 'project3b', label: 'Project 3B', title: 'Feature Matching for Autostitching' },
     { id: 'project4', label: 'Project 4', title: 'Neural Radiance Field' },
+    { id: 'project5a', label: 'Project 5A', title: 'The Power of Diffusion Models' },
   ];
 
   return (
@@ -2556,10 +2558,6 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                   The project involved camera calibration using ArUco markers, pose estimation, and training a neural network 
                   to learn a continuous volumetric scene representation that can render novel views.
                 </p>
-                <p className="text-black leading-relaxed">
-                  The project is divided into several parts: camera calibration and 3D scanning, fitting a neural field to a 2D image, 
-                  extending to 3D with volume rendering, and finally training on my own captured object.
-                </p>
               </div>
 
               {/* Part 0: Camera Calibration */}
@@ -3302,6 +3300,890 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                     <li>• Sample validation rays from training images instead of holding out a separate validation set</li>
                     <li>• Explore hierarchical sampling and more efficient NeRF architectures like Instant-NGP</li>
                   </ul>
+                </div>
+              </div>
+
+              
+            </div>
+          )}
+
+          {activeTab === 'project5a' && (
+            <div className="space-y-8 text-left">
+              <div className="text-center mb-8">
+                <h3 className="text-3xl font-bold text-black mb-2">Project 5A: The Power of Diffusion Models</h3>
+                <p className="text-black italic">Exploring diffusion models, sampling loops, inpainting, and optical illusions</p>
+              </div>
+
+              {/* Overview */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">Overview</h4>
+                <p className="text-black leading-relaxed mb-3">
+                  In this project, I explored diffusion models using the DeepFloyd IF model. I implemented diffusion sampling loops, 
+                  experimented with classifier-free guidance, and used diffusion models for various tasks including inpainting, 
+                  image-to-image translation, visual anagrams, and hybrid images.
+                </p>
+              </div>
+
+              {/* Part 0: Setup */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">Part 0</h4>
+
+                <div className="mb-6">
+                  <button
+                    onClick={() => setPromptListExpanded(!promptListExpanded)}
+                    className="w-full flex items-center justify-between text-left mb-3 p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  >
+                    <h5 className="text-lg font-semibold text-black">Prompt List</h5>
+                    <span className="text-black text-xl">
+                      {promptListExpanded ? '−' : '+'}
+                    </span>
+                  </button>
+                  {promptListExpanded && (
+                    <div className="mt-2">
+                      <p className="text-sm text-black mb-3">
+                        Generated prompt embeddings for the following text prompts:
+                      </p>
+                      <div className="bg-gray-50 border-l-4 border-blue-500 p-4 rounded">
+                        <ul className="text-sm text-black space-y-1 ml-4 list-disc">
+                          <li>'a high quality photo'</li>
+                          <li>'a quiet watercolor of a cat sitting by a window on a foggy morning'</li>
+                          <li>'a soft pacific northwest landscape with tall pines and muted light'</li>
+                          <li>'a peaceful beach scene in san diego with gentle afternoon waves'</li>
+                          <li>'a runner passing through golden hour light on a coastal trail'</li>
+                          <li>'a simple still life of matcha in a ceramic cup on a wooden table'</li>
+                          <li>'a small bakery kitchen with warm light and cooling pastries'</li>
+                          <li>'a calm rainy day reading nook with mystery novels stacked nearby'</li>
+                          <li>'a watercolor palette with soft blues, greens, and warm browns'</li>
+                          <li>'a soccer ball resting in grass on an overcast day'</li>
+                          <li>'a field hockey stick leaning against a weathered bench'</li>
+                          <li>'a quiet new york street in early morning light'</li>
+                          <li>'a coastal watercolor painting with subtle brushstrokes and soft tones'</li>
+                          <li>'a cat curled up on a knitted blanket beside an open book'</li>
+                          <li>'a serene PNW shoreline with driftwood and calm water'</li>
+                          <li>'' (empty prompt for unconditional guidance)</li>
+                        </ul>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Random Seed</h5>
+                  <p className="text-sm text-black mb-3">
+                    <strong>Seed:</strong> 100 (used consistently throughout all parts)
+                  </p>
+                </div>
+
+                <div className="mb-4">
+                  <h5 className="text-lg font-semibold text-black mb-3">Generated Images</h5>
+                  <p className="text-sm text-black mb-4">
+                    Three selected prompts with generated images at different stage 1 and stage 2 inference step values. 
+                    DeepFloyd IF is a two-stage model where stage 1 generates 64×64 images and stage 2 upsamples them to 256×256. 
+                    I varied both stage 1 and stage 2 inference steps to see how each stage affects the final image. Stage 1 controls 
+                    the overall composition and structure, while stage 2 refines details and texture. More stage 1 steps improved the 
+                    initial layout, while more stage 2 steps enhanced fine details and sharpness.
+                  </p>
+                  <p className="text-sm text-black mb-4">
+                    The model did a great job matching the text prompts. The New York street prompt consistently captured the urban 
+                    morning atmosphere with soft lighting. The watercolor prompt produced the expected painterly look with soft 
+                    brushstrokes, and higher stage 2 steps better preserved the watercolor blending. The cat prompt matched the scene 
+                    well, with blanket and book details getting sharper with more stage 2 steps.
+                  </p>
+                  <p className="text-sm text-black mb-4">
+                    Testing four combinations (50/20, 50/50, 20/50, 20/20), I found that stage 1 steps had the biggest impact on 
+                    composition and prompt matching. With fewer stage 1 steps (20), images sometimes missed details or had less 
+                    coherent layouts. Increasing stage 2 steps (20/50) could add detail but couldn't fix a weak foundation. The 50/50 
+                    combination gave the best results overall, but 50/20 was often good enough and faster, showing that a strong stage 1 
+                    doesn't always need maximum stage 2 refinement.
+                  </p>
+                  
+                  <div className="space-y-6">
+                    {/* Prompt 1: New York Street */}
+                    <div className="border-2 border-gray-300 rounded-lg p-4">
+                      <h6 className="text-md font-semibold text-black mb-3">Prompt 1: "a quiet new york street in early morning light"</h6>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5/newyork_5020.png" alt="New York - Stage 1: 50, Stage 2: 20" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                          <p className="text-xs text-black">Stage 1: 50, Stage 2: 20</p>
+                        </div>
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5/newyork_5050.png" alt="New York - Stage 1: 50, Stage 2: 50" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                          <p className="text-xs text-black">Stage 1: 50, Stage 2: 50</p>
+                        </div>
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5/newyork_2050.png" alt="New York - Stage 1: 20, Stage 2: 50" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                          <p className="text-xs text-black">Stage 1: 20, Stage 2: 50</p>
+                        </div>
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5/newyork_2020.png" alt="New York - Stage 1: 20, Stage 2: 20" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                          <p className="text-xs text-black">Stage 1: 20, Stage 2: 20</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Prompt 2: Watercolor */}
+                    <div className="border-2 border-gray-300 rounded-lg p-4">
+                      <h6 className="text-md font-semibold text-black mb-3">Prompt 2: "a coastal watercolor painting with subtle brushstrokes and soft tones"</h6>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5/watercolor_5020.png" alt="Watercolor - Stage 1: 50, Stage 2: 20" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                          <p className="text-xs text-black">Stage 1: 50, Stage 2: 20</p>
+                        </div>
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5/watercolor_5050.png" alt="Watercolor - Stage 1: 50, Stage 2: 50" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                          <p className="text-xs text-black">Stage 1: 50, Stage 2: 50</p>
+                        </div>
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5/watercolor_2050.png" alt="Watercolor - Stage 1: 20, Stage 2: 50" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                          <p className="text-xs text-black">Stage 1: 20, Stage 2: 50</p>
+                        </div>
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5/watercolor_2020.png" alt="Watercolor - Stage 1: 20, Stage 2: 20" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                          <p className="text-xs text-black">Stage 1: 20, Stage 2: 20</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Prompt 3: Cat */}
+                    <div className="border-2 border-gray-300 rounded-lg p-4">
+                      <h6 className="text-md font-semibold text-black mb-3">Prompt 3: "a cat curled up on a knitted blanket beside an open book"</h6>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5/cat_5020.png" alt="Cat - Stage 1: 50, Stage 2: 20" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                          <p className="text-xs text-black">Stage 1: 50, Stage 2: 20</p>
+                        </div>
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5/cat_5050.png" alt="Cat - Stage 1: 50, Stage 2: 50" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                          <p className="text-xs text-black">Stage 1: 50, Stage 2: 50</p>
+                        </div>
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5/cat_2050.png" alt="Cat - Stage 1: 20, Stage 2: 50" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                          <p className="text-xs text-black">Stage 1: 20, Stage 2: 50</p>
+                        </div>
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5/cat_2020.png" alt="Cat - Stage 1: 20, Stage 2: 20" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                          <p className="text-xs text-black">Stage 1: 20, Stage 2: 20</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Part 1: Sampling Loops */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">Part 1: Sampling Loops</h4>
+                <p className="text-black leading-relaxed mb-4">
+                  Implemented diffusion sampling loops and used them for various tasks including denoising, inpainting, and creating optical illusions.
+                </p>
+
+                {/* Part 1.1: Forward Process */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 1.1: Implementing the Forward Process</h5>
+                  <p className="text-sm text-black mb-3">
+                    Implemented the forward process that adds noise to clean images according to the diffusion model formulation.
+                  </p>
+                  <div className="mt-4">
+                    <p className="text-sm text-black mb-3 italic">Original Campanile and noisy versions at different timesteps:</p>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/campanile.jpg" alt="Original Campanile" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Original Campanile</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.1_250.jpg" alt="Noisy Campanile at t=250" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Noisy at t=250</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.1_500.jpg" alt="Noisy Campanile at t=500" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Noisy at t=500</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.1_750.jpg" alt="Noisy Campanile at t=750" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Noisy at t=750</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Part 1.2: Classical Denoising */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 1.2: Classical Denoising</h5>
+                  <p className="text-sm text-black mb-3">
+                    Attempted to denoise images using Gaussian blur filtering to compare with diffusion-based denoising.
+                  </p>
+                  <div className="mt-4">
+                    <p className="text-sm text-black mb-3 italic">Noisy images vs Gaussian-denoised versions at each timestep:</p>
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5/1.1_250.jpg" alt="Noisy Campanile at t=250" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                          <p className="text-xs text-black">Noisy at t=250</p>
+                        </div>
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5/1.2_250.jpg" alt="Gaussian denoised at t=250" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                          <p className="text-xs text-black">Gaussian Blur Denoised at t=250</p>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5/1.1_500.jpg" alt="Noisy Campanile at t=500" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                          <p className="text-xs text-black">Noisy at t=500</p>
+                        </div>
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5/1.2_500.jpg" alt="Gaussian denoised at t=500" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                          <p className="text-xs text-black">Gaussian Blur Denoised at t=500</p>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5/1.1_750.jpg" alt="Noisy Campanile at t=750" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                          <p className="text-xs text-black">Noisy at t=750</p>
+                        </div>
+                        <div className="text-center">
+                          <img src="/cs180-portfolio/project-5/1.2_750.jpg" alt="Gaussian denoised at t=750" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                          <p className="text-xs text-black">Gaussian Blur Denoised at t=750</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Part 1.3: One-Step Denoising */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 1.3: One-Step Denoising</h5>
+                  <p className="text-sm text-black mb-3">
+                    Used the pretrained diffusion UNet to denoise images in a single step.
+                  </p>
+                  <div className="mt-4">
+                    <p className="text-sm text-black mb-3 italic">Original, noisy, and one-step denoised Campanile images at each timestep:</p>
+                    <div className="space-y-4">
+                      <div>
+                        <h6 className="text-md font-semibold text-black mb-2 text-center">Timestep t=250</h6>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <div className="text-center">
+                            <img src="/cs180-portfolio/project-5/1.1_250.jpg" alt="Noisy at t=250" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                            <p className="text-xs text-black">Noisy at t=250</p>
+                          </div>
+                          <div className="text-center">
+                            <img src="/cs180-portfolio/project-5/campanile.jpg" alt="Original Campanile" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                            <p className="text-xs text-black">Original</p>
+                          </div>
+                          <div className="text-center">
+                            <img src="/cs180-portfolio/project-5/1.3_250.jpg" alt="One-step denoised at t=250" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                            <p className="text-xs text-black">One-Step Denoised at t=250</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <h6 className="text-md font-semibold text-black mb-2 text-center">Timestep t=500</h6>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <div className="text-center">
+                            <img src="/cs180-portfolio/project-5/1.1_500.jpg" alt="Noisy at t=500" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                            <p className="text-xs text-black">Noisy at t=500</p>
+                          </div>
+                          <div className="text-center">
+                            <img src="/cs180-portfolio/project-5/campanile.jpg" alt="Original Campanile" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                            <p className="text-xs text-black">Original</p>
+                          </div>
+                          <div className="text-center">
+                            <img src="/cs180-portfolio/project-5/1.3_500.jpg" alt="One-step denoised at t=500" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                            <p className="text-xs text-black">One-Step Denoised at t=500</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <h6 className="text-md font-semibold text-black mb-2 text-center">Timestep t=750</h6>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <div className="text-center">
+                            <img src="/cs180-portfolio/project-5/1.1_750.jpg" alt="Noisy at t=750" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                            <p className="text-xs text-black">Noisy at t=750</p>
+                          </div>
+                          <div className="text-center">
+                            <img src="/cs180-portfolio/project-5/campanile.jpg" alt="Original Campanile" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                            <p className="text-xs text-black">Original</p>
+                          </div>
+                          <div className="text-center">
+                            <img src="/cs180-portfolio/project-5/1.3_750.jpg" alt="One-step denoised at t=750" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                            <p className="text-xs text-black">One-Step Denoised at t=750</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Part 1.4: Iterative Denoising */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 1.4: Iterative Denoising</h5>
+                  <p className="text-sm text-black mb-3">
+                    Implemented iterative denoising using strided timesteps to generate clean images from noisy inputs.
+                  </p>
+                  
+                  <div className="mt-4 mb-6">
+                    <h6 className="text-md font-semibold text-black mb-3">Iterative Denoising Progression (Every 5th Loop)</h6>
+                    <p className="text-sm text-black mb-3 italic">Noisy Campanile gradually becoming cleaner through iterative denoising:</p>
+                    <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.4_90.jpg" alt="Iteration 5 (t=90)" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Loop 5 (t=90)</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.4_240.jpg" alt="Iteration 10 (t=240)" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Loop 10 (t=240)</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.4_390.jpg" alt="Iteration 15 (t=390)" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Loop 15 (t=390)</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.4_540.jpg" alt="Iteration 20 (t=540)" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Loop 20 (t=540)</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.4_690.jpg" alt="Iteration 25 (t=690)" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Loop 25 (t=690)</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-4">
+                    <h6 className="text-md font-semibold text-black mb-3">Comparison: Original vs Denoising Methods</h6>
+                    <p className="text-sm text-black mb-3 italic">Comparing the original Campanile with different denoising approaches:</p>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/campanile.jpg" alt="Original Campanile" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Original</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.4_iterative.jpg" alt="Iteratively Denoised Campanile" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Iteratively Denoised</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.4_onestep.jpg" alt="One-Step Denoised Campanile" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">One-Step Denoised</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.4_blur_filtered.jpg" alt="Gaussian Blurred Campanile" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Gaussian Blurred</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Part 1.5: Diffusion Model Sampling */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 1.5: Diffusion Model Sampling</h5>
+                  <p className="text-sm text-black mb-3">
+                    Generated images from scratch by denoising pure noise.
+                  </p>
+                  <div className="mt-4">
+                    <p className="text-sm text-black mb-3 italic">5 sampled images from the prompt "a high quality photo":</p>
+                    <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.5a.jpg" alt="Sample 1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Sample 1</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.5b.jpg" alt="Sample 2" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Sample 2</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.5c.jpg" alt="Sample 3" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Sample 3</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.5d.jpg" alt="Sample 4" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Sample 4</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.5e.jpg" alt="Sample 5" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Sample 5</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Part 1.6: Classifier-Free Guidance */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 1.6: Classifier-Free Guidance (CFG)</h5>
+                  <p className="text-sm text-black mb-3">
+                    Implemented classifier-free guidance to improve image quality by combining conditional and unconditional noise estimates.
+                  </p>
+                  <div className="mt-4">
+                    <p className="text-sm text-black mb-3 italic">5 images generated with CFG scale of 7 for the prompt "a high quality photo":</p>
+                    <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.6a.jpg" alt="CFG Sample 1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Sample 1 with CFG</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.6b.jpg" alt="CFG Sample 2" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Sample 2 with CFG</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.6c.jpg" alt="CFG Sample 3" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Sample 3 with CFG</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.6d.jpg" alt="CFG Sample 4" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Sample 4 with CFG</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/1.6e.jpg" alt="CFG Sample 5" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Sample 5 with CFG</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Part 1.7: Image-to-image Translation */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 1.7: Image-to-image Translation</h5>
+                  <p className="text-sm text-black mb-3">
+                    Used SDEdit algorithm to edit images by adding noise and projecting back onto the natural image manifold.
+                  </p>
+                  
+                  <div className="mb-6">
+                    <h6 className="text-md font-semibold text-black mb-3">Part 1.7: SDEdit</h6>
+                    <p className="text-sm text-black mb-3 italic">Edits of the Campanile at noise levels [1, 3, 5, 7, 10, 20] with prompt "a high quality photo":</p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/istart1_17.jpg" alt="SDEdit with i_start=1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=1</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/istart3_17.jpg" alt="SDEdit with i_start=3" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=3</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/istart5_17.jpg" alt="SDEdit with i_start=5" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=5</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/istart7_17.jpg" alt="SDEdit with i_start=7" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=7</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/istart10_17.jpg" alt="SDEdit with i_start=10" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=10</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/istart20_17.jpg" alt="SDEdit with i_start=20" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=20</p>
+                      </div>
+                    </div>
+                    
+                    <p className="text-sm text-black mt-6 mb-3 italic">Example 2: Lotus edits at noise levels [1, 3, 5, 7, 10, 20]:</p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/lotus_edit_i_start_1.png" alt="Lotus SDEdit with i_start=1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=1</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/lotus_edit_i_start_3.png" alt="Lotus SDEdit with i_start=3" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=3</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/lotus_edit_i_start_5.png" alt="Lotus SDEdit with i_start=5" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=5</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/lotus_edit_i_start_7.png" alt="Lotus SDEdit with i_start=7" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=7</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/lotus_edit_i_start_10.png" alt="Lotus SDEdit with i_start=10" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=10</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/lotus_edit_i_start_20.png" alt="Lotus SDEdit with i_start=20" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=20</p>
+                      </div>
+                    </div>
+                    
+                    <p className="text-sm text-black mt-6 mb-3 italic">Example 3: Penguin edits at noise levels [1, 3, 5, 7, 10, 20]:</p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/penguin_edit_i_start_1.png" alt="Penguin SDEdit with i_start=1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=1</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/penguin_edit_i_start_3.png" alt="Penguin SDEdit with i_start=3" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=3</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/penguin_edit_i_start_5.png" alt="Penguin SDEdit with i_start=5" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=5</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/penguin_edit_i_start_7.png" alt="Penguin SDEdit with i_start=7" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=7</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/penguin_edit_i_start_10.png" alt="Penguin SDEdit with i_start=10" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=10</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/penguin_edit_i_start_20.png" alt="Penguin SDEdit with i_start=20" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=20</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mb-6">
+                    <h6 className="text-md font-semibold text-black mb-3">Part 1.7.1: Editing Hand-Drawn and Web Images</h6>
+                    <p className="text-sm text-black mb-3 italic">Web image (Panda) edited at noise levels [1, 3, 5, 7, 10, 20]:</p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4 mb-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/panda.jpg" alt="Original Panda" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Original</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/panda_edit_i_start_1.png" alt="Panda SDEdit with i_start=1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=1</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/panda_edit_i_start_3.png" alt="Panda SDEdit with i_start=3" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=3</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/panda_edit_i_start_5.png" alt="Panda SDEdit with i_start=5" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=5</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/panda_edit_i_start_7.png" alt="Panda SDEdit with i_start=7" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=7</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/panda_edit_i_start_10.png" alt="Panda SDEdit with i_start=10" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=10</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/panda_edit_i_start_20.png" alt="Panda SDEdit with i_start=20" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=20</p>
+                      </div>
+                    </div>
+                    
+                    <p className="text-sm text-black mt-6 mb-2 italic">Hand-drawn image 1: In-N-Out burger and fries</p>
+                    <p className="text-sm text-black mb-3">I chose this because I was hungry doing this project in Doe.</p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4 mb-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/myImage.png" alt="Original hand-drawn In-N-Out" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Original</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/innout_edit_i_start_1.png" alt="In-N-Out SDEdit with i_start=1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Noise level 1</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/innout_edit_i_start_3.png" alt="In-N-Out SDEdit with i_start=3" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Noise level 3</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/innout_edit_i_start_5.png" alt="In-N-Out SDEdit with i_start=5" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Noise level 5</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/innout_edit_i_start_7.png" alt="In-N-Out SDEdit with i_start=7" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Noise level 7</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/innout_edit_i_start_10.png" alt="In-N-Out SDEdit with i_start=10" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Noise level 10</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/innout_edit_i_start_20.png" alt="In-N-Out SDEdit with i_start=20" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Noise level 20</p>
+                      </div>
+                    </div>
+                    
+                    <p className="text-sm text-black mt-6 mb-2 italic">Hand-drawn image 2: Puppy</p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4 mb-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/myImage2.png" alt="Original hand-drawn Puppy" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Original</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/puppy_edit_i_start_1.png" alt="Puppy SDEdit with i_start=1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Noise level 1</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/puppy_edit_i_start_3.png" alt="Puppy SDEdit with i_start=3" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Noise level 3</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/puppy_edit_i_start_5.png" alt="Puppy SDEdit with i_start=5" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Noise level 5</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/puppy_edit_i_start_7.png" alt="Puppy SDEdit with i_start=7" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Noise level 7</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/puppy_edit_i_start_10.png" alt="Puppy SDEdit with i_start=10" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Noise level 10</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/puppy_edit_i_start_20.png" alt="Puppy SDEdit with i_start=20" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Noise level 20</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mb-6">
+                    <h6 className="text-md font-semibold text-black mb-3">Part 1.7.2: Inpainting</h6>
+                    <p className="text-sm text-black mb-3 italic">Campanile inpainting using RePaint algorithm:</p>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/172_image.png" alt="Resized Campanile" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Resized Campanile</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/172_mask.png" alt="Mask" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Mask</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/172_replace.png" alt="Hole to Fill" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Hole to Fill</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/172_campanile_inpaint.png" alt="Campanile Inpainted" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Campanile Inpainted</p>
+                      </div>
+                    </div>
+                    
+                    <p className="text-sm text-black mt-6 mb-2 italic">Custom image 1: Torrey Pines beach in my beautiful hometown San Diego</p>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/sd.jpg" alt="Torrey Pines Beach Original" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Original</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/sdmask.png" alt="Torrey Pines Beach Mask" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Mask</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/sd_replace.png" alt="Torrey Pines Beach Hole to Fill" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Hole to Fill</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/sd_inpaint.png" alt="Torrey Pines Beach Inpainted" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Inpainted</p>
+                      </div>
+                    </div>
+                    
+                    <p className="text-sm text-black mt-6 mb-2 italic">Custom image 2: Mount Rainier</p>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/rainier.jpeg" alt="Mount Rainier Original" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Original</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/rainier_mask.png" alt="Mount Rainier Mask" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Mask</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/rainier_replace.png" alt="Mount Rainier Hole to Fill" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Hole to Fill</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/rainier_inpaint.png" alt="Mount Rainier Inpainted" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Inpainted</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mb-6">
+                    <h6 className="text-md font-semibold text-black mb-3">Part 1.7.3: Text-Conditional Image-to-image Translation</h6>
+                    <p className="text-sm text-black mb-3 italic">Rocket ship edits with text prompt at noise levels [1, 3, 5, 7, 10, 20] (reference: original Campanile):</p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4 mb-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/rocket_edit_i_start_1.png" alt="Rocket SDEdit with i_start=1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=1</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/rocket_edit_i_start_3.png" alt="Rocket SDEdit with i_start=3" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=3</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/rocket_edit_i_start_5.png" alt="Rocket SDEdit with i_start=5" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=5</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/rocket_edit_i_start_7.png" alt="Rocket SDEdit with i_start=7" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=7</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/rocket_edit_i_start_10.png" alt="Rocket SDEdit with i_start=10" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=10</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/rocket_edit_i_start_20.png" alt="Rocket SDEdit with i_start=20" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=20</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/campanile.jpg" alt="Original Campanile (Reference)" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Original Campanile (Reference)</p>
+                      </div>
+                    </div>
+                    
+                    <p className="text-sm text-black mt-6 mb-2 italic">Custom image 1: Space Needle with prompt "a pencil" at noise levels [1, 3, 5, 7, 10, 20]:</p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4 mb-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/spaceneedle.jpg" alt="Original Space Needle" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Original</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/pencil_edit_i_start_1.png" alt="Space Needle SDEdit with i_start=1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=1</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/pencil_edit_i_start_3.png" alt="Space Needle SDEdit with i_start=3" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=3</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/pencil_edit_i_start_5.png" alt="Space Needle SDEdit with i_start=5" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=5</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/pencil_edit_i_start_7.png" alt="Space Needle SDEdit with i_start=7" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=7</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/pencil_edit_i_start_10.png" alt="Space Needle SDEdit with i_start=10" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=10</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/pencil_edit_i_start_20.png" alt="Space Needle SDEdit with i_start=20" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=20</p>
+                      </div>
+                    </div>
+                    
+                    <p className="text-sm text-black mt-6 mb-2 italic">Custom image 2: Steps with prompt "a lithograph of waterfalls" at noise levels [1, 3, 5, 7, 10, 20]:</p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4 mb-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/steps.jpg" alt="Original Steps" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Original</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/steps_edit_i_start_1.png" alt="Steps SDEdit with i_start=1" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=1</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/steps_edit_i_start_3.png" alt="Steps SDEdit with i_start=3" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=3</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/steps_edit_i_start_5.png" alt="Steps SDEdit with i_start=5" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=5</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/steps_edit_i_start_7.png" alt="Steps SDEdit with i_start=7" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=7</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/steps_edit_i_start_10.png" alt="Steps SDEdit with i_start=10" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=10</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/steps_edit_i_start_20.png" alt="Steps SDEdit with i_start=20" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">SDEdit with i_start=20</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Part 1.8: Visual Anagrams */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 1.8: Visual Anagrams</h5>
+                  <p className="text-sm text-black mb-3">
+                    Created optical illusions where images appear different when flipped upside down by averaging noise estimates from two different prompts.
+                  </p>
+                  
+                  <div className="mb-6">
+                    <h6 className="text-md font-semibold text-black mb-3">Set 1</h6>
+                    <p className="text-sm text-black mb-2">
+                      <strong>Prompt 1:</strong> "a quiet new york street in early morning light"
+                    </p>
+                    <p className="text-sm text-black mb-3">
+                      <strong>Prompt 2:</strong> "a calm rainy day reading nook with mystery novels stacked nearby"
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/anagramupright181.png" alt="Visual Anagram Set 1 Upright" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Upright</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/anagramflipped181.png" alt="Visual Anagram Set 1 Flipped" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Flipped Upside Down</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mb-4">
+                    <h6 className="text-md font-semibold text-black mb-3">Set 2</h6>
+                    <p className="text-sm text-black mb-2">
+                      <strong>Prompt 1:</strong> "a cat curled up on a knitted blanket beside an open book"
+                    </p>
+                    <p className="text-sm text-black mb-3">
+                      <strong>Prompt 2:</strong> "a serene PNW shoreline with driftwood and calm water"
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/anagramupright182.png" alt="Visual Anagram Set 2 Upright" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Upright</p>
+                      </div>
+                      <div className="text-center">
+                        <img src="/cs180-portfolio/project-5/anagramflipped182.png" alt="Visual Anagram Set 2 Flipped" className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                        <p className="text-xs text-black">Flipped Upside Down</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Part 1.9: Hybrid Images */}
+                <div className="mb-4">
+                  <h5 className="text-lg font-semibold text-black mb-3">Part 1.9: Hybrid Images</h5>
+                  <p className="text-sm text-black mb-3">
+                    Implemented Factorized Diffusion to create hybrid images by combining low and high frequencies from different prompts.
+                  </p>
+                  
+                  <div className="mb-6">
+                    <p className="text-sm text-black mb-2">
+                      <strong>Low Frequency (LF):</strong> "a peaceful beach scene in san diego with gentle afternoon waves"
+                    </p>
+                    <p className="text-sm text-black mb-3">
+                      <strong>High Frequency (HF):</strong> "a simple still life of matcha in a ceramic cup on a wooden table"
+                    </p>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-5/matcha_beach_hybrid2.png" alt="Hybrid Image: Matcha and Beach" className="w-full max-w-2xl mx-auto h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Hybrid Image</p>
+                    </div>
+                  </div>
+
+                  <div className="mb-4">
+                    <p className="text-sm text-black mb-2">
+                      <strong>Low Frequency (LF):</strong> "a soft pacific northwest landscape with tall pines and muted light"
+                    </p>
+                    <p className="text-sm text-black mb-3">
+                      <strong>High Frequency (HF):</strong> "a runner passing through golden hour light on a coastal trail"
+                    </p>
+                    <div className="text-center">
+                      <img src="/cs180-portfolio/project-5/runner_trees_hybrid.png" alt="Hybrid Image: Runner and Trees" className="w-full max-w-2xl mx-auto h-auto object-contain rounded-lg border-2 border-gray-300 mb-2" />
+                      <p className="text-xs text-black">Hybrid Image</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Reflection */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-300 shadow-xl">
+                <h4 className="text-xl font-bold text-black mb-4">Reflection & What I Learned</h4>
+                <div className="space-y-3 text-black leading-relaxed">
+                  <p>
+                    [To be filled in after completing the project]
+                  </p>
                 </div>
               </div>
 
