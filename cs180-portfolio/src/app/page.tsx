@@ -4286,8 +4286,13 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                 <div className="mb-6">
                   <h5 className="text-lg font-semibold text-black mb-3">Part 1.1: Implementing the UNet</h5>
                   <p className="text-sm text-black mb-3">
-                    Implemented a UNet architecture with downsampling and upsampling blocks with skip connections. 
-                    The UNet consists of Conv, DownConv, UpConv, Flatten, Unflatten, and Concat operations.
+                    Implemented a UNet architecture with downsampling and upsampling blocks with skip connections. The UNet consists of several 
+                    key operations: <strong>Conv</strong> (convolutional layer that changes channel dimension without changing resolution), 
+                    <strong>DownConv</strong> (downsamples by 2 using stride-2 convolution), <strong>UpConv</strong> (upsamples by 2 using 
+                    transposed convolution), <strong>Flatten</strong> (average pooling that reduces 7×7 to 1×1), <strong>Unflatten</strong> 
+                    (convolutional layer that expands 1×1 back to 7×7), and <strong>Concat</strong> (channel-wise concatenation for skip 
+                    connections). The architecture uses hidden dimension D=128, and skip connections preserve spatial information during 
+                    upsampling, allowing the network to recover fine details that might be lost during downsampling.
                   </p>
                   <div className="mt-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -4307,7 +4312,11 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                 <div className="mb-6">
                   <h5 className="text-lg font-semibold text-black mb-3">Part 1.2: Using the UNet to Train a Denoiser</h5>
                   <p className="text-sm text-black mb-3">
-                    Visualized the different noising processes over σ, showing how images become noisier as σ increases.
+                    To train a denoiser that maps noisy images x_noisy to clean images x_clean, we need to generate training pairs. For each 
+                    clean MNIST digit x_clean, we generate a noisy version using the noising process: x_noisy = x_clean + σ·ε, where ε ~ N(0,1) 
+                    is random Gaussian noise and σ controls the noise level. The visualization shows how images become progressively noisier as 
+                    σ increases, with normalized images (x_clean in [0,1]). This demonstrates the forward process of adding noise, which we will 
+                    later reverse through denoising.
                   </p>
                   <div className="mt-4">
                     <div className="text-center">
@@ -4320,8 +4329,12 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                   <div className="mb-4">
                     <h6 className="text-md font-semibold text-black mb-3">Part 1.2.1: Training</h6>
                     <p className="text-sm text-black mb-3">
-                      Trained a denoiser to map noisy images to clean images using L2 loss. 
-                      Used MNIST dataset with batch size 256, trained for 5 epochs with Adam optimizer (lr=1e-4).
+                      Trained a denoiser to map noisy images x_noisy to clean images x_clean using L2 loss: L = ||f(x_noisy) - x_clean||², 
+                      where f is the UNet. For each training batch, we randomly sample σ to add noise, ensuring the network sees new noised 
+                      images in every epoch and improving generalization. Used MNIST training set with batch size 256, trained for 5 epochs 
+                      with Adam optimizer (lr=1e-4) and hidden dimension D=128. The training loss curve shows steady decrease, and the sample 
+                      results demonstrate that the model learns to effectively denoise images, with significant improvement from epoch 1 to 
+                      epoch 5. After 5 epochs, the denoised digits are clear and recognizable, showing the model has learned the denoising task.
                     </p>
                     <div className="mt-4">
                       <p className="text-sm text-black mb-3 italic">Training loss curve:</p>
@@ -4347,7 +4360,11 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                   <div className="mb-4">
                     <h6 className="text-md font-semibold text-black mb-3">Part 1.2.2: Out-of-Distribution Testing</h6>
                     <p className="text-sm text-black mb-3">
-                      Tested the denoiser on different noise levels σ that it wasn&apos;t trained on.
+                      Tested the denoiser on different noise levels σ that it wasn&apos;t trained on. During training, the model only saw 
+                      images with σ sampled randomly, but we can test how well it generalizes to specific noise levels. The results show that 
+                      the model performs reasonably well on out-of-distribution noise levels, though performance may degrade for very high or 
+                      very low noise levels that are far from the training distribution. This demonstrates the model&apos;s ability to generalize 
+                      to unseen noise conditions, which is important for practical denoising applications.
                     </p>
                     <div className="mt-4">
                       <div className="text-center">
@@ -4361,8 +4378,11 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                   <div className="mb-4">
                     <h6 className="text-md font-semibold text-black mb-3">Part 1.2.3: Denoising Pure Noise</h6>
                     <p className="text-sm text-black mb-3">
-                      Trained the denoiser to denoise pure random Gaussian noise (starting with x₀ = ε where ε ~ N(0,1)) 
-                      and denoise it to get a clean image. This tests the generative capabilities of the model.
+                      Trained the denoiser to denoise pure random Gaussian noise (starting with x_noisy = ε where ε ~ N(0,1)) and denoise it 
+                      to get a clean image. This tests the generative capabilities of the model—can it create images from scratch? The training 
+                      process is identical to Part 1.2.1, but instead of adding noise to clean images, we input pure noise and train the model 
+                      to predict clean images. The training loss curve shows the model learning, but the generated outputs reveal a fundamental 
+                      limitation of one-step denoising for generation.
                     </p>
                     <div className="mt-4">
                       <p className="text-sm text-black mb-3 italic">Training loss curve during training on pure noise:</p>
@@ -4397,8 +4417,12 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                 <div className="mb-6">
                   <h5 className="text-lg font-semibold text-black mb-3">Part 2.1: Adding Time Conditioning to UNet</h5>
                   <p className="text-sm text-black mb-3">
-                    Added time conditioning to the UNet using FCBlocks (fully-connected blocks) to inject the scalar timestep t 
-                    into the model. The conditioning signal modulates the unflatten and up1 operations.
+                    Added time conditioning to the UNet using FCBlocks (fully-connected blocks) to inject the scalar timestep t into the model. 
+                    FCBlocks consist of linear layers that transform the scalar t (normalized to [0,1]) into feature vectors. We use two FCBlocks: 
+                    fc1_t and fc2_t. The conditioning signal modulates the network at two key points: (1) the unflatten operation is multiplied 
+                    by t1 = fc1_t(t), and (2) the up1 operation is multiplied by t2 = fc2_t(t). This allows the UNet to condition its predictions 
+                    on the current timestep, which is crucial for flow matching since the flow (velocity) depends on both the current state and time. 
+                    The timestep t tells the model how much noise remains and how to adjust its prediction accordingly.
                   </p>
                 </div>
 
@@ -4406,8 +4430,13 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                 <div className="mb-6">
                   <h5 className="text-lg font-semibold text-black mb-3">Part 2.2: Training the UNet</h5>
                   <p className="text-sm text-black mb-3">
-                    Trained the time-conditioned UNet to predict the flow at timestep t given a noisy image x_t and timestep t. 
-                    Used MNIST dataset with batch size 64, Adam optimizer with initial learning rate 1e-2 and exponential decay scheduler (γ=0.95).
+                    Trained the time-conditioned UNet to predict the flow (velocity) at timestep t. In flow matching, we define intermediate noisy 
+                    samples as x_t = (1-t)·x_clean + t·x_noisy, where t ∈ [0,1] and x_noisy is pure noise. The flow v_t is the velocity describing 
+                    how to move from x_t toward x_clean: v_t = x_clean - x_noisy. Our learning objective is to train the UNet f_θ(x_t, t) to 
+                    approximate this flow: L = ||f_θ(x_t, t) - v_t||². For each training batch, we sample a random image x_clean, a random timestep 
+                    t, compute x_t and v_t, then train the model to predict v_t. Used MNIST with batch size 64, Adam optimizer (initial lr=1e-2), 
+                    and exponential learning rate decay scheduler (γ=0.95) that reduces the learning rate by 5% each epoch. The training loss curve 
+                    shows the model learning to predict the flow accurately.
                   </p>
                   <div className="mt-4">
                     <p className="text-sm text-black mb-3 italic">Training loss curve for the time-conditioned UNet:</p>
@@ -4422,8 +4451,12 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                 <div className="mb-6">
                   <h5 className="text-lg font-semibold text-black mb-3">Part 2.3: Sampling from the UNet</h5>
                   <p className="text-sm text-black mb-3">
-                    Used the trained UNet for iterative denoising to generate samples. Starting from pure noise, 
-                    iteratively denoise using the predicted flow.
+                    Used the trained UNet for iterative denoising to generate samples. Starting from pure noise, we iteratively 
+                    update the image using the predicted flow. At each step, we compute the predicted flow v_t = f_θ(x_t, t), then update: 
+                    x_next = x_t + dt * v_t, where dt is a small timestep increment. We discretize the interval from 0 to 1 into N steps and iterate 
+                    from timestep 0 (pure noise) to timestep 1 (clean image). The results show that after 1 epoch, digits are barely recognizable, but after 
+                    5 and 10 epochs, legible digits emerge. The time-conditioned UNet enables iterative generation, which is much more effective 
+                    than one-step denoising, though the results are not perfect and could be improved with class conditioning.
                   </p>
                   <div className="mt-4">
                     <p className="text-sm text-black mb-3 italic">Sampling results from the time-conditioned UNet:</p>
@@ -4448,8 +4481,12 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                 <div className="mb-6">
                   <h5 className="text-lg font-semibold text-black mb-3">Part 2.4: Adding Class-Conditioning to UNet</h5>
                   <p className="text-sm text-black mb-3">
-                    Added class-conditioning to the UNet by conditioning on the digit class (0-9). Used one-hot vectors for class conditioning 
-                    and implemented dropout where 10% of the time we drop the class conditioning (for classifier-free guidance).
+                    Added class-conditioning to the UNet by conditioning on the digit class c (0-9). Used one-hot vectors (10-dimensional) 
+                    for class conditioning instead of a scalar. We add two more FCBlocks: fc1_c and fc2_c. The conditioning is combined with time 
+                    conditioning: unflatten = c1 * unflatten + t1 and up1 = c2 * up1 + t2, where c1 = fc1_c(c), c2 = fc2_c(c), t1 = fc1_t(t), 
+                    and t2 = fc2_t(t). To enable classifier-free guidance, we implement dropout where 10% of the time (p equals 0.1) we drop the class 
+                    conditioning by setting c to 0 (zero vector). This allows the model to learn both conditional and unconditional generation, 
+                    which we can combine during sampling to improve quality and control.
                   </p>
                 </div>
 
@@ -4457,7 +4494,12 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                 <div className="mb-6">
                   <h5 className="text-lg font-semibold text-black mb-3">Part 2.5: Training the UNet</h5>
                   <p className="text-sm text-black mb-3">
-                    Trained the class-conditioned UNet similar to the time-only version, with the addition of class conditioning vectors.
+                    Trained the class-conditioned UNet similar to the time-only version, with the addition of class conditioning vectors. The 
+                    training procedure follows Algorithm B.3: for each batch, we sample a random image x_clean with its class label c, a random 
+                    timestep t, and compute x_t and v_t. With probability p=0.1, we set c = 0 (unconditional), otherwise we use the true class label. 
+                    The model predicts the flow f_θ(x_t, t, c), and we optimize the L2 loss. The training loss curve shows steady decrease, and 
+                    class conditioning helps the model converge faster and generate better quality digits compared to time-only conditioning, which 
+                    is why we only need to train for 10 epochs instead of longer.
                   </p>
                   <div className="mt-4">
                     <p className="text-sm text-black mb-3 italic">Training loss curve for the class-conditioned UNet:</p>
@@ -4472,7 +4514,12 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                 <div className="mb-6">
                   <h5 className="text-lg font-semibold text-black mb-3">Part 2.6: Sampling from the UNet</h5>
                   <p className="text-sm text-black mb-3">
-                    Sampled from the class-conditioned UNet using classifier-free guidance with guidance scale w.
+                    Sampled from the class-conditioned UNet using classifier-free guidance (CFG) with guidance scale w. During sampling, we compute 
+                    both conditional flow v_cond = f_θ(x_t, t, c) and unconditional flow v_uncond = f_θ(x_t, t, 0), then combine them: 
+                    v = v_uncond + w·(v_cond - v_uncond). This amplifies the difference between conditional and unconditional predictions, making 
+                    the model follow the class condition more strongly. We generate 4 instances of each digit (0-9) to show diversity. The results 
+                    show dramatic improvement: after just 1 epoch, digits are recognizable, and by 10 epochs, we get high-quality, diverse digit 
+                    samples. Class conditioning enables much faster convergence and better quality compared to time-only conditioning.
                   </p>
                   <div className="mt-4">
                     <p className="text-sm text-black mb-3 italic">Sampling results from the class-conditioned UNet (4 instances of each digit):</p>
@@ -4503,7 +4550,7 @@ Speed comparison: Bilinear is 1.77x slower`}</pre>
                         </div>
                       </div>
                       <p className="text-sm text-black mt-4 mb-3">
-                        <strong>Description of compensation method:</strong> To maintain similar performance without the exponential learning rate scheduler, I increased the initial learning rate slightly and used a constant learning rate throughout training. The exponential scheduler was gradually reducing the learning rate over epochs, so by starting with a slightly higher initial learning rate (around 1.2e-2 instead of 1e-2) and keeping it constant, I was able to achieve comparable convergence. Alternatively, I could have used a step-based learning rate schedule that reduces the learning rate at specific epochs (e.g., reduce by 0.5 at epochs 5 and 8) to mimic the gradual decay of the exponential scheduler. The key insight is that the scheduler helps with fine-tuning in later epochs, so maintaining a reasonable learning rate throughout training is important for good results.
+                        <strong>Description of compensation method:</strong> To maintain similar performance without the exponential learning rate scheduler, I used a lower constant learning rate of 5e-3 (instead of the original 1e-2 with scheduler). The exponential scheduler was gradually reducing the learning rate over epochs (with gamma=0.95), so by the end of training, the effective learning rate was much lower than the initial 1e-2. Using a constant learning rate of 5e-3 throughout training approximates the average learning rate that the scheduler would have provided, allowing for comparable convergence. The key insight is that the scheduler helps with fine-tuning in later epochs by reducing the learning rate, so using a lower constant learning rate that matches the scheduler&apos;s average rate can achieve similar results without the complexity of a scheduler.
                       </p>
                     </div>
                   </div>
